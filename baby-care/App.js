@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './component/Home';
-import AllVaccine from './component/Vaccine/AllVaccine';
+import AllVaccine from './component/Vaccine/All';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
