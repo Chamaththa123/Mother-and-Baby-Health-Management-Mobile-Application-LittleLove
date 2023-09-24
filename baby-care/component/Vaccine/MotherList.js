@@ -47,7 +47,7 @@ const MotherList = ({ navigation }) => {
   }, []);
 
   const handleItemPress = (item) => {
-    navigation.navigate('DataDetail', { item });
+    navigation.navigate('MotherDetails', { item });
   };
 
   useEffect(() => {
