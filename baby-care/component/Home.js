@@ -15,6 +15,7 @@ const Home = ({ navigation }) => {
       <Text style={styles.text}>All Data from Firebase</Text>
       <Button title='Go to Home Screen' onPress={() => navigation.navigate('AllVaccine')} />
       <Button title='Add ' onPress={() => navigation.navigate('Add')} />
+      <Button title='MotherList' onPress={() => navigation.navigate('MotherList')} />
     </View>
     </ImageBackground>
   );

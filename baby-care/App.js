@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './component/Home';
 import AllVaccine from './component/Vaccine/All';
 import Add from './component/Add';
+import MotherList from './component/Vaccine/MotherList';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
 <Stack.Screen name='Home' component={Home} />
 <Stack.Screen name='AllVaccine' component={AllVaccine} />
 <Stack.Screen name='Add' component={Add} />
+<Stack.Screen name='MotherList' component={MotherList} />
 
       </Stack.Navigator>
     </NavigationContainer>
