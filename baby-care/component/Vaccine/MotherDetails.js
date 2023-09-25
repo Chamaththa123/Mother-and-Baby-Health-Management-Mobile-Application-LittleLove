@@ -38,8 +38,23 @@ const MotherDetails = ({ route, navigation }) => {
             <View style={styles.row}>
             <Text style={styles.text1}>PHM Area:</Text><Text style={styles.text2}>{item.PHM}</Text>
             </View>
+          </View>
+
+          <View style={styles.item}>
             <View style={styles.row}>
-            <Text style={styles.text1}>Baby:</Text>
+            <Text style={styles.text1}>Name:</Text><Text style={styles.text2}>{item.name}</Text>
+            </View>
+            <View style={styles.row}>
+            <Text style={styles.text1}>Occupation:</Text><Text style={styles.text2}>{item.occupation}</Text>
+            </View>
+            <View style={styles.row}>
+            <Text style={styles.text1}>Registered No:</Text><Text style={styles.text2}>{item.registeredNo}</Text>
+            </View>
+            <View style={styles.row}>
+            <Text style={styles.text1}>DDSH Division:</Text><Text style={styles.text2}>{item.DDSH}</Text>
+            </View>
+            <View style={styles.row}>
+            <Text style={styles.text1}>PHM Area:</Text><Text style={styles.text2}>{item.PHM}</Text>
             </View>
           </View>
           <View style={styles.buttonContainer}>
@@ -77,8 +92,13 @@ const styles = StyleSheet.create({
     marginTop:30
   },
   item: {
-    padding: 10,
+    padding: 20,
     marginBottom: 5,
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    margin: 10,
+    borderWidth: 2, // Add border width
+    borderColor: '#5bf6db', // Add border color
   },
   backgroundImage: {
     flex: 1,
@@ -93,15 +113,16 @@ const styles = StyleSheet.create({
 
   },row:{
     flexDirection: 'row',
-marginBottom:10
+marginBottom:20
   },text1:{
-    fontSize:21,
+    fontSize:17,
     fontWeight:'900',
-    marginLeft:5
+    marginLeft:0,
+color:'#323232'
   },text2:{
-    fontSize:21,
+    fontSize:17,
     marginLeft:20,
-    marginRight:20,
+    marginRight:20,color:'#323232'
   } , buttonStyle: {
     backgroundColor: '#5bf6db',
     padding: 13,
