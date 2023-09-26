@@ -7,6 +7,7 @@ import Add from './component/Add';
 import MotherList from './component/Vaccine/MotherList';
 import MotherDetails from './component/Vaccine/MotherDetails';
 import AddBaby from './component/Vaccine/AddBaby';
+import BabyDetails from './component/Vaccine/BabyDetails';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
 <Stack.Screen name='MotherList' component={MotherList} />
 <Stack.Screen name='MotherDetails' component={MotherDetails} />
 <Stack.Screen name='AddBaby' component={AddBaby} />
+<Stack.Screen name='BabyDetails' component={BabyDetails} />
 
       </Stack.Navigator>
     </NavigationContainer>

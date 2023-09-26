@@ -4,7 +4,8 @@ import { ref, query, orderByChild, equalTo, onValue } from 'firebase/database';
 import { db } from '../../firebase/config';
 
 const backgroundImage = require('../../assets/bg.png');
-const localImage = require('../../assets/user.png');
+const localImage = require('../../assets/mother.png');
+const localImage2 = require('../../assets/girl.png');
 
 const MotherDetails = ({ route, navigation }) => {
   const { item } = route.params;
@@ -41,10 +42,14 @@ const MotherDetails = ({ route, navigation }) => {
     navigation.navigate('AddBaby', { item });
   };
 
+  const handleBabyPress = (baby) => {
+    navigation.navigate('BabyDetails', { baby }); // Navigate to BabyDetails and pass the baby data
+  };
+
   return (
-   
-      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-         <ScrollView style={styles.container}>
+
+    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+      <ScrollView style={styles.container}>
         <View style={styles.contentContainer}>
           <View style={styles.row}>
             <Image source={localImage} style={styles.imageStyle} />
@@ -86,17 +91,23 @@ const MotherDetails = ({ route, navigation }) => {
               </TouchableOpacity>
             </View>
             <View style={styles.row}>
-              <Text style={styles.text1}>Baby</Text>
+              <Text style={styles.text1}>Baby:</Text>
             </View>
 
-            <Text style={styles.text}>Baby Details</Text>
-            <View style={styles.item}>
+            <View >
               {baby.map((babys, index) => (
-                <View key={index}>
-                  <Text>Baby Name: {babys.babyname}</Text>
-                  <Text>Birth Date: {babys.bday}</Text>
-                  {/* Add other baby details here */}
-                </View>
+                <TouchableOpacity
+                  key={index}
+                  style={styles.item}
+                  onPress={() => handleBabyPress(babys)}
+                >
+                  <View style={styles.row2}>
+                    <Image source={localImage2} style={styles.babyImage} />
+                    <Text style={{ marginTop: 10, marginLeft: 10 }}>
+                      {babys.babyname}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               ))}
             </View>
           </View>
@@ -111,8 +122,8 @@ const MotherDetails = ({ route, navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
-        </ScrollView>
-      </ImageBackground>
+      </ScrollView>
+    </ImageBackground>
 
   );
 };
@@ -129,13 +140,12 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     marginBottom: 10,
-    textAlign: 'center',
     marginTop: 70,
     marginLeft: 10,
     width: 260,
   },
   item: {
-    padding: 20,
+    padding: 10,
     backgroundColor: '#ffffff',
     borderRadius: 10,
     margin: 10,
@@ -156,7 +166,9 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    marginBottom: 20,
+    marginBottom: 15,
+  }, row2: {
+    flexDirection: 'row',
   },
   text1: {
     fontSize: 17,
@@ -189,6 +201,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+  }, babyImage: {
+    width: 40, // Adjust the width as needed
+    height: 40, // Adjust the height as needed
+    resizeMode: 'cover',
+    marginLeft: 0,
+    marginTop: 0,
   },
 });
 

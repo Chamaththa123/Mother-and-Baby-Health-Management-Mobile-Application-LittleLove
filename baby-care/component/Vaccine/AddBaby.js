@@ -66,6 +66,30 @@ const AddBaby = ({ route, navigation }) => {
           onChangeText={(bday) => setbday(bday)}
           keyboardType="numeric"
         />
+
+<TextInput
+          placeholder="Mark"
+          value={btime}
+          onChangeText={(btime) => setbtime(btime)}
+          keyboardType="numeric"
+        />
+        <TextInput
+          placeholder="Mark"
+          value={gender}
+          onChangeText={(gender) => setgender(gender)}
+        />
+        <TextInput
+          placeholder="Mark"
+          value={bweight}
+          onChangeText={(bweight) => setbweight(bweight)}
+          keyboardType="numeric"
+        />
+        <TextInput
+          placeholder="Mark"
+          value={blength}
+          onChangeText={(blength) => setblength(blength)}
+          keyboardType="numeric"
+        />
         <Button title="Add Subject" onPress={addSubject} />
       </View>
     </View>
