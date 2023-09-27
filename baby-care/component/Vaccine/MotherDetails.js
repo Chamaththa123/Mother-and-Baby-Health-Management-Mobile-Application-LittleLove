@@ -42,6 +42,10 @@ const MotherDetails = ({ route, navigation }) => {
     navigation.navigate('AddBaby', { item });
   };
 
+  const handlePress = (item) => {
+    navigation.navigate('AllVaccine', { item });
+  };
+
   const handleBabyPress = (baby) => {
     navigation.navigate('BabyDetails', { baby }); // Navigate to BabyDetails and pass the baby data
   };
@@ -115,7 +119,7 @@ const MotherDetails = ({ route, navigation }) => {
             <TouchableOpacity
               style={styles.buttonStyle}
               onPress={() => {
-                // Handle button press
+                handlePress(item)
               }}
             >
               <Text style={styles.buttonText}>View Mother Clinic & Vaccination Details</Text>

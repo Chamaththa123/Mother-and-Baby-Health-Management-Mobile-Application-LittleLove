@@ -4,7 +4,7 @@ import { TabView, TabBar } from 'react-native-tab-view';
 import VaccineDetails from './VaccineDetails';
 
 const backgroundImage = require('../../assets/bg.png');
-const localImage = require('../../assets/user.png');
+const localImage = require('../../assets/mother.png');
 
 const Tab1Screen = () => (
   <View >
@@ -24,7 +24,9 @@ const initialRoutes = [
   { key: 'tab2', title: 'Clinic' }, // Change 'Tab 2' to 'Vaccination'
 ];
 
-const All = ({ navigation }) => {
+const All = ({ route, navigation }) => {
+
+  const { item } = route.params;
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -50,7 +52,7 @@ const All = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.contentContainer}>
           <Image source={localImage} style={styles.imageStyle} />
-          <Text style={styles.text}>Aruni Balasooriya</Text>
+          <Text style={styles.text}>{item.name}</Text>
         </View>
 
         <View style={styles.buttonContainer}>
@@ -101,6 +103,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     marginLeft: 30,
+    marginRight:90
   },
   backgroundImage: {
     flex: 1,
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     alignItems: 'flex-end',
     marginRight: 20,
-    marginTop: 80,
+    marginTop: 50,
   },
   buttonStyle: {
     backgroundColor: '#5bf6db',
@@ -125,8 +128,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   imageStyle: {
-    width: 50,
-    height: 50,
+    width: 70,
+    height: 70,
     resizeMode: 'cover',
   },
   scene: {
