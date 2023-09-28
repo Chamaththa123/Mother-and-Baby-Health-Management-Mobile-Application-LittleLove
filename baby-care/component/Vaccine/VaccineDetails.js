@@ -1,24 +1,29 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-const MyTable = () => {
+const MyTable = ({navigation, data }) => {
+
+  const handleItemPress = (data) => {
+    navigation.navigate('AddVaccine', { data });
+  };
+
   return (
     <View style={styles.container}>
 
-<View style={styles.buttonContainer}>
+      <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.buttonStyle}
           onPress={() => {
-            // Handle button press
+            handleItemPress(data);
           }}
         >
           <Text style={styles.buttonText}>Add Details</Text>
         </TouchableOpacity>
       </View>
-      
+
       <View style={styles.card}>
         {/* Card Content */}
-        <Text style={styles.cardTitle}>Card Title</Text>
+        <Text style={styles.cardTitle}>{data}</Text>
         <Text style={styles.cardDetails}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
       </View>
     </View>
@@ -49,7 +54,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: '#5bf6db',
     padding: 13,
-    borderRadius: 35,
+    borderRadius: 7,
     width: 150,
     height: 50,
   },

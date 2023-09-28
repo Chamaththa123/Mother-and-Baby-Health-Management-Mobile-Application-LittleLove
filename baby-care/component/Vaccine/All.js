@@ -6,15 +6,18 @@ import VaccineDetails from './VaccineDetails';
 const backgroundImage = require('../../assets/bg.png');
 const localImage = require('../../assets/mother.png');
 
-const Tab1Screen = () => (
-  <View >
-    <VaccineDetails/>
+const Tab1Screen = ({ itemName }) => (
+
+<View >
+<Text>Name in Tab 1: {itemName}</Text>
+    <VaccineDetails data={itemName}/>
+    {/* <Text style={styles.text}>{item.name}</Text> */}
   </View>
 );
 
-const Tab2Screen = () => (
+const Tab2Screen = ({ itemName }) => (
   <View style={styles.scene}>
-    <Text>Tab 2 Content</Text>
+     <Text>Name in Tab 2: {itemName}</Text>
   </View>
 );
 
@@ -39,9 +42,9 @@ const All = ({ route, navigation }) => {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'tab1':
-        return <Tab1Screen />;
+        return <Tab1Screen itemName={item.id} />;
       case 'tab2':
-        return <Tab2Screen />;
+        return <Tab2Screen itemName={item.name} />;
       default:
         return null;
     }
