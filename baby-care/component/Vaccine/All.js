@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, Platform } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import VaccineDetails from './VaccineDetails';
 
 const backgroundImage = require('../../assets/bg.png');
 const localImage = require('../../assets/mother.png');
 
-const Tab1Screen = ({ itemName }) => (
-
-<View >
-<Text>Name in Tab 1: {itemName}</Text>
-    <VaccineDetails data={itemName}/>
+const Tab1Screen = ({ item }) => (
+  <View>
+    <Text>Name in Tab 1: {item.id}</Text>
+    {/* Access other properties of the item object */}
+    <Text>Other Details: {item.name}</Text>
+    <Text>Other Details: {item.PHM}</Text>
+    <VaccineDetails data={item} />
     {/* <Text style={styles.text}>{item.name}</Text> */}
   </View>
 );
 
-const Tab2Screen = ({ itemName }) => (
+const Tab2Screen = ({ item }) => (
   <View style={styles.scene}>
-     <Text>Name in Tab 2: {itemName}</Text>
+    <Text>Name in Tab 2: {item.name}</Text>
   </View>
 );
 
@@ -42,9 +44,9 @@ const All = ({ route, navigation }) => {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'tab1':
-        return <Tab1Screen itemName={item.id} />;
+        return <Tab1Screen item={item} />;
       case 'tab2':
-        return <Tab2Screen itemName={item.name} />;
+        return <Tab2Screen item={item} />;
       default:
         return null;
     }
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     marginLeft: 30,
-    marginRight:90
+    marginRight: 90
   },
   backgroundImage: {
     flex: 1,

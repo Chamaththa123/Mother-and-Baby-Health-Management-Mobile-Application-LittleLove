@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: '#5bf6db',
     padding: 13,
-    borderRadius: 35,
+    borderRadius: 5,
     height: 50,
     margin: 10,
   },
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
   buttonContainer2: {
     marginBottom: 20,
     width: 140,
-    marginLeft: -17,
+    marginLeft: 0,
   },
   buttonText: {
     color: 'black',

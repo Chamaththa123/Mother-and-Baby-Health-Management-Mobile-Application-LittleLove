@@ -1,72 +1,31 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const MyTable = ({navigation, data }) => {
-
-  const handleItemPress = (data) => {
-    navigation.navigate('AddVaccine', { data });
-  };
+const VaccineDetails = ({ data }) => {
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View>
+      <Text>Vaccine Details</Text>
+      <Text>ID: {data.id}</Text>
+      <Text>Name: {data.name}</Text>
+      <Text>Email: {data.email}</Text>
+      <Text>Address: {data.address}</Text>
+      <Text>Occupation: {data.occupation}</Text>
+      <Text>Registered No: {data.registeredNo}</Text>
+      <Text>DDSH: {data.DDSH}</Text>
+      <Text>PHM: {data.PHM}</Text>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={() => {
-            handleItemPress(data);
-          }}
-        >
-          <Text style={styles.buttonText}>Add Details</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.card}>
-        {/* Card Content */}
-        <Text style={styles.cardTitle}>{data}</Text>
-        <Text style={styles.cardDetails}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
-      </View>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('AddVaccine', { data });
+        }}
+      >
+        <Text>Go to Other Page</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: { padding: 10, paddingTop: 30, backgroundColor: '#fff' },
-  card: {
-    backgroundColor: '#ffffff',
-    padding: 20,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  cardTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  cardDetails: {
-    fontSize: 16,
-    color: '#555',
-  },
-  buttonStyle: {
-    backgroundColor: '#5bf6db',
-    padding: 13,
-    borderRadius: 7,
-    width: 150,
-    height: 50,
-  },
-  buttonContainer: {
-    marginBottom: 30,
-  },
-  buttonText: {
-    color: 'black',
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
-
-export default MyTable;
+export default VaccineDetails;
