@@ -25,7 +25,7 @@ const OtherPage = ({ route, navigation }) => {
     const newVaccineKey = push(vaccineRef);
 
     set(newVaccineKey, {
-      UserId: data.id,
+      motherId: data.id,
       age: age,
       type: type,
       date: date,

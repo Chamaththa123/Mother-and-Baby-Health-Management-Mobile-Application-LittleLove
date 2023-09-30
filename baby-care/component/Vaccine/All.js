@@ -8,10 +8,6 @@ const localImage = require('../../assets/mother.png');
 
 const Tab1Screen = ({ item }) => (
   <View>
-    <Text>Name in Tab 1: {item.id}</Text>
-    {/* Access other properties of the item object */}
-    <Text>Other Details: {item.name}</Text>
-    <Text>Other Details: {item.PHM}</Text>
     <VaccineDetails data={item} />
     {/* <Text style={styles.text}>{item.name}</Text> */}
   </View>
