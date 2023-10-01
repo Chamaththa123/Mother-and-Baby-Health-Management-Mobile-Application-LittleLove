@@ -1,73 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
-import VaccineDetails from './VaccineDetails';
-import ClinicDetails from './ClinicDetails';
-import AllClinic from './AllClinic';
 
 const backgroundImage = require('../../assets/bg.png');
 const localImage = require('../../assets/mother.png');
 
-const Tab1Screen = ({ item }) => (
-  <View style={styles.scene}>
-    <VaccineDetails data={item} />
+const Tab1Screen = () => (
+  <View>
+    <Text>Clinic</Text>
   </View>
 );
 
-const Tab2Screen = ({ item }) => (
-  <View style={styles.scene}>
-    <AllClinic />
+const Tab2Screen = () => (
+  <View>
+    <Text>Vaccination</Text>
   </View>
 );
 
-
-// Change the tab names here
 const initialRoutes = [
-  { key: 'tab1', title: 'Vaccination' }, // Change 'Tab 1' to 'Clinic'
-  { key: 'tab2', title: 'Clinic' }, // Change 'Tab 2' to 'Vaccination'
+  { key: 'tab1', title: 'Clinic Details' },
+  { key: 'tab2', title: 'Health Graphs' },
 ];
 
-const All = ({ route, navigation }) => {
-
-  const { item } = route.params;
-  useEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
-
+const AllClinic = ({ route, navigation }) => {
   const [index, setIndex] = useState(0);
   const [routes] = useState(initialRoutes);
 
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'tab1':
-        return <Tab1Screen item={item} />;
+        return <Tab1Screen />;
       case 'tab2':
-        return <Tab2Screen item={item} />;
+        return <Tab2Screen />;
       default:
         return null;
     }
   };
 
   return (
-    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-      <View style={styles.container}>
-        <View style={styles.contentContainer}>
-          <Image source={localImage} style={styles.imageStyle} />
-          <Text style={styles.text}>{item.name}</Text>
-        </View>
 
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              // Handle button press
-            }}
-          >
-            <Text style={styles.buttonText}>Clinic Schedules</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.container}>
+
 
         <TabView
           navigationState={{ index, routes }}
@@ -83,11 +56,10 @@ const All = ({ route, navigation }) => {
               />
             </View>
           )}
-          // Reduce the marginTop here to adjust the gap
           style={{ marginTop: 20 }}
         />
       </View>
-    </ImageBackground>
+
   );
 };
 
@@ -106,7 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     marginLeft: 30,
-    marginRight: 90
+    marginRight: 90,
   },
   backgroundImage: {
     flex: 1,
@@ -137,7 +109,8 @@ const styles = StyleSheet.create({
   },
   scene: {
     flex: 1,
-
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   tabBarContainer: {
     backgroundColor: 'white',
@@ -147,10 +120,8 @@ const styles = StyleSheet.create({
   tabBar: {
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    backgroundColor:'#5bf6db'
+    backgroundColor: '#5bf6db',
   },
-
-  
 });
 
-export default All;
+export default AllClinic;
