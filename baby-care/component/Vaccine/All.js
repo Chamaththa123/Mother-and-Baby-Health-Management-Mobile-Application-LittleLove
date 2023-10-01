@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import VaccineDetails from './VaccineDetails';
+import ClinicDetails from './ClinicDetails';
 
 const backgroundImage = require('../../assets/bg.png');
 const localImage = require('../../assets/mother.png');
@@ -14,8 +15,8 @@ const Tab1Screen = ({ item }) => (
 );
 
 const Tab2Screen = ({ item }) => (
-  <View style={styles.scene}>
-    <Text>Name in Tab 2: {item.name}</Text>
+  <View>
+    <ClinicDetails data={item}/>
   </View>
 );
 
