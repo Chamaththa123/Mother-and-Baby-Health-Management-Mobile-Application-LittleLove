@@ -35,23 +35,29 @@ const VaccineDetails = ({ data }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.buttonStyle}
-        onPress={() => {
-          navigation.navigate('AddVaccine', { data });
-        }}
-      >
-        <Text style={styles.buttonText}>Go to Other Page</Text>
-      </TouchableOpacity>
-      </View>
-      
-      {vaccineData.map((item, index) => (
-          <View key={index} style={styles.card}>
-            <Text style={styles.cardText}>Age: {item.age}</Text>
-            <Text style={styles.cardText}>Vaccine Type: {item.type}</Text>
-            <Text style={styles.cardText}>Date: {item.date}</Text>
-            <Text style={styles.cardText}>Batch: {item.batch}</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.buttonStyle}
+            onPress={() => {
+              navigation.navigate('AddVaccine', { data });
+            }}
+          >
+            <Text style={styles.buttonText}>Add Details</Text>
+          </TouchableOpacity>
+        </View>
+
+        {vaccineData.map((item, index) => (
+          <View style={styles.card}>
+          <View style={styles.row}>
+            <View style={styles.leftColumn}>
+              <Text style={styles.cardText}><Text style={styles.cardHeader}>Age:</Text> {item.age}</Text>
+              <Text style={styles.cardText}><Text style={styles.cardHeader}>Date:</Text> {item.date}</Text>
+            </View>
+            <View style={styles.rightColumn}>
+              <Text style={styles.cardText2}><Text style={styles.cardHeader}>Vaccine Type:</Text> {item.type}</Text>
+              <Text style={styles.cardText2}><Text style={styles.cardHeader}>Batch:</Text> {item.batch}</Text>
+            </View>
           </View>
+        </View>
         ))}
         {vaccineData.length === 0 && (
           <Text>No vaccine data available for this user.</Text>
@@ -64,8 +70,8 @@ const VaccineDetails = ({ data }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginLeft:10,
-    marginRight:10
+    marginLeft: 10,
+    marginRight: 10
   },
   card: {
     backgroundColor: 'white',
@@ -77,27 +83,43 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.1,
     shadowRadius: 3.84,
-    elevation: 5,
+    elevation: 1.5,
   },
   cardText: {
     fontSize: 16,
+  },
+  cardText2: {
+    fontSize: 16,
+  },
+  leftColumn: {
+    flex: 1,
+  },
+  rightColumn: {
+    flex: 1,
+  },cardHeader:{
+fontWeight:'bold'
   },
   buttonStyle: {
     backgroundColor: '#5bf6db',
     padding: 13,
     borderRadius: 10,
     height: 50,
-    width:150
+    width: 130
   },
   buttonContainer: {
     marginBottom: 10,
-  },  buttonText: {
+  },
+  buttonText: {
     color: 'black',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between', // Aligns items horizontally with space between them
   },
 });
 
