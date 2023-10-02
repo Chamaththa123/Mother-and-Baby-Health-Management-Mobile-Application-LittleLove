@@ -8,8 +8,165 @@ const ClinicDetails = ({ data }) => {
   const navigation = useNavigation();
   const [clinicData, setClinicData] = useState([]);
 
+  const calculateBMI = (weight, height) => {
+
+    const heightInMeters = height / 100;
+    const bmi = weight / (heightInMeters * heightInMeters);
+    return bmi.toFixed(2);
+  };
+
+  const getBMIStatus = (bmi) => {
+    if (bmi < 18.5) {
+      return "Underweight";
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+      return "Normal Weight";
+    } else if (bmi >= 25 && bmi < 29.9) {
+      return "Overweight";
+    } else {
+      return "Obese";
+    }
+  };
+
+  const getBMIStatusStyle = (bmi) => {
+    const status = getBMIStatus(bmi);
+    switch (status) {
+      case "Underweight":
+        return styles.bmiStatusUnderweight;
+      case "Normal Weight":
+        return styles.bmiStatusNormalWeight;
+      case "Overweight":
+        return styles.bmiStatusOverweight;
+      case "Obese":
+        return styles.bmiStatusObese;
+      default:
+        return {};
+    }
+  };
+
+  const getBPStatus = (bp) => {
+    if (bp < 90) {
+      return "Low Blood Pressure";
+    } else if (bp >= 90 && bp < 120) {
+      return "Normal";
+    } else if (bp >= 120 && bp < 130) {
+      return "Elevated";
+    } else if (bp >= 130 && bp < 140) {
+      return "High Blood Pressure (Stage 1)";
+    } else {
+      return "High Blood Pressure (Stage 2)";
+    }
+  };
+
+  const getBPStatusStyle = (bp) => {
+    const status = getBPStatus(bp);
+    switch (status) {
+      case "Low Blood Pressure":
+        return styles.bpStatusLow;
+      case "Normal":
+        return styles.bpStatusNormal;
+      case "Elevated":
+        return styles.bpStatusElevated;
+      case "High Blood Pressure (Stage 1)":
+        return styles.bpStatusStage1;
+      case "High Blood Pressure (Stage 2)":
+        return styles.bpStatusStage2;
+      default:
+        return {};
+    }
+  };
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      marginLeft: 10,
+      marginRight: 10
+    },
+    card: {
+      backgroundColor: 'white',
+      marginVertical: 5,
+      padding: 15,
+      borderRadius: 10,
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 3.84,
+      elevation: 1.5,
+    },
+    cardText: {
+      fontSize: 16,
+    },
+    leftColumn: {
+      flex: 1,
+    },
+    rightColumn: {
+      flex: 1,
+    },
+    cardHeader: {
+      fontWeight: 'bold',
+    },
+    buttonStyle: {
+      backgroundColor: '#5bf6db',
+      padding: 13,
+      borderRadius: 10,
+      height: 50,
+      width: 130
+    },
+    buttonContainer: {
+      marginBottom: 10,
+    },
+    buttonText: {
+      color: 'black',
+      fontSize: 18,
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+
+    bmiStatusUnderweight: {
+      color: 'blue',
+      fontSize: 16,
+    },
+    bmiStatusNormalWeight: {
+      color: 'green',
+      fontSize: 16,
+    },
+    bmiStatusOverweight: {
+      color: 'orange',
+      fontSize: 16,
+    },
+    bmiStatusObese: {
+      color: 'red',
+      fontSize: 16,
+    },
+    bpStatusLow: {
+      color: 'purple',
+      fontSize: 16,
+    },
+    bpStatusNormal: {
+      color: 'green',
+      fontSize: 16,
+    },
+    bpStatusElevated: {
+      color: 'yellow',
+      fontSize: 16,
+    },
+    bpStatusStage1: {
+      color: 'orange',
+      fontSize: 16,
+    },
+    bpStatusStage2: {
+      color: 'red',
+      fontSize: 16,
+    },
+  });
+
   useEffect(() => {
-    // Query the Firebase database to retrieve clinic data for the specific user
     const clinicRef = ref(db, 'Clinic');
     const userClinicQuery = query(
       clinicRef,
@@ -21,14 +178,12 @@ const ClinicDetails = ({ data }) => {
       if (snapshot.exists()) {
         const clinicData = snapshot.val();
         const clinicArray = Object.values(clinicData);
-        setClinicData(clinicArray); // Fix here: Use setClinicData instead of setVaccineData
+        clinicArray.reverse();
+        setClinicData(clinicArray);
       } else {
-        // If no clinic data found for the user, set an empty array
         setClinicData([]);
       }
     });
-
-    // Clean up the listener when the component unmounts
     return () => unsubscribe();
   }, [data.id]);
 
@@ -50,13 +205,22 @@ const ClinicDetails = ({ data }) => {
             <View style={styles.row}>
               <View style={styles.leftColumn}>
                 <Text style={styles.cardText}><Text style={styles.cardHeader}>Age:</Text> {item.age}</Text>
-                <Text style={styles.cardText}><Text style={styles.cardHeader}>Date:</Text> {item.weight}</Text>
+                <Text style={styles.cardText}><Text style={styles.cardHeader}>Weight:</Text> {item.weight}</Text>
               </View>
               <View style={styles.rightColumn}>
-                <Text style={styles.cardText2}><Text style={styles.cardHeader}>Vaccine Type:</Text> {item.height}</Text>
-                <Text style={styles.cardText2}><Text style={styles.cardHeader}>Batch:</Text> {item.bp}</Text>
+                <Text style={styles.cardText}><Text style={styles.cardHeader}>Weight:</Text> {item.weight}</Text>
+                <Text style={styles.cardText}><Text style={styles.cardHeader}>Height:</Text> {item.height}</Text>
               </View>
             </View>
+            <Text style={styles.cardText}><Text style={styles.cardHeader}>Blood Pressure:</Text> {item.bp} mm Hg</Text>
+            <Text style={styles.cardText}><Text style={styles.cardHeader}>BMI Value:</Text> {calculateBMI(item.weight, item.height)} kg/m^2</Text>
+            <Text style={[styles.cardText, getBMIStatusStyle(calculateBMI(item.weight, item.height))]}>
+              <Text style={styles.cardHeader}>BMI Status:</Text> {getBMIStatus(calculateBMI(item.weight, item.height))}
+            </Text>
+
+            <Text style={[styles.cardText, getBPStatusStyle(item.bp)]}>
+              <Text style={styles.cardHeader}>Blood Pressure Status:</Text> {getBPStatus(item.bp)}
+            </Text>
           </View>
         ))}
         {clinicData.length === 0 && (
@@ -66,62 +230,5 @@ const ClinicDetails = ({ data }) => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginLeft: 10,
-    marginRight: 10
-  },
-  card: {
-    backgroundColor: 'white',
-    marginVertical: 10,
-    padding: 15,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 1.5,
-  },
-  cardText: {
-    fontSize: 16,
-  },
-  cardText2: {
-    fontSize: 16,
-  },
-  leftColumn: {
-    flex: 1,
-  },
-  rightColumn: {
-    flex: 1,
-  },
-  cardHeader: {
-    fontWeight: 'bold',
-  },
-  buttonStyle: {
-    backgroundColor: '#5bf6db',
-    padding: 13,
-    borderRadius: 10,
-    height: 50,
-    width: 130
-  },
-  buttonContainer: {
-    marginBottom: 10,
-  },
-  buttonText: {
-    color: 'black',
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between', // Aligns items horizontally with space between them
-  },
-});
 
 export default ClinicDetails;

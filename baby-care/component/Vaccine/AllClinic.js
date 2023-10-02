@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
+import ClinicDetails from './ClinicDetails';
 
-const backgroundImage = require('../../assets/bg.png');
-const localImage = require('../../assets/mother.png');
 
-const Tab1Screen = () => (
+const Tab1Screen = ({ item }) => (
   <View>
-    <Text>Clinic</Text>
+    <ClinicDetails data={item} />
   </View>
 );
 
-const Tab2Screen = () => (
+const Tab2Screen = ({ item }) => (
   <View>
     <Text>Vaccination</Text>
   </View>
@@ -22,16 +21,16 @@ const initialRoutes = [
   { key: 'tab2', title: 'Health Graphs' },
 ];
 
-const AllClinic = ({ route, navigation }) => {
+const AllClinic = ({ route, navigation, data }) => {
   const [index, setIndex] = useState(0);
   const [routes] = useState(initialRoutes);
 
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'tab1':
-        return <Tab1Screen />;
+        return <Tab1Screen item={data} />;
       case 'tab2':
-        return <Tab2Screen />;
+        return <Tab2Screen item={data} />;
       default:
         return null;
     }
@@ -39,26 +38,25 @@ const AllClinic = ({ route, navigation }) => {
 
   return (
 
-      <View style={styles.container}>
+    <View style={styles.container}>
 
-
-        <TabView
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          renderTabBar={(props) => (
-            <View style={styles.tabBarContainer}>
-              <TabBar
-                {...props}
-                indicatorStyle={{ backgroundColor: 'blue' }}
-                style={styles.tabBar}
-                labelStyle={{ color: 'black' }}
-              />
-            </View>
-          )}
-          style={{ marginTop: 20 }}
-        />
-      </View>
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        renderTabBar={(props) => (
+          <View style={styles.tabBarContainer}>
+            <TabBar
+              {...props}
+              indicatorStyle={{ backgroundColor: 'blue' }}
+              style={styles.tabBar}
+              labelStyle={{ color: 'black' }}
+            />
+          </View>
+        )}
+        style={{ marginTop: 20 }}
+      />
+    </View>
 
   );
 };

@@ -16,7 +16,7 @@ const Tab1Screen = ({ item }) => (
 
 const Tab2Screen = ({ item }) => (
   <View style={styles.scene}>
-    <AllClinic />
+    <AllClinic data={item}/>
   </View>
 );
 
