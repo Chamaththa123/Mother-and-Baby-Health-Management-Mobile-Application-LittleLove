@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit'; 
 import { useNavigation } from '@react-navigation/native';
 import { ref, query, orderByChild, equalTo, onValue } from 'firebase/database';
 import { db } from '../../firebase/config';
+import BMIGraphs from './BMIGraphs';
+import BPGraphs from './BPGraphs';
 
 const HealthGraphs = ({ data }) => {
 
     const [clinicData, setClinicData] = useState([]);
+    const screenWidth = Dimensions.get('window').width;
+    const screenHeight = Dimensions.get('window').height;
 
     useEffect(() => {
         const clinicRef = ref(db, 'Clinic');
@@ -62,17 +66,18 @@ const HealthGraphs = ({ data }) => {
         color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
         labelColor: (opacity = 0.6) => `rgba(0, 0, 0, ${opacity})`,
         style: {
-            borderRadius: 116,
+            borderRadius: 16,
         },
         propsForDots: {
             r: '6',
             strokeWidth: '2',
-            // stroke: '#000',
         },
-        xAxisLabel: 'Weight', 
-        yAxisLabel: 'Height', 
+        xAxisLabel: 'Week',
+        yAxisLabel: 'Height',
     };
 
+    // Calculate chart height as a percentage of the screen height
+    const chartHeight = screenHeight * 0.4; // You can adjust this percentage as needed
 
     const styles = StyleSheet.create({
         container: {
@@ -89,6 +94,18 @@ const HealthGraphs = ({ data }) => {
             fontWeight: 'bold',
             marginBottom: 10,
         },
+        legendContainer: {
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 10,
+        },
+        legendDot: {
+            width: 10,
+            height: 10,
+            borderRadius: 5,
+            marginHorizontal: 5,
+        },
     });
 
     return (
@@ -99,18 +116,30 @@ const HealthGraphs = ({ data }) => {
                         <Text style={styles.title}>Weight and Height Chart</Text>
                         <LineChart
                             data={chartData}
-                            width={300}
-                            height={200}
+                            width={screenWidth - 20}
+                            height={chartHeight}
                             chartConfig={chartConfig}
                             bezier
                             style={styles.chart}
                         />
+                        <Text style={{marginTop:-20}}>Week</Text>
                     </View>
                 )}
 
                 {clinicData.length === 0 && (
                     <Text>No clinic data available for this user.</Text>
                 )}
+
+                {/* Legends for Height and Weight */}
+                <View style={styles.legendContainer}>
+                    <View style={[styles.legendDot, { backgroundColor: 'red' }]} />
+                    <Text>Height</Text>
+                    <View style={[styles.legendDot, { backgroundColor: 'blue' }]} />
+                    <Text>Weight</Text>
+                </View>
+
+                <BMIGraphs data={data}/>
+                <BPGraphs data={data}/>
             </View>
         </ScrollView>
     );

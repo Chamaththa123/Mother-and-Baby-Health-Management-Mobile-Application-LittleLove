@@ -204,7 +204,7 @@ const ClinicDetails = ({ data }) => {
           <View style={styles.card} key={index}>
             <View style={styles.row}>
               <View style={styles.leftColumn}>
-                <Text style={styles.cardText}><Text style={styles.cardHeader}>Age:</Text> {item.age}</Text>
+                <Text style={styles.cardText}><Text style={styles.cardHeader}>Week:</Text> {item.age}</Text>
                 <Text style={styles.cardText}><Text style={styles.cardHeader}>Weight:</Text> {item.weight}</Text>
               </View>
               <View style={styles.rightColumn}>
