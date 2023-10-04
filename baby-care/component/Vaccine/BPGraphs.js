@@ -121,7 +121,7 @@ const BPGraphs = ({ data }) => {
               bezier
               style={styles.chart}
             />
-            <Text style={{ marginTop: -20 }}>Age</Text>
+            <Text style={{ marginTop: -20 }}>Week</Text>
             <Text style={{ marginTop: 10 }}>Max BP: {chartData.maxBP}</Text>
             <Text>Min BP: {chartData.minBP}</Text>
             <Text>Avg BP: {chartData.avgBP.toFixed(2)}</Text>
