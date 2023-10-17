@@ -11,6 +11,11 @@ const BabyDetails = ({ route,navigation }) => {
       headerShown: false,
     });
   }, []);
+
+  const handleBabyPress = (baby) => {
+    navigation.navigate('BabyAllDetails', { baby }); // Navigate to BabyDetails and pass the baby data
+  };
+
   return (
     <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
 <ScrollView style={styles.container}>
@@ -47,7 +52,7 @@ const BabyDetails = ({ route,navigation }) => {
             <TouchableOpacity
               style={styles.buttonStyle}
               onPress={() => {
-                // Handle button press
+                handleBabyPress(baby);
               }}
             >
               <Text style={styles.buttonText}>View Mother Clinic & Vaccination Details</Text>
