@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ref, query, orderByChild, equalTo, get, onValue } from 'firebase/database';
-import { db } from '../../firebase/config';
+import { db } from '../../../firebase/config';
 
 const ClinicDetails = ({ data }) => {
   const navigation = useNavigation();

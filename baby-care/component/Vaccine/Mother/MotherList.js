@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, FlatList, Button, Image, ImageBackground, TouchableOpacity, TextInput } from 'react-native';
 import { ref, onValue } from 'firebase/database';
-import { db } from '../../firebase/config';
+import { db } from '../../../firebase/config';
 import { off } from 'firebase/database';
 
-const backgroundImage = require('../../assets/bg.png');
+const backgroundImage = require('../../../assets/bg.png');
 
 const MotherList = ({ navigation }) => {
   const [data, setData] = useState([]);

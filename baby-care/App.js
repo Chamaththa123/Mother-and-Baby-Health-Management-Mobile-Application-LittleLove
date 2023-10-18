@@ -4,15 +4,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './component/Home';
 import AllVaccine from './component/Vaccine/Mother/MotherAllDetails';
 import Add from './component/Add';
-import MotherList from './component/Vaccine/MotherList';
-import AddBaby from './component/Vaccine/AddBaby';
-import BabyDetails from './component/Vaccine/BabyDetails';
-import AddVaccine from './component/Vaccine/AddVaccine';
-import AddClinic from './component/Vaccine/AddClinic';
+import MotherList from './component/Vaccine/Mother/MotherList';
+import MotherDetails from './component/Vaccine/Mother/MotherDetails';
+import AddBaby from './component/Vaccine/Mother/AddBaby';
+import BabyDetails from './component/Vaccine/Baby/BabyDetails';
+import AddVaccine from './component/Vaccine/Mother/AddMotherVaccine';
+import AddClinic from './component/Vaccine/Mother/AddMotherClinic';
 import BabyAllDetails from './component/Vaccine/Baby/BabyAllDetails';
 import AddBabyVaccine from './component/Vaccine/Baby/AddBabyVaccine';
 import AddBabyClinic from './component/Vaccine/Baby/AddBabyClinic';
-import MotherDetails from './component/Vaccine/Mother/MotherDetails';
 
 const Stack = createNativeStackNavigator();
 const App = () => {

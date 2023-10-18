@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, ScrollView } from 'react-native';
 
-const backgroundImage = require('../../assets/bg.png');
-const localImage = require('../../assets/girl.png');
+const backgroundImage = require('../../../assets/bg.png');
+const localImage = require('../../../assets/girl.png');
 const BabyDetails = ({ route,navigation }) => {
   const { baby } = route.params;
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
-import ClinicDetails from './ClinicDetails';
-import HealthGraphs from './HealthGraphs';
+import ClinicDetails from './MotherClinic';
+import HealthGraphs from './Health Graphs/MotherHealthGraphs';
 
 
 const Tab1Screen = ({ item }) => (

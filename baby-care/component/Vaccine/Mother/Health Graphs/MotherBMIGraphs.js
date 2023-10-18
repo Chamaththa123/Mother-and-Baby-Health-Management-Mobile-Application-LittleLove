@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { useNavigation } from '@react-navigation/native';
 import { ref, query, orderByChild, equalTo, onValue } from 'firebase/database';
-import { db } from '../../firebase/config';
+import { db } from '../../../../firebase/config';
 
-const BPGraphs = ({ data }) => {
+const BMIGraphs = ({ data }) => {
   const [clinicData, setClinicData] = useState([]);
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
@@ -14,7 +14,7 @@ const BPGraphs = ({ data }) => {
     const clinicRef = ref(db, 'Clinic');
     const userClinicQuery = query(
       clinicRef,
-      orderByChild('motherId'),
+      orderByChild('babyId'),
       equalTo(data.id)
     );
 
@@ -31,29 +31,26 @@ const BPGraphs = ({ data }) => {
     return () => unsubscribe();
   }, [data.id]);
 
-  // Calculate chart data with BP and age
+  // Calculate BMI for each clinic detail
   const generateChartData = () => {
     const labels = clinicData.map((clinicDetail) => clinicDetail.age);
-    const bpData = clinicData.map((clinicDetail) => clinicDetail.bp); // Assuming you have a 'bp' field in clinic details
-
-    // Calculate statistics
-    const maxBP = Math.max(...bpData);
-    const minBP = Math.min(...bpData);
-    const avgBP = bpData.reduce((sum, value) => sum + value, 0) / bpData.length;
+    const bmiData = clinicData.map((clinicDetail) => {
+      const weight = clinicDetail.weight;
+      const height = clinicDetail.height / 100; // Convert height to meters
+      const bmi = weight / (height * height);
+      return bmi;
+    });
 
     return {
       labels,
       datasets: [
         {
-          data: bpData,
-          color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
+          data: bmiData,
+          color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`,
           strokeWidth: 2,
-          label: 'BP',
+          label: 'BMI',
         },
       ],
-      maxBP,
-      minBP,
-      avgBP,
     };
   };
 
@@ -72,7 +69,7 @@ const BPGraphs = ({ data }) => {
       strokeWidth: '2',
     },
     xAxisLabel: 'Age',
-    yAxisLabel: 'BP',
+    yAxisLabel: 'BMI', // Update y-axis label
   };
 
   // Calculate chart height as a percentage of the screen height
@@ -112,7 +109,7 @@ const BPGraphs = ({ data }) => {
       <View style={styles.container}>
         {clinicData.length > 0 && (
           <View style={styles.chartContainer}>
-            <Text style={styles.title}>Blood Pressure (BP) Chart</Text>
+            <Text style={styles.title}>BMI Chart</Text>
             <LineChart
               data={chartData}
               width={screenWidth - 20}
@@ -121,10 +118,7 @@ const BPGraphs = ({ data }) => {
               bezier
               style={styles.chart}
             />
-            <Text style={{ marginTop: -20 }}>Week</Text>
-            <Text style={{ marginTop: 10 }}>Max BP: {chartData.maxBP}</Text>
-            <Text>Min BP: {chartData.minBP}</Text>
-            <Text>Avg BP: {chartData.avgBP.toFixed(2)}</Text>
+             <Text style={{marginTop:-20}}>Week</Text>
           </View>
         )}
 
@@ -132,14 +126,14 @@ const BPGraphs = ({ data }) => {
           <Text>No clinic data available for this user.</Text>
         )}
 
-        {/* Legends for BP */}
+        {/* Legends for BMI */}
         <View style={styles.legendContainer}>
-          <View style={[styles.legendDot, { backgroundColor: 'red' }]} />
-          <Text>BP Value</Text>
+          <View style={[styles.legendDot, { backgroundColor: 'blue' }]} />
+          <Text>BMI Value</Text>
         </View>
       </View>
     </ScrollView>
   );
 };
 
-export default BPGraphs;
+export default BMIGraphs;

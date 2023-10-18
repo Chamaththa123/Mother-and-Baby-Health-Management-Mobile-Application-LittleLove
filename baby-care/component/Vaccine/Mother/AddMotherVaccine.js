@@ -1,42 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, ScrollView,TextInput,Button } from 'react-native';
 import { ref, query, orderByChild, equalTo, push, onValue, set } from 'firebase/database';
-import { db } from '../../firebase/config';
+import { db } from '../../../firebase/config';
 
 
 
-const backgroundImage = require('../../assets/bg.png');
-const localImage = require('../../assets/mother.png');
+const backgroundImage = require('../../../assets/bg.png');
+const localImage = require('../../../assets/mother.png');
 
-const AddClinic = ({ route, navigation }) => {
+const OtherPage = ({ route, navigation }) => {
   const { data } = route.params;
 
   const [age, setage] = useState(''); // Initialize with an empty string
-  const [weight, setweight] = useState(''); // Initialize with an empty string
-  const [height, setheight] = useState(''); // Initialize with an empty string
-  const [bp, setbp] = useState(''); // Initialize with an empty string
+  const [type, settype] = useState(''); // Initialize with an empty string
+  const [date, setdate] = useState(''); // Initialize with an empty string
+  const [batch, setbatch] = useState(''); // Initialize with an empty string
 
 
-  const addClinic = () => {
+  const addVaccine = () => {
     // Create a new subject entry for the user in Firebase
-    const clinicRef = ref(db, 'Clinic');
+    const vaccineRef = ref(db, 'Vaccine');
 
     // Generate a new unique key for the subject
-    const newClinicKey = push(clinicRef);
+    const newVaccineKey = push(vaccineRef);
 
-    set(newClinicKey, {
+    set(newVaccineKey, {
       motherId: data.id,
       age: age,
-      weight: weight,
-      height: height,
-      bp: bp,
+      type: type,
+      date: date,
+      batch: batch,
     })
       .then(() => {
-        alert('Clinic details added successfully');
+        alert('Vaccine details added successfully');
         setage('');
-        setweight('');
-        setheight('');
-        setbp('');
+        settype('');
+        setdate('');
+        setbatch('');
       })
       .catch((error) => {
         alert(error.message);
@@ -58,39 +58,37 @@ const AddClinic = ({ route, navigation }) => {
             <Text style={styles.name}>{data.name}</Text>
           </View>
 
-          <Text style={styles.header}>Enter Clinic Details</Text>
+          <Text style={styles.header}>Enter Vaccination Details</Text>
 
         <TextInput
           placeholder="Enter Age"
           value={age}
           onChangeText={(age) => setage(age)} style={styles.textBoxes}
-          keyboardType="numeric"
         />
         <TextInput
-          placeholder="Enter Weight"
-          value={weight}
-          onChangeText={(weight) => setweight(weight)} style={styles.textBoxes}
+          placeholder="Enter Vaccine Type"
+          value={type}
+          onChangeText={(type) => settype(type)} style={styles.textBoxes}
           keyboardType="numeric"
         />
 
         <TextInput
-          placeholder="Enter height"
-          value={height}
-          onChangeText={(height) => setheight(height)} style={styles.textBoxes}
-          keyboardType="numeric"
+          placeholder="Date"
+          value={date}
+          onChangeText={(date) => setdate(date)} style={styles.textBoxes}
         />
         <TextInput
-          placeholder="Enter bp"
-          value={bp}
-          onChangeText={(bp) => setbp(bp)} style={styles.textBoxes}
+          placeholder="Enter Vaccine Batch No"
+          value={batch}
+          onChangeText={(batch) => setbatch(batch)} style={styles.textBoxes}
           keyboardType="numeric"
         />
 
 <TouchableOpacity
           style={styles.buttonStyle}
-          onPress={addClinic}
+          onPress={addVaccine}
         >
-          <Text style={styles.buttonText}>Submit Clinic Details</Text>
+          <Text style={styles.buttonText}>Submit Vaccine Details</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -192,4 +190,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AddClinic;
+export default OtherPage;

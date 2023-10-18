@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, FlatList, TextInput, Button } from 'react-native';
 import { ref, query, orderByChild, equalTo, push, onValue, set } from 'firebase/database';
-import { db } from '../../firebase/config';
+import { db } from '../../../firebase/config';
 
 const AddBaby = ({ route, navigation }) => {
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
-import VaccineDetails from '../VaccineDetails';
-import ClinicDetails from '../ClinicDetails';
-import AllClinic from '../AllClinic';
+import VaccineDetails from './MotherVaccine';
+import ClinicDetails from './MotherClinic';
+import AllClinic from './MotherAllClinic';
 
-const backgroundImage = require('../../assets/bg.png');
-const localImage = require('../../assets/mother.png');
+const backgroundImage = require('../../../assets/bg.png');
+const localImage = require('../../../assets/mother.png');
 
 const Tab1Screen = ({ item }) => (
   <View style={styles.scene}>

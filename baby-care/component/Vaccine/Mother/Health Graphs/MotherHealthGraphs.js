@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit'; 
 import { useNavigation } from '@react-navigation/native';
 import { ref, query, orderByChild, equalTo, onValue } from 'firebase/database';
-import { db } from '../../firebase/config';
-import BMIGraphs from './BMIGraphs';
-import BPGraphs from './BPGraphs';
+import { db } from '../../../../firebase/config';
+import BMIGraphs from './MotherBMIGraphs';
+import BPGraphs from './MotherBPGraphs';
 
 const HealthGraphs = ({ data }) => {
 

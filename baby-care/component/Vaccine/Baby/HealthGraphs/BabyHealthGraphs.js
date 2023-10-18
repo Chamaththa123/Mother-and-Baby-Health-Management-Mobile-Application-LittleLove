@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ref, query, orderByChild, equalTo, get, onValue } from 'firebase/database';
 import { db } from '../../../../firebase/config';
 import { LineChart } from 'react-native-chart-kit';
-import BMIGraphs from '../../BMIGraphs';
+import BMIGraphs from '../../Mother/Health Graphs/MotherBMIGraphs';
 import BabyBMIGraph from './BabyBMIGraph';
 
 const BabyHealthGraphs = ({ data }) => {
