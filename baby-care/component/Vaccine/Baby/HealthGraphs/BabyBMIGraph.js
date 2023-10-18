@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { useNavigation } from '@react-navigation/native';
 import { ref, query, orderByChild, equalTo, onValue } from 'firebase/database';
-import { db } from '../../firebase/config';
+import { db } from '../../../../firebase/config';
 
-const BMIGraphs = ({ data }) => {
+const BabyBMIGraph = ({ data }) => {
   const [clinicData, setClinicData] = useState([]);
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
@@ -136,4 +136,4 @@ const BMIGraphs = ({ data }) => {
   );
 };
 
-export default BMIGraphs;
+export default BabyBMIGraph;
