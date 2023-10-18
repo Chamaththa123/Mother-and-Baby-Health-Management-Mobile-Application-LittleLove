@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
-import VaccineDetails from './VaccineDetails';
-import ClinicDetails from './ClinicDetails';
-import AllClinic from './AllClinic';
+import VaccineDetails from '../VaccineDetails';
+import ClinicDetails from '../ClinicDetails';
+import AllClinic from '../AllClinic';
 
 const backgroundImage = require('../../assets/bg.png');
 const localImage = require('../../assets/mother.png');

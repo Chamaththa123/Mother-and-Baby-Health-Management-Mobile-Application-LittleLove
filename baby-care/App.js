@@ -2,10 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './component/Home';
-import AllVaccine from './component/Vaccine/All';
+import AllVaccine from './component/Vaccine/Mother/MotherAllDetails';
 import Add from './component/Add';
 import MotherList from './component/Vaccine/MotherList';
-
 import AddBaby from './component/Vaccine/AddBaby';
 import BabyDetails from './component/Vaccine/BabyDetails';
 import AddVaccine from './component/Vaccine/AddVaccine';
