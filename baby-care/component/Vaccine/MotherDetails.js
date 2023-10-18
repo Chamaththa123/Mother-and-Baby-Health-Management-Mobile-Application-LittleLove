@@ -20,7 +20,10 @@ const MotherDetails = ({ route, navigation }) => {
     const unsubscribe = onValue(motherBabyQuery, (snapshot) => {
       if (snapshot.exists()) {
         const babyData = snapshot.val();
-        const babyArray = Object.values(babyData);
+        const babyArray = Object.entries(babyData).map(([key, value]) => ({
+          id: key, // Store the unique key as 'id' in the subject object
+          ...value,
+        }));
         setBaby(babyArray);
       } else {
         // If no babies found for the user, set an empty array
@@ -108,7 +111,7 @@ const MotherDetails = ({ route, navigation }) => {
                   <View style={styles.row2}>
                     <Image source={localImage2} style={styles.babyImage} />
                     <Text style={{ marginTop: 10, marginLeft: 10 }}>
-                      {babys.babyname}
+                      {babys.id}
                     </Text>
                   </View>
                 </TouchableOpacity>

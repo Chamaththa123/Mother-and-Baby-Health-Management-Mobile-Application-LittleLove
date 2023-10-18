@@ -52,7 +52,7 @@ const AddBaby = ({ route, navigation }) => {
         <Text style={styles.cardDetails}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
       </View>
 
-      <Text style={styles.text}>Add Subject</Text>
+      <Text style={styles.text}>{item.id}</Text>
 
       <View style={styles.item}>
         <TextInput
