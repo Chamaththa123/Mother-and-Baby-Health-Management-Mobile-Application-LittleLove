@@ -1,27 +1,47 @@
+// Import React and necessary components and modules
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { ref, query, orderByChild, equalTo, onValue } from 'firebase/database';
+import {
+  Text,
+  View,
+  StyleSheet,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import {
+  ref,
+  query,
+  orderByChild,
+  equalTo,
+  onValue,
+} from 'firebase/database';
 import { db } from '../../../firebase/config';
 
-const backgroundImage = require('../../../assets/bg.png');
-const localImage = require('../../../assets/mother.png');
-const localImage2 = require('../../../assets/girl.png');
+// Import background and image assets
+import backgroundImage from '../../../assets/bg.png';
+import localImage from '../../../assets/mother.png';
+import localImage2 from '../../../assets/girl.png';
 
 const MotherDetails = ({ route, navigation }) => {
+  // Destructure the 'item' from the route parameters
   const { item } = route.params;
+
+  // State to store the baby data
   const [baby, setBaby] = useState([]);
 
+  // Effect to fetch baby data related to this mother
   useEffect(() => {
-    // Create a reference to the babies for the specific mother
+    // Create a reference to the 'Baby' data in Firebase
     const babyRef = ref(db, 'Baby');
     const motherBabyQuery = query(babyRef, orderByChild('motherId'), equalTo(item.id));
 
-    // Listen for changes to the babies and update the state
+    // Listen for changes to the baby data and update the state
     const unsubscribe = onValue(motherBabyQuery, (snapshot) => {
       if (snapshot.exists()) {
         const babyData = snapshot.val();
         const babyArray = Object.entries(babyData).map(([key, value]) => ({
-          id: key, // Store the unique key as 'id' in the subject object
+          id: key,
           ...value,
         }));
         setBaby(babyArray);
@@ -35,26 +55,29 @@ const MotherDetails = ({ route, navigation }) => {
     return () => unsubscribe();
   }, [item.id]);
 
+  // Effect to hide the header on this screen
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
 
-  const handleItemPress = (item) => {
+  // Handler for 'Add Baby' button press
+  const handleItemPress = () => {
     navigation.navigate('AddBaby', { item });
   };
 
-  const handlePress = (item) => {
+  // Handler for 'View Mother Clinic & Vaccination Details' button press
+  const handlePress = () => {
     navigation.navigate('AllVaccine', { item });
   };
 
-  const handleBabyPress = (baby) => {
-    navigation.navigate('BabyDetails', { baby }); // Navigate to BabyDetails and pass the baby data
+  // Handler for individual baby press, navigate to baby details
+  const handleBabyPress = (babyItem) => {
+    navigation.navigate('BabyDetails', { baby: babyItem });
   };
 
   return (
-
     <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
       <ScrollView style={styles.container}>
         <View style={styles.contentContainer}>
@@ -63,6 +86,7 @@ const MotherDetails = ({ route, navigation }) => {
             <Text style={styles.name}>{item.name}</Text>
           </View>
 
+          {/* Mother's Information */}
           <View style={styles.item}>
             <View style={styles.row}>
               <Text style={styles.text1}>Name:</Text>
@@ -86,44 +110,41 @@ const MotherDetails = ({ route, navigation }) => {
             </View>
           </View>
 
+          {/* 'Add Baby' Button */}
           <View style={styles.item}>
             <View style={styles.buttonContainer2}>
               <TouchableOpacity
                 style={styles.buttonStyle}
-                onPress={() => {
-                  handleItemPress(item);
-                }}
+                onPress={handleItemPress}
               >
                 <Text style={styles.buttonText}>Add Baby</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.row}>
-              <Text style={styles.text1}>Baby:</Text>
-            </View>
 
-            <View >
-              {baby.map((babys, index) => (
+            {/* List of Babies */}
+            <View>
+              {baby.map((babyItem, index) => (
                 <TouchableOpacity
                   key={index}
                   style={styles.item}
-                  onPress={() => handleBabyPress(babys)}
+                  onPress={() => handleBabyPress(babyItem)}
                 >
                   <View style={styles.row2}>
                     <Image source={localImage2} style={styles.babyImage} />
-                    <Text style={{ marginTop: 10, marginLeft: 10 }}>
-                      {babys.id}
+                    <Text style={{ marginTop: "3.1%", marginLeft: "3.1%" }}>
+                      {babyItem.babyname}
                     </Text>
                   </View>
                 </TouchableOpacity>
               ))}
             </View>
           </View>
+
+          {/* 'View Mother Clinic & Vaccination Details' Button */}
           <View style={styles.buttonContainer}>
             <TouchableOpacity
-              style={styles.buttonStyle}
-              onPress={() => {
-                handlePress(item)
-              }}
+              style={styles.buttonStyle2}
+              onPress={handlePress}
             >
               <Text style={styles.buttonText}>View Mother Clinic & Vaccination Details</Text>
             </TouchableOpacity>
@@ -131,10 +152,10 @@ const MotherDetails = ({ route, navigation }) => {
         </View>
       </ScrollView>
     </ImageBackground>
-
   );
 };
 
+// Styles for components
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -144,20 +165,19 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   name: {
-    fontSize: 25,
+    fontSize: 23,
     fontWeight: 'bold',
-    marginBottom: 10,
-    marginTop: 70,
-    marginLeft: 10,
-    width: 260,
+    marginTop: "20%",
+    marginLeft: "4%",
+    width: '74%',
   },
   item: {
-    padding: 10,
+    padding: '3%',
     backgroundColor: '#ffffff',
     borderRadius: 10,
-    margin: 10,
-    borderWidth: 2, // Add border width
-    borderColor: '#5bf6db', // Add border color
+    margin: '2.3%',
+    borderWidth: 2,
+    borderColor: '#5bf6db',
   },
   backgroundImage: {
     flex: 1,
@@ -165,16 +185,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imageStyle: {
-    width: 80, // Adjust the width as needed
-    height: 80, // Adjust the height as needed
+    width: 80,
+    height: 80,
     resizeMode: 'cover',
-    marginLeft: 20,
-    marginTop: 60,
+    marginLeft: '4%',
+    marginTop: '14%',
   },
   row: {
     flexDirection: 'row',
-    marginBottom: 15,
-  }, row2: {
+    marginBottom: '4%',
+  },
+  row2: {
     flexDirection: 'row',
   },
   text1: {
@@ -190,27 +211,34 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     backgroundColor: '#5bf6db',
-    padding: 13,
+    padding: "10%",
+    borderRadius: 5,
+    height: 50,
+    margin: 10,
+  },
+  buttonStyle2: {
+    backgroundColor: '#5bf6db',
+    padding: "3.1%",
     borderRadius: 5,
     height: 50,
     margin: 10,
   },
   buttonContainer: {
-    marginBottom: 30,
+    marginBottom: "2%",
   },
   buttonContainer2: {
-    marginBottom: 20,
+    marginBottom: "3%",
     width: 140,
-    marginLeft: 0,
   },
   buttonText: {
     color: 'black',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-  }, babyImage: {
-    width: 40, // Adjust the width as needed
-    height: 40, // Adjust the height as needed
+  },
+  babyImage: {
+    width: 40,
+    height: 40,
     resizeMode: 'cover',
     marginLeft: 0,
     marginTop: 0,
