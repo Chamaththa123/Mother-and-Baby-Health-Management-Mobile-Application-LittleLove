@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { ref, query, orderByChild, equalTo, onValue } from 'firebase/database';
-import { db } from '../../firebase/config';
+import { db } from '../../../firebase/config';
 
-const backgroundImage = require('../../assets/bg.png');
-const localImage = require('../../assets/mother.png');
-const localImage2 = require('../../assets/girl.png');
+const backgroundImage = require('../../../assets/bg.png');
+const localImage = require('../../../assets/mother.png');
+const localImage2 = require('../../../assets/girl.png');
 
 const MotherDetails = ({ route, navigation }) => {
   const { item } = route.params;

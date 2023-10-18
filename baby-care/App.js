@@ -5,7 +5,7 @@ import Home from './component/Home';
 import AllVaccine from './component/Vaccine/All';
 import Add from './component/Add';
 import MotherList from './component/Vaccine/MotherList';
-import MotherDetails from './component/Vaccine/MotherDetails';
+
 import AddBaby from './component/Vaccine/AddBaby';
 import BabyDetails from './component/Vaccine/BabyDetails';
 import AddVaccine from './component/Vaccine/AddVaccine';
@@ -13,6 +13,7 @@ import AddClinic from './component/Vaccine/AddClinic';
 import BabyAllDetails from './component/Vaccine/Baby/BabyAllDetails';
 import AddBabyVaccine from './component/Vaccine/Baby/AddBabyVaccine';
 import AddBabyClinic from './component/Vaccine/Baby/AddBabyClinic';
+import MotherDetails from './component/Vaccine/Mother/MotherDetails';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
