@@ -13,7 +13,7 @@ const Tab1Screen = ({ item }) => (
 
 const Tab2Screen = ({ item }) => (
   <View>
-    <HealthGraphs data={item}/>
+    {/* <HealthGraphs data={item}/> */}
   </View>
 );
 
@@ -49,7 +49,7 @@ const AllClinic = ({ route, navigation, data }) => {
           <View style={styles.tabBarContainer}>
             <TabBar
               {...props}
-              indicatorStyle={{ backgroundColor: 'blue' }}
+              indicatorStyle={{ backgroundColor: '#0D907E' }}
               style={styles.tabBar}
               labelStyle={{ color: 'black' }}
             />
