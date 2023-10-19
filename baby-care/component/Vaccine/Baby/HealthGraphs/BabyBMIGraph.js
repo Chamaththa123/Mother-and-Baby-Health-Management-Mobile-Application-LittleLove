@@ -31,10 +31,12 @@ const BabyBMIGraph = ({ data }) => {
     return () => unsubscribe();
   }, [data.id]);
 
-  // Calculate BMI for each clinic detail
+  // Calculate BMI for each clinic detail and sort by age in ascending order
   const generateChartData = () => {
-    const labels = clinicData.map((clinicDetail) => clinicDetail.age);
-    const bmiData = clinicData.map((clinicDetail) => {
+    const sortedClinicData = clinicData.sort((a, b) => a.age - b.age); // Sort by age in ascending order
+
+    const labels = sortedClinicData.map((clinicDetail) => clinicDetail.age);
+    const bmiData = sortedClinicData.map((clinicDetail) => {
       const weight = clinicDetail.weight;
       const height = clinicDetail.height / 100; // Convert height to meters
       const bmi = weight / (height * height);
@@ -69,11 +71,11 @@ const BabyBMIGraph = ({ data }) => {
       strokeWidth: '2',
     },
     xAxisLabel: 'Age',
-    yAxisLabel: 'BMI', // Update y-axis label
+    yAxisLabel: 'BMI',
   };
 
   // Calculate chart height as a percentage of the screen height
-  const chartHeight = screenHeight * 0.4; // You can adjust this percentage as needed
+  const chartHeight = screenHeight * 0.4;
 
   const styles = StyleSheet.create({
     container: {
@@ -86,7 +88,7 @@ const BabyBMIGraph = ({ data }) => {
       alignItems: 'center',
     },
     title: {
-      fontSize: 20,
+      fontSize: 17,
       fontWeight: 'bold',
       marginBottom: 10,
     },
@@ -118,7 +120,7 @@ const BabyBMIGraph = ({ data }) => {
               bezier
               style={styles.chart}
             />
-             <Text style={{marginTop:-20}}>Week</Text>
+            <Text style={{ marginTop: -20 }}>Month</Text>
           </View>
         )}
 

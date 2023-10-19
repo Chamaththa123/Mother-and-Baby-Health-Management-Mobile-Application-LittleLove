@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ref, query, orderByChild, equalTo, get, onValue } from 'firebase/database';
 import { db } from '../../../../firebase/config';
 import { LineChart } from 'react-native-chart-kit';
+import BabyBMIGraph from './BabyBMIGraph';
 
 const BabyHealthGraphs = ({ data }) => {
     const navigation = useNavigation();
@@ -31,7 +32,7 @@ const BabyHealthGraphs = ({ data }) => {
             backgroundColor: 'green',
         },
         blueDot: {
-            backgroundColor: 'blue',
+            backgroundColor: 'red',
         },
     });
 
@@ -63,7 +64,7 @@ const BabyHealthGraphs = ({ data }) => {
                             datasets: [
                                 {
                                     data: clinicData.map((item) => item.weight),
-                                    color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`,
+                                    color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`, // Set the color to red
                                     strokeWidth: 2,
                                 },
                             ],
@@ -78,8 +79,9 @@ const BabyHealthGraphs = ({ data }) => {
                         }}
                     />
                 )}
+
                 <Text>Month</Text>
-                <Text style={{margin:10}}>
+                <Text style={{ margin: 10 }}>
                     <View style={[styles.dot, styles.blueDot]} /> Weight
                 </Text>
                 <Text style={styles.chartHeader}>Height Chart</Text>
@@ -106,12 +108,14 @@ const BabyHealthGraphs = ({ data }) => {
                     />
                 )}
                 <Text>Month</Text>
-                <Text style={{margin:10}}>
+                <Text style={{ margin: 10 }}>
                     <View style={[styles.dot, styles.greenDot]} /> Height
                 </Text>
                 {clinicData.length === 0 && (
                     <Text>No clinic data available for this user.</Text>
                 )}
+
+                <BabyBMIGraph data={data} />
             </View>
         </ScrollView>
     );
