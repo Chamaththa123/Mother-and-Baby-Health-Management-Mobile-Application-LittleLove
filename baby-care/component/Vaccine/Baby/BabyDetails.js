@@ -40,7 +40,7 @@ const BabyDetails = ({ route,navigation }) => {
             </View>
             <View style={styles.row}>
               <Text style={styles.text1}>Time of Birth:</Text>
-              <Text style={styles.text2}>{baby.bday}</Text>
+              <Text style={styles.text2}>{baby.btime}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.text1}>Gender:</Text>
