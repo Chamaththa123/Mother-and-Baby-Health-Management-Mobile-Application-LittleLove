@@ -126,7 +126,7 @@ const MotherDetails = ({ route, navigation }) => {
                 style={styles.buttonStyle}
                 onPress={handleItemPress}
               >
-                <Text style={styles.buttonText}>Add Baby</Text>
+                <Text style={styles.buttonText}>Create Baby Profile</Text>
               </TouchableOpacity>
             </View>
 
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     backgroundColor: '#5bf6db',
-    padding: "10%",
+    paddingTop: "8%",
     borderRadius: 5,
     height: 50,
     margin: 10,
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer2: {
     marginBottom: "3%",
-    width: 140,
+    width: 170,
   },
   buttonText: {
     color: 'black',
