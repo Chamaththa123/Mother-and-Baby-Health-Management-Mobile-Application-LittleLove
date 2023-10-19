@@ -84,7 +84,7 @@ const BabyVaccine = ({ data }) => {
         {vaccineData.map((item, index) => (
           <View style={styles.card} key={index}>
             <Text style={styles.cardText}>
-              <Text style={styles.cardHeader}>Mother Gestational Duration (Weeks):</Text> {item.age} Week
+              <Text style={styles.cardHeader}>Baby Age (Month):</Text> {item.age} Month
             </Text>
             <Text style={styles.cardText2}>
               <Text style={styles.cardHeader}>Type of Vaccine:</Text> {item.type}
