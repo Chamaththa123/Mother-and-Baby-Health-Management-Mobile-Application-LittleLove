@@ -52,7 +52,15 @@ const MotherList = ({ navigation }) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerShown: false,
+      headerStyle: {
+        backgroundColor: '#5bf6db',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color:'#5bf6db'
+      },
+      headerShown: true,
+      title: "",
     });
   }, []);
 
@@ -104,7 +112,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     marginBottom: 10,
-    marginTop: 70,
+    marginTop: 50,
     textAlign: 'center',
   },
   searchInput: {
