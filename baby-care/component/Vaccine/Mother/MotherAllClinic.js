@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import ClinicDetails from './MotherClinic';
-// import HealthGraphs from './Health Graphs/MotherHealthGraphs';
+import HealthGraphs from '../Baby/HealthGraphs/MotherGraph';
 
 const initialRoutes = [
   { key: 'tab1', title: 'Clinic Details' },
@@ -18,7 +18,7 @@ const AllClinic = ({ route, data }) => {
       case 'tab1':
         return <ClinicDetails data={data} />;
       case 'tab2':
-      //   return <HealthGraphs data={data} />;
+        return <HealthGraphs data={data} />;
       default:
         return null;
     }
