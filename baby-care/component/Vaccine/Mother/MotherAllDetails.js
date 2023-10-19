@@ -42,7 +42,7 @@ const All = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttonContainer}>
+      {/* <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.buttonStyle}
             onPress={() => {
@@ -51,7 +51,7 @@ const All = ({ route, navigation }) => {
           >
             <Text style={styles.buttonText}>Clinic Schedules</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
