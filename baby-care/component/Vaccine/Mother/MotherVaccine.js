@@ -57,7 +57,7 @@ const VaccineDetails = ({ data }) => {
             progress={vaccinePercentage / 100}
             width={null}
             height={15}
-            color="#56F113"
+            color="#1DC4FE"
             style={{ marginBottom: 20, borderRadius: 30 }}
           />
 
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
   redDot: {
     width: 10,
     height: 10,
-    backgroundColor: '#56F113',
+    backgroundColor: '#1DC4FE',
     borderRadius: 5,
     marginRight: 10,
     marginTop: -20,
