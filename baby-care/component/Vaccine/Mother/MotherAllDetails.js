@@ -77,7 +77,7 @@ const All = ({ route, navigation }) => {
             <View style={styles.tabBarContainer}>
               <TabBar
                 {...props}
-                indicatorStyle={{ backgroundColor: 'blue' }}
+                indicatorStyle={{ backgroundColor: '#0D907E' }}
                 style={styles.tabBar}
                 labelStyle={{ color: 'black' }}
               />
@@ -100,10 +100,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: 30,
-    marginTop: 70,
+    marginTop: 40,
   },
   text: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     marginLeft: 30,
     marginRight: 90
@@ -121,13 +121,13 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: '#5bf6db',
     padding: 13,
-    borderRadius: 35,
+    borderRadius: 10,
     width: 150,
     height: 50,
   },
   buttonText: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   imageStyle: {

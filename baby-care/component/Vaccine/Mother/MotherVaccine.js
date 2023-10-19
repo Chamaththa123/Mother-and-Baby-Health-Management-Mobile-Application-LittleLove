@@ -103,7 +103,7 @@ fontWeight:'bold'
   },
   buttonStyle: {
     backgroundColor: '#5bf6db',
-    padding: 13,
+    padding: 15,
     borderRadius: 10,
     height: 50,
     width: 130
@@ -113,7 +113,7 @@ fontWeight:'bold'
   },
   buttonText: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
   },

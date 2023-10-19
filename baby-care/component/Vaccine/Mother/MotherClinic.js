@@ -90,7 +90,7 @@ const ClinicDetails = ({ data }) => {
               <Text style={styles.cardHeader}>Blood Pressure:</Text> {item.bp} mm Hg
             </Text>
 
-            <View style={[styles.card, getBPStatusStyle(item.bp)]} key={index}>
+            <View style={[styles.card2, getBPStatusStyle(item.bp)]} key={index}>
             <Text style={[styles.cardStatus, getBPStatusStyle(item.bp)]}>
              {getBPStatus(item.bp)}
             </Text>
@@ -126,6 +126,20 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 1.5,
   },
+  card2: {
+    backgroundColor: 'white',
+    marginVertical: 5,
+    padding: 15,
+    borderRadius: 50,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 1.5,
+  },
   cardText: {
     fontSize: 16,
   },
@@ -142,13 +156,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 50,
     width: 130,
+    marginTop:20
   },
   buttonContainer: {
     marginBottom: 10,
   },
   buttonText: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
   },
