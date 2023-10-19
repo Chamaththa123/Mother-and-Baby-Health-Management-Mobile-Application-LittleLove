@@ -58,9 +58,18 @@ const MotherDetails = ({ route, navigation }) => {
   // Effect to hide the header on this screen
   useEffect(() => {
     navigation.setOptions({
-      headerShown: false,
+      headerStyle: {
+        backgroundColor: '#5bf6db',
+      },
+      headerTitleStyle: {
+        color:'#5bf6db'
+      },
+      headerShown: true,
+      headerTitle: null, // Set headerTitle to null to hide the default title
     });
   }, []);
+  
+  
 
   // Handler for 'Add Baby' button press
   const handleItemPress = () => {
@@ -167,7 +176,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: "20%",
+    marginTop: "10%",
     marginLeft: "4%",
     width: '74%',
   },
@@ -189,7 +198,7 @@ const styles = StyleSheet.create({
     height: 80,
     resizeMode: 'cover',
     marginLeft: '4%',
-    marginTop: '14%',
+    marginTop: '5%',
   },
   row: {
     flexDirection: 'row',
@@ -215,6 +224,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 50,
     margin: 10,
+    borderColor: 'gray',
+    borderWidth: 0.5,
   },
   buttonStyle2: {
     backgroundColor: '#5bf6db',
@@ -222,6 +233,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 50,
     margin: 10,
+    borderColor: 'gray',
+    borderWidth: 0.5,
   },
   buttonContainer: {
     marginBottom: "2%",
