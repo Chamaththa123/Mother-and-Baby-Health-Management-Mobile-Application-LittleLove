@@ -1,38 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import VaccineDetails from './MotherVaccine';
-import ClinicDetails from './MotherClinic';
 import AllClinic from './MotherAllClinic';
 
-const backgroundImage = require('../../../assets/bg.png');
-const localImage = require('../../../assets/mother.png');
-
-const Tab1Screen = ({ item }) => (
-  <View style={styles.scene}>
-    <VaccineDetails data={item} />
-  </View>
-);
-
-const Tab2Screen = ({ item }) => (
-  <View style={styles.scene}>
-    <AllClinic data={item}/>
-  </View>
-);
-
-
-// Change the tab names here
 const initialRoutes = [
-  { key: 'tab1', title: 'Vaccination' }, // Change 'Tab 1' to 'Clinic'
-  { key: 'tab2', title: 'Clinic' }, // Change 'Tab 2' to 'Vaccination'
+  { key: 'tab1', title: 'Vaccination' },
+  { key: 'tab2', title: 'Clinic' },
 ];
 
 const All = ({ route, navigation }) => {
-
   const { item } = route.params;
+
   useEffect(() => {
+    // Set navigation options
     navigation.setOptions({
-      headerShown: false,
+      headerStyle: {
+        backgroundColor: '#5bf6db',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerShown: true,
+      title: item.name,
     });
   }, []);
 
@@ -42,23 +32,17 @@ const All = ({ route, navigation }) => {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'tab1':
-        return <Tab1Screen item={item} />;
+        return <VaccineDetails data={item} />;
       case 'tab2':
-        return <Tab2Screen item={item} />;
+        return <AllClinic data={item} />;
       default:
         return null;
     }
   };
 
   return (
-    <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-      <View style={styles.container}>
-        <View style={styles.contentContainer}>
-          <Image source={localImage} style={styles.imageStyle} />
-          <Text style={styles.text}>{item.name}</Text>
-        </View>
-
-        <View style={styles.buttonContainer}>
+    <View style={styles.container}>
+      <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.buttonStyle}
             onPress={() => {
@@ -68,26 +52,23 @@ const All = ({ route, navigation }) => {
             <Text style={styles.buttonText}>Clinic Schedules</Text>
           </TouchableOpacity>
         </View>
-
-        <TabView
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          renderTabBar={(props) => (
-            <View style={styles.tabBarContainer}>
-              <TabBar
-                {...props}
-                indicatorStyle={{ backgroundColor: '#0D907E' }}
-                style={styles.tabBar}
-                labelStyle={{ color: 'black' }}
-              />
-            </View>
-          )}
-          // Reduce the marginTop here to adjust the gap
-          style={{ marginTop: 20 }}
-        />
-      </View>
-    </ImageBackground>
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        renderTabBar={(props) => (
+          <View style={styles.tabBarContainer}>
+            <TabBar
+              {...props}
+              indicatorStyle={{ backgroundColor: '#0D907E' }}
+              style={styles.tabBar}
+              labelStyle={{ color: 'black' }}
+            />
+          </View>
+        )}
+        style={{ marginTop: 20 }}
+      />
+    </View>
   );
 };
 
@@ -96,27 +77,10 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
-  contentContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 30,
-    marginTop: 40,
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginLeft: 30,
-    marginRight: 90
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
   buttonContainer: {
     alignItems: 'flex-end',
     marginRight: 20,
-    marginTop: 50,
+    marginTop: 30,
   },
   buttonStyle: {
     backgroundColor: '#5bf6db',
@@ -130,14 +94,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  imageStyle: {
-    width: 70,
-    height: 70,
-    resizeMode: 'cover',
-  },
   scene: {
     flex: 1,
-
   },
   tabBarContainer: {
     backgroundColor: 'white',
@@ -147,10 +105,8 @@ const styles = StyleSheet.create({
   tabBar: {
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    backgroundColor:'#5bf6db'
+    backgroundColor: '#5bf6db',
   },
-
-  
 });
 
 export default All;
