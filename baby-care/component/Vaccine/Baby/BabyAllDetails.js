@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import BabyVaccine from './BabyVaccine';
-// import BabyClinic from './BabyClinic';
+import BabyAllClinic from './BabyAllClinic';
+
 
 const Tab1Screen = ({ baby }) => (
   <View style={styles.scene}>
@@ -12,7 +13,7 @@ const Tab1Screen = ({ baby }) => (
 
 const Tab2Screen = ({ baby }) => (
   <View style={styles.scene}>
-    {/* <BabyClinic data={baby}/> */}
+    <BabyAllClinic data={baby}/>
   </View>
 );
 

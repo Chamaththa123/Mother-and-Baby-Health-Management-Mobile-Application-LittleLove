@@ -1,129 +1,177 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
-import { TabView, TabBar } from 'react-native-tab-view';
-import BabyAllClinic from './BabyAllClinic';
-import BabyHealthGraphs from './HealthGraphs/BabyHealthGraphs';
-// import ClinicDetails from './ClinicDetails';
-// import HealthGraphs from './HealthGraphs';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { ref, query, orderByChild, equalTo, get, onValue } from 'firebase/database';
+import { db } from '../../../firebase/config';
+
+const ClinicDetails = ({ data }) => {
+  const navigation = useNavigation();
+
+  // const getBPStatus = (bp) => {
+  //   if (bp < 90) {
+  //     return "Low Blood Pressure";
+  //   } else if (bp >= 90 && bp < 120) {
+  //     return "Normal Blood Pressure";
+  //   } else if (bp >= 120 && bp < 130) {
+  //     return "Elevated Blood Pressure";
+  //   } else if (bp >= 130 && bp < 140) {
+  //     return "High Blood Pressure (Stage 1)";
+  //   } else {
+  //     return "High Blood Pressure (Stage 2)";
+  //   }
+  // };
+
+  // const getBPStatusStyle = (bp) => {
+  //   const status = getBPStatus(bp);
+  //   switch (status) {
+  //     case "Low Blood Pressure":
+  //       return { backgroundColor: '#FFA67F', fontWeight: "bold" };
+  //     case "Normal Blood Pressure":
+  //       return { backgroundColor: '#2BBF00', fontWeight: "bold" };
+  //     case "Elevated Blood Pressure":
+  //       return { backgroundColor: '#CFFF1B', fontWeight: "bold" };
+  //     case "High Blood Pressure (Stage 1)":
+  //       return { backgroundColor: '#FF5500', fontWeight: "bold" };
+  //     case "High Blood Pressure (Stage 2)":
+  //       return { backgroundColor: '#D30303', fontWeight: "bold" };
+  //     default:
+  //       return {};
+  //   }
+  // };
 
 
-const Tab1Screen = ({ item }) => (
-  <View>
-    <BabyAllClinic data={item} />
-  </View>
-);
+  // useEffect(() => {
+  //   const clinicRef = ref(db, 'Clinic');
+  //   const userClinicQuery = query(
+  //     clinicRef,
+  //     orderByChild('motherId'),
+  //     equalTo(data.id)
+  //   );
 
-const Tab2Screen = ({ item }) => (
-  <View>
-    <BabyHealthGraphs data={item}/>
-
-  </View>
-);
-
-const initialRoutes = [
-  { key: 'tab1', title: 'Clinic Details' },
-  { key: 'tab2', title: 'Health Graphs' },
-];
-
-const BabyClinic = ({ route, navigation, data }) => {
-  const [index, setIndex] = useState(0);
-  const [routes] = useState(initialRoutes);
-
-  const renderScene = ({ route }) => {
-    switch (route.key) {
-      case 'tab1':
-        return <Tab1Screen item={data} />;
-      case 'tab2':
-        return <Tab2Screen item={data} />;
-      default:
-        return null;
-    }
-  };
+  //   const unsubscribe = onValue(userClinicQuery, (snapshot) => {
+  //     if (snapshot.exists()) {
+  //       const clinicData = snapshot.val();
+  //       const clinicArray = Object.values(clinicData);
+  //       clinicArray.reverse();
+  //       setClinicData(clinicArray);
+  //     } else {
+  //       setClinicData([]);
+  //     }
+  //   });
+  //   return () => unsubscribe();
+  // }, [data.id]);
 
   return (
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={() => {
+              navigation.navigate('AddBabyClinic', { data });
+            }}
+          >
+            <Text style={styles.buttonText}>Add Details</Text>
+          </TouchableOpacity>
+        </View>
 
-    <View style={styles.container}>
+        {/* {clinicData.map((item, index) => (
+          <View style={styles.card} key={index}>
+            <Text style={styles.cardText}>
+              <Text style={styles.cardHeader}>Mother Gestational Duration  :</Text> {item.week} Week
+            </Text><Text style={styles.cardText}>
+              <Text style={styles.cardHeader}>Maternal Weight:</Text> {item.weight} Kg
+            </Text>
+            <Text style={styles.cardText}>
+              <Text style={styles.cardHeader}>Fundal Height:</Text> {item.F_height} cm
+            </Text>
+            <Text style={styles.cardText}>
+              <Text style={styles.cardHeader}>Blood Pressure:</Text> {item.bp} mm Hg
+            </Text>
 
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        renderTabBar={(props) => (
-          <View style={styles.tabBarContainer}>
-            <TabBar
-              {...props}
-              indicatorStyle={{ backgroundColor: 'blue' }}
-              style={styles.tabBar}
-              labelStyle={{ color: 'black' }}
-            />
+            <View style={[styles.card2, getBPStatusStyle(item.bp)]} key={index}>
+              <Text style={[styles.cardStatus, getBPStatusStyle(item.bp)]}>
+                {getBPStatus(item.bp)}
+              </Text>
+            </View>
+
           </View>
-        )}
-        style={{ marginTop: 20 }}
-      />
-    </View>
-
+        ))}
+        {clinicData.length === 0 && (
+          <Text>No clinic data available for this user.</Text>
+        )} */}
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
+    marginLeft: 10,
+    marginRight: 10,
   },
-  contentContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 30,
-    marginTop: 70,
+  card: {
+    backgroundColor: 'white',
+    marginVertical: 5,
+    padding: 15,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 1.5,
   },
-  text: {
-    fontSize: 25,
+  card2: {
+    marginVertical: 5,
+    padding: 6,
+    borderRadius: 50,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 1.5,
+  },
+  cardText: {
+    fontSize: 16,
+  },
+  cardStatus: {
+    fontSize: 16,
+    textAlign: 'center'
+  },
+  cardHeader: {
     fontWeight: 'bold',
-    marginLeft: 30,
-    marginRight: 90,
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
-  buttonContainer: {
-    alignItems: 'flex-end',
-    marginRight: 20,
-    marginTop: 50,
   },
   buttonStyle: {
     backgroundColor: '#5bf6db',
     padding: 13,
-    borderRadius: 35,
-    width: 150,
+    borderRadius: 10,
     height: 50,
+    width: 130,
+    marginTop: 20,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+  },
+  buttonContainer: {
+    marginBottom: 10,
   },
   buttonText: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
-  imageStyle: {
-    width: 70,
-    height: 70,
-    resizeMode: 'cover',
-  },
-  scene: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  tabBarContainer: {
-    backgroundColor: 'white',
-    overflow: 'hidden',
-    margin: 5,
-  },
-  tabBar: {
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    backgroundColor: '#5bf6db',
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 
-export default BabyClinic;
+
+export default ClinicDetails;

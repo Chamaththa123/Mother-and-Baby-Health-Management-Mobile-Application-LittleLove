@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
-import BabyAllClinic from './BabyClinic';
+import BabyClinic from './BabyClinic';
 // import BabyHealthGraphs from './HealthGraphs/BabyHealthGraphs';
 // import ClinicDetails from './ClinicDetails';
 // import HealthGraphs from './HealthGraphs';
@@ -9,7 +9,7 @@ import BabyAllClinic from './BabyClinic';
 
 const Tab1Screen = ({ item }) => (
   <View>
-    <BabyAllClinic data={item} />
+    <BabyClinic data={item} />
   </View>
 );
 
@@ -25,7 +25,7 @@ const initialRoutes = [
   { key: 'tab2', title: 'Health Graphs' },
 ];
 
-const BabyClinic = ({ route, navigation, data }) => {
+const BabyAllClinic = ({ route, navigation, data }) => {
   const [index, setIndex] = useState(0);
   const [routes] = useState(initialRoutes);
 
@@ -52,7 +52,7 @@ const BabyClinic = ({ route, navigation, data }) => {
           <View style={styles.tabBarContainer}>
             <TabBar
               {...props}
-              indicatorStyle={{ backgroundColor: 'blue' }}
+              indicatorStyle={{ backgroundColor: '#0D907E' }}
               style={styles.tabBar}
               labelStyle={{ color: 'black' }}
             />
@@ -70,50 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
-  contentContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 30,
-    marginTop: 70,
-  },
-  text: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    marginLeft: 30,
-    marginRight: 90,
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
-  buttonContainer: {
-    alignItems: 'flex-end',
-    marginRight: 20,
-    marginTop: 50,
-  },
-  buttonStyle: {
-    backgroundColor: '#5bf6db',
-    padding: 13,
-    borderRadius: 35,
-    width: 150,
-    height: 50,
-  },
-  buttonText: {
-    color: 'black',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  imageStyle: {
-    width: 70,
-    height: 70,
-    resizeMode: 'cover',
-  },
-  scene: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   tabBarContainer: {
     backgroundColor: 'white',
     overflow: 'hidden',
@@ -126,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BabyClinic;
+export default BabyAllClinic;
