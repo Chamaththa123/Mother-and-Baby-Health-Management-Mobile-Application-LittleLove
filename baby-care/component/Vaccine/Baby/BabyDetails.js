@@ -8,7 +8,14 @@ const BabyDetails = ({ route,navigation }) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerShown: false,
+      headerStyle: {
+        backgroundColor: '#5bf6db',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerShown: true,
+      title: baby.babyname,
     });
   }, []);
 
@@ -22,7 +29,7 @@ const BabyDetails = ({ route,navigation }) => {
         <View style={styles.contentContainer}>
           <View style={styles.row}>
             <Image source={localImage} style={styles.imageStyle} />
-            <Text style={styles.name}>{baby.id}</Text>
+            <Text style={styles.name}>{baby.babyname}</Text>
           </View>
 
           <View style={styles.item}>
@@ -74,10 +81,10 @@ const styles = StyleSheet.create({
         padding: 0,
       },
       name: {
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
-        marginTop: 70,
+        marginTop: 50,
         marginLeft: 20,
         width: 260,
       },
@@ -86,7 +93,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         borderRadius: 10,
         margin: 10,
-        marginTop:50,
+        marginTop:40,
         borderWidth: 2, // Add border width
         borderColor: '#5bf6db', // Add border color
       },
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
         height: 80, // Adjust the height as needed
         resizeMode: 'cover',
         marginLeft: 20,
-        marginTop: 60,
+        marginTop: 30,
       },
       row: {
         flexDirection: 'row',
@@ -122,9 +129,12 @@ const styles = StyleSheet.create({
       buttonStyle: {
         backgroundColor: '#5bf6db',
         padding: 13,
-        borderRadius: 35,
+        borderRadius: 10,
         height: 50,
         margin: 10,
+        borderColor: 'gray',
+        borderWidth: 0.5,
+    
       },
       buttonContainer: {
         marginBottom: 30,

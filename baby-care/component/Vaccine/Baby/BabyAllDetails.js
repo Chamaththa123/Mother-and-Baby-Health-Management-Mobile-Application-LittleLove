@@ -1,36 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import BabyVaccine from './BabyVaccine';
-import BabyClinic from './BabyClinic';
+// import BabyClinic from './BabyClinic';
 
-const backgroundImage = require('../../../assets/bg.png');
-const localImage = require('../../../assets/mother.png');
-
-const Tab1Screen = ({baby}) => (
+const Tab1Screen = ({ baby }) => (
   <View style={styles.scene}>
-    <BabyVaccine data={baby}/>
+    <BabyVaccine data={baby} />
   </View>
 );
 
-const Tab2Screen = ({baby}) => (
+const Tab2Screen = ({ baby }) => (
   <View style={styles.scene}>
-    <BabyClinic data={baby}/>
+    {/* <BabyClinic data={baby}/> */}
   </View>
 );
 
 const initialRoutes = [
   { key: 'tab1', title: 'Vaccination' },
-  { key: 'tab2', title: 'Tab 2' },
+  { key: 'tab2', title: 'Clinic' },
 ];
 
 const BabyAllDetails = ({ route, navigation }) => {
-
   const { baby } = route.params;
 
   useEffect(() => {
     navigation.setOptions({
-      headerShown: false,
+      headerStyle: {
+        backgroundColor: '#5bf6db',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerShown: true,
+      title: baby.babyname,
     });
   }, []);
 
@@ -40,9 +43,9 @@ const BabyAllDetails = ({ route, navigation }) => {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'tab1':
-        return <Tab1Screen baby={baby}/>;
+        return <Tab1Screen baby={baby} />;
       case 'tab2':
-        return <Tab2Screen  baby={baby}/>;
+        return <Tab2Screen baby={baby} />;
       default:
         return null;
     }
@@ -50,27 +53,25 @@ const BabyAllDetails = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.contentContainer}>
-          <Image source={localImage} style={styles.imageStyle} />
-          <Text style={styles.text}>{baby.babyname}</Text>
-        </View>
       <TabView
-      navigationState={{ index, routes }}
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      renderTabBar={(props) => (
-        <TabBar
-          {...props}
-          indicatorStyle={{ backgroundColor: 'blue' }}
-          style={{ backgroundColor: 'white' }}
-          labelStyle={{ color: 'black' }}
-        />
-      )}
-    />
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        renderTabBar={(props) => (
+          <View style={styles.tabBarContainer}>
+            <TabBar
+              {...props}
+              indicatorStyle={{ backgroundColor: '#0D907E' }}
+              style={styles.tabBar}
+              labelStyle={{ color: 'black' }}
+            />
+          </View>
+        )}
+        style={{ marginTop: 20 }}
+      />
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     marginLeft: 30,
-    marginRight: 90
+    marginRight: 90,
   },
   backgroundImage: {
     flex: 1,
@@ -118,7 +119,6 @@ const styles = StyleSheet.create({
   },
   scene: {
     flex: 1,
-
   },
   tabBarContainer: {
     backgroundColor: 'white',
@@ -128,9 +128,8 @@ const styles = StyleSheet.create({
   tabBar: {
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    backgroundColor:'#5bf6db'
+    backgroundColor: '#5bf6db',
   },
-
-  
 });
+
 export default BabyAllDetails;
