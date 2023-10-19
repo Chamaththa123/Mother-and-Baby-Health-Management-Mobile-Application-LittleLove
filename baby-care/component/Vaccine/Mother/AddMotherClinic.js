@@ -137,7 +137,8 @@ const styles = StyleSheet.create({
     margin: 10,
     marginLeft: 20,
     marginBottom: 20,
-    borderColor: 'gray',
+    borderColor: 'gray', // Change the border color to your desired color
+    borderWidth: 0.5, // Add a border width
     alignItems: 'center',
     justifyContent: 'center',
   },
