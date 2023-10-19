@@ -13,6 +13,7 @@ const BabyDetails = ({ route,navigation }) => {
       },
       headerTitleStyle: {
         fontWeight: 'bold',
+        color:'#5bf6db'
       },
       headerShown: true,
       title: baby.babyname,
