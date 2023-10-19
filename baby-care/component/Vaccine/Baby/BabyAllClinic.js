@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import BabyClinic from './BabyClinic';
-// import BabyHealthGraphs from './HealthGraphs/BabyHealthGraphs';
+import BabyHealthGraphs from './HealthGraphs/BabyHealthGraphs';
 // import ClinicDetails from './ClinicDetails';
 // import HealthGraphs from './HealthGraphs';
 
@@ -15,7 +15,7 @@ const Tab1Screen = ({ item }) => (
 
 const Tab2Screen = ({ item }) => (
   <View>
-    {/* <BabyHealthGraphs data={item}/> */}
+    <BabyHealthGraphs data={item}/>
 
   </View>
 );

@@ -13,7 +13,7 @@ const Home = ({ navigation }) => {
     <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
     <View style={styles.container}>
       <Text style={styles.text}>All Data from Firebase</Text>
-      <Button title='Add ' onPress={() => navigation.navigate('Add')} />
+      <Button title='AddMother ' onPress={() => navigation.navigate('AddMother')} />
       <Button title='MotherList' onPress={() => navigation.navigate('MotherList')} />
     </View>
     </ImageBackground>

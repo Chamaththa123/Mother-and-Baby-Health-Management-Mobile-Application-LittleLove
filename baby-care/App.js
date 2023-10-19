@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './component/Home';
 import AllVaccine from './component/Vaccine/Mother/MotherAllDetails';
-import Add from './component/Add';
+import AddMother from './component/AddMother';
 import MotherList from './component/Vaccine/Mother/MotherList';
 import MotherDetails from './component/Vaccine/Mother/MotherDetails';
 import AddBaby from './component/Vaccine/Mother/AddBaby';
@@ -21,7 +21,7 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='AllVaccine' component={AllVaccine} />
-        <Stack.Screen name='Add' component={Add} />
+        <Stack.Screen name='AddMother' component={AddMother} />
         <Stack.Screen name='MotherList' component={MotherList} />
         <Stack.Screen name='MotherDetails' component={MotherDetails} />
         <Stack.Screen name='AddBaby' component={AddBaby} />
