@@ -26,21 +26,21 @@ const ClinicDetails = ({ data }) => {
     const status = getBPStatus(bp);
     switch (status) {
       case "Low Blood Pressure":
-        return { backgroundColor: '#04FA92',fontWeight:"bold" };
+        return { backgroundColor: '#FFA67F', fontWeight: "bold" };
       case "Normal Blood Pressure":
-        return { backgroundColor: '#2BBF00' ,fontWeight:"bold"};
+        return { backgroundColor: '#2BBF00', fontWeight: "bold" };
       case "Elevated Blood Pressure":
-        return { backgroundColor: '#CFFF1B' ,fontWeight:"bold"};
+        return { backgroundColor: '#CFFF1B', fontWeight: "bold" };
       case "High Blood Pressure (Stage 1)":
-        return { backgroundColor: '#FF5500' ,fontWeight:"bold"};
+        return { backgroundColor: '#FF5500', fontWeight: "bold" };
       case "High Blood Pressure (Stage 2)":
-        return { backgroundColor: '#D30303' ,fontWeight:"bold"};
+        return { backgroundColor: '#D30303', fontWeight: "bold" };
       default:
         return {};
     }
   };
 
-  
+
   useEffect(() => {
     const clinicRef = ref(db, 'Clinic');
     const userClinicQuery = query(
@@ -91,11 +91,11 @@ const ClinicDetails = ({ data }) => {
             </Text>
 
             <View style={[styles.card2, getBPStatusStyle(item.bp)]} key={index}>
-            <Text style={[styles.cardStatus, getBPStatusStyle(item.bp)]}>
-             {getBPStatus(item.bp)}
-            </Text>
-              </View>
-            
+              <Text style={[styles.cardStatus, getBPStatusStyle(item.bp)]}>
+                {getBPStatus(item.bp)}
+              </Text>
+            </View>
+
           </View>
         ))}
         {clinicData.length === 0 && (
@@ -127,14 +127,13 @@ const styles = StyleSheet.create({
     elevation: 1.5,
   },
   card2: {
-    backgroundColor: 'white',
     marginVertical: 5,
-    padding: 15,
+    padding: 6,
     borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 1,
     },
     shadowOpacity: 0.1,
     shadowRadius: 3.84,
@@ -143,9 +142,9 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 16,
   },
-  cardStatus:{
+  cardStatus: {
     fontSize: 16,
-    textAlign:'center'
+    textAlign: 'center'
   },
   cardHeader: {
     fontWeight: 'bold',
@@ -156,7 +155,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 50,
     width: 130,
-    marginTop:20
+    marginTop: 20,
+    borderColor: 'gray',
+    borderWidth: 0.5,
   },
   buttonContainer: {
     marginBottom: 10,
