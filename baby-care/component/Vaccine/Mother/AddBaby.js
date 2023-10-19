@@ -106,7 +106,7 @@ const AddBaby = ({ route, navigation }) => {
             style={styles.textBoxes}
           />
           <TouchableOpacity style={styles.buttonStyle} onPress={addBaby}>
-            <Text style={styles.buttonText}>Submit Baby Details</Text>
+            <Text style={styles.buttonText}>Create Baby Profile</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
