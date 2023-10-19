@@ -7,6 +7,7 @@ import { db } from '../../../firebase/config';
 const VaccineDetails = ({ data }) => {
   const navigation = useNavigation();
   const [vaccineData, setVaccineData] = useState([]);
+  const [vaccineCount, setVaccineCount] = useState(0);
 
   useEffect(() => {
     // Query the Firebase database to retrieve vaccine data for the specific user
@@ -22,9 +23,11 @@ const VaccineDetails = ({ data }) => {
         const vaccineData = snapshot.val();
         const vaccineArray = Object.values(vaccineData);
         setVaccineData(vaccineArray);
+        setVaccineCount(vaccineArray.length); // Update the vaccine count
       } else {
         // If no vaccine data found for the user, set an empty array
         setVaccineData([]);
+        setVaccineCount(0); // No vaccines, so count is 0
       }
     });
 
@@ -45,19 +48,29 @@ const VaccineDetails = ({ data }) => {
           </TouchableOpacity>
         </View>
 
+        <Text style={styles.vaccineCountText}>Total Vaccines: {vaccineCount}</Text>
+
         {vaccineData.map((item, index) => (
-          <View style={styles.card}>
-          <View style={styles.row}>
-            <View style={styles.leftColumn}>
-              <Text style={styles.cardText}><Text style={styles.cardHeader}>Age:</Text> {item.age}</Text>
-              <Text style={styles.cardText}><Text style={styles.cardHeader}>Date:</Text> {item.date}</Text>
-            </View>
-            <View style={styles.rightColumn}>
-              <Text style={styles.cardText2}><Text style={styles.cardHeader}>Vaccine Type:</Text> {item.type}</Text>
-              <Text style={styles.cardText2}><Text style={styles.cardHeader}>Batch:</Text> {item.batch}</Text>
+          <View style={styles.card} key={index}>
+            <Text style={styles.cardText}>
+              <Text style={styles.cardHeader}>Mother Gestational Duration (Weeks):</Text> {item.age}
+            </Text>
+            <Text style={styles.cardText2}>
+              <Text style={styles.cardHeader}>Type of Vaccine:</Text> {item.type}
+            </Text>
+            <View style={styles.row}>
+              <View style={styles.leftColumn}>
+                <Text style={styles.cardText}>
+                  <Text style={styles.cardHeader}>Date:</Text> {item.date}
+                </Text>
+              </View>
+              <View style={styles.rightColumn}>
+                <Text style={styles.cardText2}>
+                  <Text style={styles.cardHeader}>Batch No:</Text> {item.batch}
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
         ))}
         {vaccineData.length === 0 && (
           <Text>No vaccine data available for this user.</Text>
@@ -98,17 +111,21 @@ const styles = StyleSheet.create({
   },
   rightColumn: {
     flex: 1,
-  },cardHeader:{
-fontWeight:'bold'
+  },
+  cardHeader: {
+    fontWeight: 'bold',
   },
   buttonStyle: {
     backgroundColor: '#5bf6db',
     padding: 15,
     borderRadius: 10,
     height: 50,
-    width: 130
+    width: 130,
+    borderColor: 'gray',
+    borderWidth: 0.5,
   },
   buttonContainer: {
+    marginTop: 10,
     marginBottom: 10,
   },
   buttonText: {
@@ -120,6 +137,11 @@ fontWeight:'bold'
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between', // Aligns items horizontally with space between them
+  },
+  vaccineCountText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginVertical: 10,
   },
 });
 
