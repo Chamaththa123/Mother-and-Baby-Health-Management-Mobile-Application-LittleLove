@@ -106,14 +106,18 @@ fontWeight:'bold'
     padding: 13,
     borderRadius: 10,
     height: 50,
-    width: 130
+    width: 130,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+
   },
   buttonContainer: {
     marginBottom: 10,
+    marginTop:10
   },
   buttonText: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
   },
