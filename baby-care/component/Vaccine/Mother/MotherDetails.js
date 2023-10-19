@@ -62,14 +62,14 @@ const MotherDetails = ({ route, navigation }) => {
         backgroundColor: '#5bf6db',
       },
       headerTitleStyle: {
-        color:'#5bf6db'
+        color: '#5bf6db'
       },
       headerShown: true,
       headerTitle: null, // Set headerTitle to null to hide the default title
     });
   }, []);
-  
-  
+
+
 
   // Handler for 'Add Baby' button press
   const handleItemPress = () => {
