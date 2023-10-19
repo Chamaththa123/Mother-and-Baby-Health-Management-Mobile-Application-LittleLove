@@ -61,7 +61,7 @@ const BabyBMIGraph = ({ data }) => {
   const chartConfig = {
     backgroundGradientFrom: '#fff',
     backgroundGradientTo: '#fff',
-    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    color: (opacity = 1) => `rgba(0, 0, 255 , ${opacity})`,
     labelColor: (opacity = 0.6) => `rgba(0, 0, 0, ${opacity})`,
     style: {
       borderRadius: 16,
@@ -119,6 +119,7 @@ const BabyBMIGraph = ({ data }) => {
               chartConfig={chartConfig}
               bezier
               style={styles.chart}
+              
             />
             <Text style={{ marginTop: -20 }}>Month</Text>
           </View>

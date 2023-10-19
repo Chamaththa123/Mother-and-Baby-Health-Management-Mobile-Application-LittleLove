@@ -64,7 +64,7 @@ const BabyHealthGraphs = ({ data }) => {
                             datasets: [
                                 {
                                     data: clinicData.map((item) => item.weight),
-                                    color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`, // Set the color to red
+                                    // color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`, // Set the color to red
                                     strokeWidth: 2,
                                 },
                             ],
@@ -75,7 +75,8 @@ const BabyHealthGraphs = ({ data }) => {
                         chartConfig={{
                             backgroundGradientFrom: 'white',
                             backgroundGradientTo: 'white',
-                            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                            color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
+                                labelColor: (opacity = 0.6) => `rgba(0, 0, 0, ${opacity})`,
                         }}
                     />
                 )}
@@ -92,7 +93,7 @@ const BabyHealthGraphs = ({ data }) => {
                             datasets: [
                                 {
                                     data: clinicData.map((item) => item.height),
-                                    color: (opacity = 1) => `rgba(0, 255, 0, ${opacity})`,
+                                    // color: (opacity = 1) => `rgba(0, 255, 0, ${opacity})`,
                                     strokeWidth: 2,
                                 },
                             ],
@@ -103,7 +104,8 @@ const BabyHealthGraphs = ({ data }) => {
                         chartConfig={{
                             backgroundGradientFrom: 'white',
                             backgroundGradientTo: 'white',
-                            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                            color: (opacity = 1) => `rgba(11, 102, 35 , ${opacity})`,
+                        labelColor: (opacity = 0.6) => `rgba(0, 0, 0, ${opacity})`,
                         }}
                     />
                 )}

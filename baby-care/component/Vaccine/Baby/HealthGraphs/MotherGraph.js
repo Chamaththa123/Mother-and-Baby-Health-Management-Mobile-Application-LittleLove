@@ -76,6 +76,7 @@ const MotherGraphs = ({ data }) => {
                             backgroundGradientFrom: 'white',
                             backgroundGradientTo: 'white',
                             color: (opacity = 1) => `rgba(0, 0, 255 , ${opacity})`,
+                            labelColor: (opacity = 0.6) => `rgba(0, 0, 0, ${opacity})`,
                         }}
                     />
                 )}
@@ -104,6 +105,7 @@ const MotherGraphs = ({ data }) => {
                         backgroundGradientFrom: 'white',
                         backgroundGradientTo: 'white',
                         color: (opacity = 1) => `rgba(11, 102, 35 , ${opacity})`,
+                        labelColor: (opacity = 0.6) => `rgba(0, 0, 0, ${opacity})`,
                     }}
                     
                 />
