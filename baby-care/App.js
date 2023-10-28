@@ -13,12 +13,16 @@ import AddClinic from './component/Vaccine/Mother/AddMotherClinic';
 import BabyAllDetails from './component/Vaccine/Baby/BabyAllDetails';
 import AddBabyVaccine from './component/Vaccine/Baby/AddBabyVaccine';
 import AddBabyClinic from './component/Vaccine/Baby/AddBabyClinic';
+import Start from './component/Start';
+import Login from './component/user/Login';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name='Start' component={Start} />
+        <Stack.Screen name='Login' component={Login} />
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='AllVaccine' component={AllVaccine} />
         <Stack.Screen name='AddMother' component={AddMother} />
