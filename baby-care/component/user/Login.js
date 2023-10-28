@@ -15,44 +15,61 @@ const Login = ({ navigation }) => {
     }, []);
 
     return (
-        <TouchableOpacity style={styles.container} onPress={handleLoginPress}>
-            <Image source={MyImage} style={styles.image} />
+        <View style={styles.container} onPress={handleLoginPress}>
+            <View style={styles.rowContainer}>
+                <Text style={styles.leftText}>Welcome</Text>
+                <View style={styles.imageContainer}>
+                    <Image source={MyImage} style={styles.image} />
+                </View>
+            </View>
             <View style={styles.textContainer}>
                 <Text style={styles.redText}>Little </Text>
-                <Text style={styles.blueText}> Love</Text>
-                <Text>ewffdsfhsh sdvds vdsv dsv dvds vds vsdv v</Text>
+                <Text style={styles.blueText}>Love</Text>
             </View>
-        </TouchableOpacity>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: 'white',
     },
+    rowContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20, // Add padding to create space between text and image
+    },
+    imageContainer: {
+        flex: 1, // Expand to fill available space
+        alignItems: 'flex-end', // Align the image to the right
+    },
     image: {
-        width: '50%',
-        height: '25%',
+        width: '57%',
+        height: '43%',marginRight:20
+    },
+    leftText: {
+        marginTop:'-11%',
+        fontSize: 30,
+        fontWeight: '900'
     },
     textContainer: {
-        flexDirection: 'row', 
-        alignItems: 'center',
-        marginTop:'1%'
+        flexDirection: 'row', // Display texts in the same row
+        margin:20,
+        marginTop:'-42%',
+        marginLeft:'15%'
     },
     redText: {
         color: '#57ADF8',
         fontSize: 25,
         fontWeight: '600',
-        textAlign: 'center',
+
     },
     blueText: {
-        color: '#FF25A9', 
+        color: '#FF25A9',
         fontSize: 25,
         fontWeight: '600',
-        textAlign: 'center',
     },
     buttonStyle: {
         backgroundColor: 'white',
