@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, Text, TouchableOpacity, TextInput, StyleSheet, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import MyImage from '../../assets/logo.png';
+import Icon from 'react-native-vector-icons/FontAwesome'; // Import an icon library of your choice
 
 const Login = ({ navigation }) => {
+    const [showPassword, setShowPassword] = useState(false);
+
     const handleLoginPress = () => {
-        navigation.navigate('Login');
+        navigation.navigate('Home');
     };
 
     useEffect(() => {
@@ -17,7 +20,7 @@ const Login = ({ navigation }) => {
     return (
         <ScrollView
             contentContainerStyle={styles.scrollViewContent}
-            keyboardShouldPersistTaps="handled" // This property helps with keyboard interaction
+            keyboardShouldPersistTaps="handled"
         >
             <View style={styles.container}>
                 <View style={styles.rowContainer}>
@@ -45,12 +48,23 @@ const Login = ({ navigation }) => {
                     style={styles.textBoxes}
                 />
                 <Text style={styles.inputDetails}>Enter Password</Text>
-                <TextInput
-                    placeholder="Enter Password"
-                    style={styles.textBoxes}
-                    secureTextEntry={true}
-                />
-                <TouchableOpacity style={styles.buttonStyle}>
+                <View style={styles.passwordInputContainer}>
+                    <TextInput
+                        placeholder="Password"
+                        style={styles.passwordInput}
+                        secureTextEntry={!showPassword}
+                    />
+                    <TouchableOpacity
+                        style={styles.eyeIcon}
+                        onPress={() => setShowPassword(!showPassword)}
+                    >
+                        <Icon name={showPassword ? 'eye' : 'eye-slash'} size={20} color="#888" />
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity style={styles.forgotPassword}>
+                    <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonStyle} onPress={handleLoginPress}>
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
             </View>
@@ -62,6 +76,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
+        marginTop: '-10%',
     },
     rowContainer: {
         flexDirection: 'row',
@@ -123,6 +138,34 @@ const styles = StyleSheet.create({
         margin: 20,
         marginLeft: 20,
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    },
+    passwordInputContainer: {
+        width: '90%',
+        flexDirection: 'row',
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 10,
+        margin: 20,
+        marginLeft: 20,
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    },
+    passwordInput: {
+        flex: 1,
+        fontSize: 16,
+        padding: 12,
+    },
+    eyeIcon: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+    },
+    forgotPassword: {
+        marginLeft: 20,
+        marginBottom:10
+    },
+    forgotPasswordText: {
+        fontSize: 17,
+        fontWeight: 'bold',
     },
     buttonStyle: {
         backgroundColor: '#57ADF8',
