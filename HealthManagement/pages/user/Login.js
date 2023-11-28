@@ -13,7 +13,7 @@ const Login = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLoginPress = () => {
-    navigation.navigate("Home");
+    navigation.navigate("Hmepage2");
   };
 
   useEffect(() => {
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   inputDetails: {
-    fontSize: 16,
+    fontSize: 15,
     marginLeft: 20,
     marginBottom: "-3%",
   },
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   forgotPasswordText: {
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: "600",
   },
   buttonStyle: {
