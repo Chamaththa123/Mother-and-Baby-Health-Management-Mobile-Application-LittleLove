@@ -7,7 +7,7 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome"; // Import an icon library of your choice
+import Icon from "react-native-vector-icons/FontAwesome";
 import MyImage from "../../assets/logo.png";
 const Login = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
