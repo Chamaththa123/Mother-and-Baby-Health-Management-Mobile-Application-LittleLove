@@ -30,20 +30,19 @@ const Login = ({ navigation }) => {
         <Text style={styles.blueText}> Love</Text>
       </View>
       <View style={styles.textContainer}>
-      <Text style={styles.welcome}>Welcome to </Text>
+        <Text style={styles.welcome}>Welcome to </Text>
         <Text style={styles.redText1}>Little </Text>
-        <Text style={styles.blueText1}> Love</Text>
-      <Text style={styles.welcome}> ! </Text>
-
+        <Text style={styles.blueText1}>Love</Text>
+        <Text style={styles.welcome}> ! </Text>
       </View>
-      
+
       <Text style={styles.log}>Sign In</Text>
       <Text style={styles.inputDetails}>Enter Email</Text>
-      <TextInput placeholder="Enter User Email" style={styles.textBoxes} />
+      <TextInput placeholder="Enter Email" style={styles.textBoxes} />
       <Text style={styles.inputDetails}>Enter Password</Text>
       <View style={styles.passwordInputContainer}>
         <TextInput
-          placeholder="Password"
+          placeholder="Enter Password"
           style={styles.passwordInput}
           secureTextEntry={!showPassword}
         />
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     marginTop: 40,
-    textAlign:'center'
+    textAlign: "center",
   },
   log: {
     color: "#57ADF8",
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 20,
     marginBottom: 30,
-    textAlign:'center'
+    textAlign: "center",
   },
   redText: {
     color: "#57ADF8",
@@ -118,14 +117,14 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop:40
+    marginTop: 40,
   },
   blueText1: {
     color: "#FF25A9",
     fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop:40
+    marginTop: 40,
   },
   inputDetails: {
     fontSize: 15,
