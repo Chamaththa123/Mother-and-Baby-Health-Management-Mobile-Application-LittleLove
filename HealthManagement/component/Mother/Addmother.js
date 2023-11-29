@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { firebase } from "../../firebase/config";
 import { useNavigation } from "@react-navigation/native";
+import MyImage from "../../assets/logo.png";
 
 const Addmother = () => {
     const navigation = useNavigation();
@@ -22,7 +23,7 @@ const Addmother = () => {
       },
       headerTintColor: "#57ADF8",
       headerShown: true,
-      title: "Create Mother Profile",
+      title: "",
     });
   }, [navigation]);
 
@@ -34,8 +35,10 @@ const Addmother = () => {
   const [Address, setAddress] = useState("");
   const [Occupation, setOccupation] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState(1); 
 
   const registerMother = async (email, password, name,register_No,DDHS,PHM,Address,Occupation) => {
+    const roleValue = 1;
     try {
       await firebase.auth().createUserWithEmailAndPassword(email, password);
 
@@ -46,7 +49,7 @@ const Addmother = () => {
 
       await firebase
         .firestore()
-        .collection("mothers")
+        .collection("users")
         .doc(firebase.auth().currentUser.uid)
         .set({
           name,
@@ -55,10 +58,19 @@ const Addmother = () => {
           DDHS,
           PHM,
           Address,
-          Occupation
+          Occupation,
+          role: roleValue
         });
 
-      alert("Verification Email Sent Moher's Email Address");
+      alert("Verification Email Sent Mother's Email Address");
+      setName(''),
+      setEmail(''),
+      setregister_No(''),
+      setDDHS(''),
+      setPHM(''),
+      setAddress(''),
+      setNsetOccupationame(''),
+      setPassword('')
     } catch (error) {
       alert(error.message);
     }
@@ -66,7 +78,13 @@ const Addmother = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container1}>
-      
+
+<Image source={MyImage} style={styles.image} />
+      <View style={styles.textContainer}>
+        <Text style={styles.redText}>Little </Text>
+        <Text style={styles.blueText}> Love</Text>
+      </View>
+      <Text style={styles.topic}>Create Mother Account</Text>
       <Text style={styles.inputDetails}>Mother Email</Text>
       <TextInput
         placeholder="Enter Email"
@@ -134,7 +152,7 @@ const Addmother = () => {
         onPress={() => registerMother(email, password, name,register_No,DDHS,PHM,Address,Occupation)}
         style={styles.buttonStyle}
       >
-        <Text style={styles.buttonText}>Create Mother Profile</Text>
+        <Text style={styles.buttonText}>Create Mother Account</Text>
       </TouchableOpacity>
     </ScrollView>
   )
@@ -152,6 +170,38 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "left",
     },
+    image: {
+      width: "22%",
+      height: "9%",
+      alignSelf: "center",
+      marginTop:'15%'
+    },
+    textContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      marginTop: "1%",
+      alignSelf: "center",
+    },
+    redText: {
+      color: "#57ADF8",
+      fontSize: 17,
+      fontWeight: "600",
+      textAlign: "center",
+    },
+    blueText: {
+      color: "#FF25A9",
+      fontSize: 17,
+      fontWeight: "600",
+      textAlign: "center",
+    },
+    topic: {
+      color: "#57ADF8",
+      fontSize: 20,
+      fontWeight: "bold",
+      marginTop: 20,
+      marginBottom: 30,
+      textAlign: "center",
+    },
     buttonText: {
       color: "white",
       fontSize: 17,
@@ -161,7 +211,7 @@ const styles = StyleSheet.create({
       fontSize: 15,
       marginLeft: "5%",
       marginTop: "3%",
-      marginBottom: "-3%",
+      marginBottom: "-4%",
       textAlign: "left",
     },
     textBoxes: {
@@ -184,7 +234,7 @@ const styles = StyleSheet.create({
       height: 50,
       margin: 10,
       marginLeft: 20,
-      marginBottom: 20,
+      marginBottom: 80,
       borderColor: "#FF25A9",
       borderWidth: 1,
       alignItems: "center",

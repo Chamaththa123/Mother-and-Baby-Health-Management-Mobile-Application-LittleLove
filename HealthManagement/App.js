@@ -33,7 +33,7 @@ const App = () => {
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Homepage2" component={Homepage2} />
-        <Stack.Screen name="Addmother" component={Addmother} />
+        {/* <Stack.Screen name="Addmother" component={Addmother} /> */}
         {/* <Stack.Screen name="Home" component={HomePage} /> */}
         {/* <Stack.Screen name="Profile" component={Profile} /> */}
       </Stack.Navigator>
@@ -45,6 +45,8 @@ const App = () => {
       <Stack.Screen name="Homepage1" component={Homepage1} />
       <Stack.Screen name="MotherProfile" component={MotherProfile} />
       <Stack.Screen name="MidWifeProfile" component={MidWifeProfile} />
+      <Stack.Screen name="Addmother" component={Addmother} />
+
     </Stack.Navigator>
   );
 };
