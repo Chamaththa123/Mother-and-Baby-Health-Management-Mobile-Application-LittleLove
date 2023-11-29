@@ -43,7 +43,7 @@ const Addmother = () => {
     DDHS,
     PHM
   ) => {
-    const roleValue = 1;
+    const roleValue = 0;
     try {
       await firebase.auth().createUserWithEmailAndPassword(email, password);
 
