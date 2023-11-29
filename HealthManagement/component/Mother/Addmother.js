@@ -20,10 +20,12 @@ const Addmother = () => {
       headerTitleStyle: {
         fontWeight: "bold",
         color: "#57ADF8",
+        fontSize: 20,
       },
       headerTintColor: "#57ADF8",
       headerShown: true,
-      title: "",
+      title: "Create Mother Account",
+      headerTitleAlign: "center",
     });
   }, [navigation]);
 
@@ -79,12 +81,6 @@ const Addmother = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container1}>
-      <Image source={MyImage} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.redText}>Little </Text>
-        <Text style={styles.blueText}> Love</Text>
-      </View>
-      <Text style={styles.topic}>Create Mother Account</Text>
       <Text style={styles.inputDetails}>Mother Email</Text>
       <TextInput
         placeholder="Enter Email"
@@ -157,38 +153,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "left",
   },
-  image: {
-    width: "22%",
-    height: "11%",
-    alignSelf: "center",
-    marginTop: "17%",
-  },
-  textContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: "1%",
-    alignSelf: "center",
-  },
-  redText: {
-    color: "#57ADF8",
-    fontSize: 17,
-    fontWeight: "600",
-    textAlign: "center",
-  },
-  blueText: {
-    color: "#FF25A9",
-    fontSize: 17,
-    fontWeight: "600",
-    textAlign: "center",
-  },
-  topic: {
-    color: "#57ADF8",
-    fontSize: 20,
-    fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 30,
-    textAlign: "center",
-  },
   buttonText: {
     color: "white",
     fontSize: 17,
@@ -221,7 +185,7 @@ const styles = StyleSheet.create({
     height: 50,
     margin: 10,
     marginLeft: 20,
-    marginBottom: 80,
+    marginBottom: 10,
     borderColor: "#FF25A9",
     borderWidth: 1,
     alignItems: "center",
