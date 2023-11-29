@@ -7,13 +7,29 @@ import {
   Button,
   TouchableOpacity,
   Image,
-  FlatList,
+  ScrollView,
 } from "react-native";
+import { firebase } from "../firebase/config";
 
-const headerImage = require("../assets/logo.png"); // Replace with your image path
-const Mother = require("../assets/mother.png"); // Replace with your image path
+const headerImage = require("../assets/logo.png");
+const Mother = require("../assets/mother.png");
 
 const Homepage1 = ({ navigation }) => {
+  const [name, setName] = useState({});
+
+  useEffect(() => {
+    const userUid = firebase.auth().currentUser.uid;
+    const userDocRef = firebase.firestore().collection("users").doc(userUid);
+
+    userDocRef.get().then((snapshot) => {
+      if (snapshot.exists) {
+        setName(snapshot.data());
+      } else {
+        console.log("User doesn't exist");
+      }
+    });
+  }, []);
+
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -57,81 +73,25 @@ const Homepage1 = ({ navigation }) => {
     });
   }, [navigation]);
 
+  const handleImagePress = () => {
+    navigation.navigate("MotherProfile");
+  };
+
   return (
-    <FlatList
-      contentContainerStyle={styles.container}
-      ListHeaderComponent={() => (
-        <View>
-          <View style={styles.card}>
-            <View style={styles.row}>
-              <Text style={styles.headerWelcome}>Welcome</Text>
-              <Image source={Mother} style={styles.midwifeImage} />
-            </View>
-            <Text style={styles.headerName}>Chamaththa Shamod MAdhumlakS</Text>
-          </View>
+    <ScrollView style={styles.container}>
+      <View style={styles.card}>
+        <View style={styles.row}>
+          <Text style={styles.headerWelcome}>Welcome</Text>
+          <TouchableOpacity onPress={handleImagePress}>
+            <Image source={Mother} style={styles.midwifeImage} />
+          </TouchableOpacity>
         </View>
-      )}
-      ListFooterComponent={() => (
-        <>
-          <Text style={styles.text1}>Manage Mothers & Babies</Text>
-          <View style={styles.row2}>
-            <TouchableOpacity
-              style={styles.menucard}
-              onPress={() => navigation.navigate("Addmother")}
-            >
-              <Text style={styles.cardText}>Create Mother Profile</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menucard}
-              onPress={() => navigation.navigate("MotherList")}
-            >
-              <Text style={styles.cardText}>All Mothers</Text>
-            </TouchableOpacity>
-            <View style={styles.menucard}>
-              <Text style={styles.cardText}>Scan Mother QR</Text>
-            </View>
-          </View>
-          <Text style={styles.text1}>Manage Midwives & Nurses</Text>
-          <View style={styles.row2}>
-            <View style={styles.menucard}>
-              <Text style={styles.cardText}>
-                Create Midwife & Nurse Profile
-              </Text>
-            </View>
-            <View style={styles.menucard}>
-              <Text style={styles.cardText}>All Midwives & Nurses</Text>
-            </View>
-            <View style={{ marginLeft: 100 }}>
-              <Text style={styles.cardText}></Text>
-            </View>
-          </View>
-          <Text style={styles.text1}>
-            Manage Special Medical Events & Notices
-          </Text>
-          <View style={styles.row2}>
-            <View style={styles.menucard}>
-              <Text style={styles.cardText}>
-                Add Special Medical Events & Notices
-              </Text>
-            </View>
-            <View style={styles.menucard}>
-              <Text style={styles.cardText}>
-                All Special Medical Events & Notices
-              </Text>
-            </View>
-            <View style={{ marginLeft: 100 }}>
-              <Text style={styles.cardText}></Text>
-            </View>
-          </View>
-          {/* <Text style={styles.text}>All Data from Firebase</Text>
-          <Button title='Add Mother' onPress={() => navigation.navigate('AddMother')} />
-          <Button title='Mother List' onPress={() => navigation.navigate('MotherList')} /> */}
-        </>
-      )}
-    />
+        <Text style={styles.headerName}>{name.name}</Text>
+      </View>
+      {/* Add more components or views here */}
+    </ScrollView>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
@@ -149,7 +109,6 @@ const styles = StyleSheet.create({
     height: 70,
   },
   midwifeImage: {
-    // marginTop: '10%',
     width: 50,
     height: 50,
   },
@@ -165,7 +124,6 @@ const styles = StyleSheet.create({
   },
   text1: {
     fontSize: 16,
-    // color: 'white',
     fontWeight: "900",
     marginLeft: 20,
     marginTop: 30,
