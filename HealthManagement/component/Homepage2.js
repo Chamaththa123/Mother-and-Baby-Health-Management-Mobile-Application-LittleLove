@@ -9,11 +9,27 @@ import {
   Image,
   FlatList,
 } from "react-native";
+import { firebase } from "../firebase/config";
 
-const headerImage = require("../assets/logo.png"); // Replace with your image path
-const Midwife = require("../assets/nurse.png"); // Replace with your image path
+const headerImage = require("../assets/logo.png"); 
+const Midwife = require("../assets/nurse.png");
 
 const Homepage2 = ({ navigation }) => {
+  const [name, setName] = useState({});
+
+  useEffect(() => {
+    const userUid = firebase.auth().currentUser.uid;
+    const userDocRef = firebase.firestore().collection("users").doc(userUid);
+
+    userDocRef.get().then((snapshot) => {
+      if (snapshot.exists) {
+        setName(snapshot.data());
+      } else {
+        console.log("User doesn't exist");
+      }
+    });
+  }, []);
+
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -67,7 +83,7 @@ const Homepage2 = ({ navigation }) => {
               <Text style={styles.headerWelcome}>Welcome</Text>
               <Image source={Midwife} style={styles.midwifeImage} />
             </View>
-            <Text style={styles.headerName}>Chamaththa Shamod MAdhumlakS</Text>
+            <Text style={styles.headerName}>{name.email}</Text>
           </View>
         </View>
       )}
@@ -149,7 +165,6 @@ const styles = StyleSheet.create({
     height: 70,
   },
   midwifeImage: {
-    // marginTop: '10%',
     width: 50,
     height: 50,
   },
@@ -165,7 +180,6 @@ const styles = StyleSheet.create({
   },
   text1: {
     fontSize: 16,
-    // color: 'white',
     fontWeight: "900",
     marginLeft: 20,
     marginTop: 30,
