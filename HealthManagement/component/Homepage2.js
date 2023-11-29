@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { firebase } from "../firebase/config";
 
-const headerImage = require("../assets/logo.png"); 
+const headerImage = require("../assets/logo.png");
 const Midwife = require("../assets/nurse.png");
 
 const Homepage2 = ({ navigation }) => {
@@ -73,6 +73,10 @@ const Homepage2 = ({ navigation }) => {
     });
   }, [navigation]);
 
+  const handleImagePress = () => {
+    navigation.navigate("YourTargetScreen");
+  };
+
   return (
     <FlatList
       contentContainerStyle={styles.container}
@@ -81,7 +85,9 @@ const Homepage2 = ({ navigation }) => {
           <View style={styles.card}>
             <View style={styles.row}>
               <Text style={styles.headerWelcome}>Welcome</Text>
-              <Image source={Midwife} style={styles.midwifeImage} />
+              <TouchableOpacity onPress={handleImagePress}>
+                <Image source={Midwife} style={styles.midwifeImage} />
+              </TouchableOpacity>
             </View>
             <Text style={styles.headerName}>{name.email}</Text>
           </View>
