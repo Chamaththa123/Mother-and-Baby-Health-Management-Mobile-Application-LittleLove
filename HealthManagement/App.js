@@ -8,6 +8,7 @@ import Homepage2 from "./component/Homepage2";
 import Addmother from "./component/Mother/Addmother";
 import Homepage1 from "./component/Homepage1";
 import MotherProfile from "./component/Mother/MotherProfile";
+import MidWifeProfile from "./component/Midwife/MidWifeProfile";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -43,6 +44,7 @@ const App = () => {
       <Stack.Screen name="Homepage2" component={Homepage2} />
       <Stack.Screen name="Homepage1" component={Homepage1} />
       <Stack.Screen name="MotherProfile" component={MotherProfile} />
+      <Stack.Screen name="MidWifeProfile" component={MidWifeProfile} />
     </Stack.Navigator>
   );
 };
