@@ -8,12 +8,47 @@ import {
   TextInput,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
+import { firebase } from '../../firebase/config';
 import MyImage from "../../assets/logo.png";
-const Login = ({ navigation }) => {
+
+const Login = () => {
+  const navigation = useNavigation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLoginPress = () => {
-    navigation.navigate("Homepage2");
+  const loginUser = async (email, password) => {
+    try {
+      const userCredential = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+
+      // Fetch user role from Firestore or any database
+      const userDoc = await firebase
+        .firestore()
+        .collection("users")
+        .doc(user.uid)
+        .get();
+      if (userDoc.exists) {
+        const userData = userDoc.data();
+        const userRole = userData.role;
+
+        // Redirect based on role
+        if (userRole === 0) {
+          navigation.navigate("Homepage1"); // Replace with your screen name for role 0
+        } else if (userRole === 1) {
+          navigation.navigate("Homepage2"); // Replace with your screen name for role 1
+        } else {
+          // Handle other roles or cases
+        }
+      } else {
+        // Handle scenario where user data or role doesn't exist
+      }
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   useEffect(() => {
@@ -38,13 +73,22 @@ const Login = ({ navigation }) => {
 
       <Text style={styles.log}>Sign In</Text>
       <Text style={styles.inputDetails}>Enter Email</Text>
-      <TextInput placeholder="Enter Email" style={styles.textBoxes} />
+      <TextInput
+        placeholder="Enter Email"
+        style={styles.textBoxes}
+        onChangeText={(email) => setEmail(email)}
+        autoCapitalize="none"
+        autoCorrect={false}
+      />
       <Text style={styles.inputDetails}>Enter Password</Text>
       <View style={styles.passwordInputContainer}>
         <TextInput
           placeholder="Enter Password"
           style={styles.passwordInput}
           secureTextEntry={!showPassword}
+          value={password}
+          onChangeText={(password) => setPassword(password)}
+          autoCorrect={false}
         />
         <TouchableOpacity
           style={styles.eyeIcon}
@@ -60,7 +104,7 @@ const Login = ({ navigation }) => {
       <TouchableOpacity style={styles.forgotPassword}>
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonStyle} onPress={handleLoginPress}>
+      <TouchableOpacity style={styles.buttonStyle} onPress={() => loginUser(email, password)}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
     </View>
