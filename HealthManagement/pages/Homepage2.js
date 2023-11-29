@@ -77,7 +77,7 @@ const Homepage2 = ({ navigation }) => {
           <View style={styles.row2}>
             <TouchableOpacity
               style={styles.menucard}
-              onPress={() => navigation.navigate("AddMother")}
+              onPress={() => navigation.navigate("Addmother")}
             >
               <Text style={styles.cardText}>Create Mother Profile</Text>
             </TouchableOpacity>

@@ -13,7 +13,7 @@ const Login = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLoginPress = () => {
-    navigation.navigate("Hmepage2");
+    navigation.navigate("Homepage2");
   };
 
   useEffect(() => {
