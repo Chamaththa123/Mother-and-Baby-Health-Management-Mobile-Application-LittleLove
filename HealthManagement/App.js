@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { firebase } from "./firebase/config";
-import Start from "./pages/Start";
-import Login from "./pages/user/Login";
-import Homepage2 from "./pages/Homepage2";
-import Addmother from "./pages/Mother/Addmother";
+import Start from "./component/Start";
+import Login from "./component/user/Login";
+import Homepage2 from "./component/Homepage2";
+import Addmother from "./component/Mother/Addmother";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
