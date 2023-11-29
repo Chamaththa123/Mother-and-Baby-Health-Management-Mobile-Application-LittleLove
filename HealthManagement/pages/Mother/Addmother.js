@@ -8,7 +8,9 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
+import { firebase } from "../../firebase/config";
 import { useNavigation } from "@react-navigation/native";
+
 const Addmother = () => {
     const navigation = useNavigation();
 
@@ -23,6 +25,45 @@ const Addmother = () => {
       title: "Create Mother Profile",
     });
   }, [navigation]);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [register_No, setregister_No] = useState("");
+  const [DDHS, setDDHS] = useState("");
+  const [PHM, setPHM] = useState("");
+  const [Address, setAddress] = useState("");
+  const [Occupation, setOccupation] = useState("");
+  const [password, setPassword] = useState("");
+
+  const registerMother = async (email, password, name,register_No,DDHS,PHM,Address,Occupation) => {
+    try {
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
+
+      await firebase.auth().currentUser.sendEmailVerification({
+        handleCodeInApp: true,
+        url: "https://littlelove-be349.appspot.com",
+      });
+
+      await firebase
+        .firestore()
+        .collection("mothers")
+        .doc(firebase.auth().currentUser.uid)
+        .set({
+          name,
+          email,
+          register_No,
+          DDHS,
+          PHM,
+          Address,
+          Occupation
+        });
+
+      alert("Verification Email Sent Moher's Email Address");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container1}>
       
@@ -30,7 +71,7 @@ const Addmother = () => {
       <TextInput
         placeholder="Enter Email"
         style={styles.textBoxes}
-        // onChangeText={(email) => setEmail(email)}
+        onChangeText={(email) => setEmail(email)}
         autoCapitalize="none"
         autoCorrect={false}
       />
@@ -38,35 +79,35 @@ const Addmother = () => {
       <TextInput
         placeholder="Enter Name"
         style={styles.textBoxes}
-        // onChangeText={(email) => setEmail(email)}
+        onChangeText={(name) => setName(name)}
         autoCapitalize="none"
         autoCorrect={false}
       /><Text style={styles.inputDetails}>Mother Registered No</Text>
       <TextInput
         placeholder="Enter Registered No"
         style={styles.textBoxes}
-        // onChangeText={(email) => setEmail(email)}
+        onChangeText={(register_No) => setregister_No(register_No)}
         autoCapitalize="none"
         autoCorrect={false}
       /><Text style={styles.inputDetails}>DDHS Division</Text>
       <TextInput
         placeholder="Enter DDHS Division"
         style={styles.textBoxes}
-        // onChangeText={(email) => setEmail(email)}
+        onChangeText={(DDHS) => setDDHS(DDHS)}
         autoCapitalize="none"
         autoCorrect={false}
       /><Text style={styles.inputDetails}>PHM Area</Text>
       <TextInput
         placeholder="Enter PHM Area"
         style={styles.textBoxes}
-        // onChangeText={(email) => setEmail(email)}
+        onChangeText={(PHM) => setPHM(PHM)}
         autoCapitalize="none"
         autoCorrect={false}
       /><Text style={styles.inputDetails}>Mother Address</Text>
       <TextInput
         placeholder="Enter Address"
         style={styles.textBoxes}
-        // onChangeText={(email) => setEmail(email)}
+        onChangeText={(Address) => setAddress(Address)}
         autoCapitalize="none"
         autoCorrect={false}
       />
@@ -74,7 +115,7 @@ const Addmother = () => {
       <TextInput
         placeholder="Enter Occupation"
         style={styles.textBoxes}
-        // onChangeText={(email) => setEmail(email)}
+        onChangeText={(Occupation) => setOccupation(Occupation)}
         autoCapitalize="none"
         autoCorrect={false}
       />
@@ -84,16 +125,16 @@ const Addmother = () => {
         // secureTextEntry={!showPassword}
         style={styles.textBoxes}
         // value={password}
-        // onChangeText={(password) => setPassword(password)}
+        onChangeText={(password) => setPassword(password)}
         autoCorrect={false}
       />
       
       
       <TouchableOpacity
-        // onPress={() => loginUser(email, password)}
+        onPress={() => registerMother(email, password, name,register_No,DDHS,PHM,Address,Occupation)}
         style={styles.buttonStyle}
       >
-        <Text style={styles.buttonText}>Sign In</Text>
+        <Text style={styles.buttonText}>Create Mother Profile</Text>
       </TouchableOpacity>
     </ScrollView>
   )
