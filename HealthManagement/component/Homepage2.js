@@ -74,7 +74,7 @@ const Homepage2 = ({ navigation }) => {
   }, [navigation]);
 
   const handleImagePress = () => {
-    navigation.navigate("YourTargetScreen");
+    navigation.navigate("MidWifeProfile");
   };
 
   return (
