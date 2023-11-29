@@ -36,7 +36,7 @@ const MotherList = () => {
       const snapshot = await firebase
         .firestore()
         .collection("users")
-        .where("role", "==", 0) // Assuming role 0 identifies mothers
+        .where("role", "==", 0)
         .get();
 
       const mothers = [];
@@ -74,7 +74,6 @@ const MotherList = () => {
           </View>
           <Text style={styles.motherName}>{mother.name}</Text>
         </View>
-        {/* Display additional details here if needed */}
       </TouchableOpacity>
     ));
   };
