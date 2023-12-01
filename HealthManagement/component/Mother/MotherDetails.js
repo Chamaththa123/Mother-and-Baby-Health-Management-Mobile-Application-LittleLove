@@ -65,6 +65,24 @@ const MotherDetails = ({ route }) => {
           </View>
           <Text style={styles.headerRNo}>{motherDetails.register_No}</Text>
         </View>
+        <View style={styles.card2}>
+        <View style={styles.row}>
+            <Text style={styles.detailText}>Mother Email</Text>
+            <Text style={styles.detailText2}>{motherDetails?.email}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.detailText}>Mother Phone No</Text>
+            <Text style={styles.detailText2}>{motherDetails?.phone}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.detailText}>D.D.H.S Division</Text>
+            <Text style={styles.detailText2}>{motherDetails?.DDHS}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.detailText}>P.H.M Area</Text>
+            <Text style={styles.detailText2}>{motherDetails?.PHM}</Text>
+          </View>
+        </View>
       <Text style={styles.detailText}>Name: {motherDetails?.name}</Text>
       <Text style={styles.detailText}>
         Registered No.: {motherDetails.register_No}
@@ -80,8 +98,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   detailText: {
-    fontSize: 18,
+    fontSize: 16,
     marginBottom: 10,
+    fontWeight:"bold"
+  },
+  detailText2: {
+    fontSize: 16,
+    marginBottom: 10,
+    marginLeft:30
   },
   headerName: {
     fontSize: 20,
@@ -110,7 +134,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderWidth:1,
     borderColor:'#FF25A9',
-    marginTop: 20,
+    marginTop: 10,
     padding: 15,
     borderRadius: 10,
     width: "95%",
