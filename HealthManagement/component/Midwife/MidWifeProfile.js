@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Alert, } from 'react-native';
 import { firebase } from '../../firebase/config';
 import { useNavigation } from '@react-navigation/native';
 
