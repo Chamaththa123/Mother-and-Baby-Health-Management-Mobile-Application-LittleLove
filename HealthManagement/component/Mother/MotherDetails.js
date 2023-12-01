@@ -6,20 +6,6 @@ import { firebase } from "../../firebase/config";
 const MotherDetails = ({ route }) => {
   const navigation = useNavigation();
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerTitleStyle: {
-        fontWeight: "bold",
-        color: "#57ADF8",
-        fontSize: 20,
-      },
-      headerTintColor: "#57ADF8",
-      headerShown: true,
-      title: motherDetails.name+"'s Profile",
-      headerTitleAlign: "center",
-    });
-  }, [navigation]);
-
   const [motherDetails, setMotherDetails] = useState(null);
 
   useEffect(() => {
@@ -45,6 +31,22 @@ const MotherDetails = ({ route }) => {
     fetchMotherDetails();
   }, [route.params]);
 
+  useEffect(() => {
+    if (motherDetails) {
+      navigation.setOptions({
+        headerTitleStyle: {
+          fontWeight: "bold",
+          color: "#57ADF8",
+          fontSize: 20,
+        },
+        headerTintColor: "#57ADF8",
+        headerShown: true,
+        title: `${motherDetails?.name}'s Profile`,
+        headerTitleAlign: "center",
+      });
+    }
+  }, [motherDetails, navigation]);
+
   if (!motherDetails) {
     return (
       <View style={styles.container}>
@@ -55,7 +57,7 @@ const MotherDetails = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.detailText}>Name: {motherDetails.name}</Text>
+      <Text style={styles.detailText}>Name: {motherDetails?.name}</Text>
       <Text style={styles.detailText}>
         Registered No.: {motherDetails.register_No}
       </Text>
