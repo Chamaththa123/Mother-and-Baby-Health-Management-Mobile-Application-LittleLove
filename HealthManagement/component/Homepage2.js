@@ -102,9 +102,12 @@ const Homepage2 = ({ navigation }) => {
           >
             <Text style={styles.cardText}>All Mothers</Text>
           </TouchableOpacity>
-          <View style={styles.menucard}>
-            <Text style={styles.cardText}>Scan Mother QR</Text>
-          </View>
+          <TouchableOpacity
+            style={styles.menucard}
+            onPress={() => navigation.navigate("QrScanner")}
+          >
+            <Text style={styles.cardText}>Scan Mother Qr Code</Text>
+          </TouchableOpacity>
         </View>
 
         <Text style={styles.text1}>Manage Midwives & Nurses</Text>
