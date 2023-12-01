@@ -65,8 +65,7 @@ const MotherList = () => {
   };
 
   const handleMotherClick = (motherId) => {
-    // Navigate to MotherDetail component and pass motherId as a parameter
-    navigation.navigate('MotherDetails', { motherId });
+    navigation.navigate("MotherDetails", { motherId });
   };
 
   const renderMothers = () => {
