@@ -12,6 +12,7 @@ import MidWifeProfile from "./component/Midwife/MidWifeProfile";
 import MotherList from "./component/Mother/MotherList";
 import Qr from "./component/Mother/Qr";
 import QrScanner from "./component/Midwife/QrScanner";
+import MotherDetails from "./component/Mother/MotherDetails";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -52,6 +53,7 @@ const App = () => {
       <Stack.Screen name="MotherList" component={MotherList} />
       <Stack.Screen name="QR" component={Qr} />
       <Stack.Screen name="QrScanner" component={QrScanner} />
+      <Stack.Screen name="MotherDetails" component={MotherDetails} />
 
     </Stack.Navigator>
   );
