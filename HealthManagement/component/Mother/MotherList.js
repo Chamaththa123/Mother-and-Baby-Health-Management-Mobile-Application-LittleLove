@@ -64,10 +64,19 @@ const MotherList = () => {
     setSearchQuery(query);
   };
 
+  const handleMotherClick = (motherId) => {
+    // Navigate to MotherDetail component and pass motherId as a parameter
+    navigation.navigate('MotherDetails', { motherId });
+  };
+
   const renderMothers = () => {
     const filteredMothers = filterMothersByRegisterNo();
     return filteredMothers.map((mother) => (
-      <TouchableOpacity key={mother.id} style={styles.motherItem}>
+      <TouchableOpacity
+        key={mother.id}
+        style={styles.motherItem}
+        onPress={() => handleMotherClick(mother.id)}
+      >
         <View style={{ flexDirection: "row" }}>
           <View style={styles.card}>
             <Text>{mother.register_No}</Text>
