@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   headerWelcome: {
     fontSize: 19,
-    color: "#FF25A9",
+    // color: "#FF25A9",
     fontWeight: "bold",
   },
   text1: {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   headerName: {
     fontSize: 14,
     fontWeight: "bold",
-    color: "#FF25A9",
+    // color: "#FF25A9",
     marginTop: "-4.9%",
   },
   card: {
