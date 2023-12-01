@@ -4,10 +4,28 @@ import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../firebase/config";
 
 const AddPregnancy = ({ route }) => {
-    const { motherId } = route.params;
+  const { motherId } = route.params;
+  const navigation = useNavigation();
+  const [motherDetails, setMotherDetails] = useState([]);
 
-    const [motherDetails, setMotherDetails] = useState([]);
+  //set header
+  useEffect(() => {
+    if (motherDetails) {
+      navigation.setOptions({
+        headerTitleStyle: {
+          fontWeight: "bold",
+          color: "#57ADF8",
+          fontSize: 20,
+        },
+        headerTintColor: "#57ADF8",
+        headerShown: true,
+        title: `Add ${motherDetails?.name}'s Pregnancy`,
+        headerTitleAlign: "center",
+      });
+    }
+  }, [motherDetails, navigation]);
 
+  //fetch mother details
   useEffect(() => {
     const { motherId } = route.params;
 
@@ -30,16 +48,15 @@ const AddPregnancy = ({ route }) => {
 
     fetchMotherDetails();
   }, [route.params]);
-  
-    return (
-      <View style={styles.container}>
-        <Text style={styles.detailText}>Mother ID: {motherId}</Text>
-        <Text style={styles.detailText}>Mother Name: {motherDetails?.name}</Text>
-        {/* Display other details as needed */}
-      </View>
-    );
-  };
-  
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.detailText}>Mother ID: {motherId}</Text>
+      <Text style={styles.detailText}>Mother Name: {motherDetails?.name}</Text>
+      {/* Display other details as needed */}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
