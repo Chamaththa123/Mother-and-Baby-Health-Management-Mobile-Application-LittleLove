@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image,TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../firebase/config";
 
 const Mother = require("../../assets/mother.png");
 const MotherDetails = ({ route }) => {
   const navigation = useNavigation();
-
+  const { motherId } = route.params;
   const [motherDetails, setMotherDetails] = useState(null);
 
   useEffect(() => {
@@ -56,6 +56,10 @@ const MotherDetails = ({ route }) => {
     );
   }
 
+  const handleAddPregnancy = () => {
+    navigation.navigate("AddPregnancy", { motherId });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -87,12 +91,11 @@ const MotherDetails = ({ route }) => {
         <Text style={styles.topic}>Pregnancy</Text>
 
         <TouchableOpacity
-        style={styles.buttonStyle}
-        // onPress={() => loginUser(email, password)}
-      >
-        <Text style={styles.buttonText}>Add Mother Pregnancy</Text>
-      </TouchableOpacity>
-
+          style={styles.buttonStyle}
+          onPress={handleAddPregnancy}
+        >
+          <Text style={styles.buttonText}>Add Mother Pregnancy</Text>
+        </TouchableOpacity>
       </View>
       <Text style={styles.detailText}>Name: {motherDetails?.name}</Text>
       <Text style={styles.detailText}>
@@ -122,7 +125,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: "bold",
     marginTop: 0,
-    
   },
   headerName: {
     fontSize: 20,
