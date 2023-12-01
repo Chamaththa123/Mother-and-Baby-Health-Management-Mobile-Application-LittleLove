@@ -93,6 +93,10 @@ const MotherProfile = ({ navigation }) => {
 
   const renderContent1 = (section) => <PersonalDetails />;
 
+  const handleQrPress = () => {
+    navigation.navigate("QR");
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.card}>
@@ -119,13 +123,12 @@ const MotherProfile = ({ navigation }) => {
       </View>
       <TouchableOpacity
         style={styles.buttonStyle2}
-        onPress={''}
+        onPress={handleQrPress}
       >
         <Text style={styles.buttonText2}>QR Code</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.buttonStyle2}
-        onPress={''}
       >
         <Text style={styles.buttonText2}>Visit Online Shop</Text>
       </TouchableOpacity>
