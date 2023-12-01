@@ -117,6 +117,18 @@ const MotherProfile = ({ navigation }) => {
           onChange={setActiveSections1}
         />
       </View>
+      <TouchableOpacity
+        style={styles.buttonStyle2}
+        onPress={''}
+      >
+        <Text style={styles.buttonText}>QR Code</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.buttonStyle2}
+        onPress={''}
+      >
+        <Text style={styles.buttonText}>Visit Online Shop</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -205,8 +217,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  buttonStyle2: {
+    // backgroundColor: "#FF25A9",
+    padding: 13,
+    borderRadius: 10,
+    width: "95%",
+    height: 60,
+    marginTop: 20,
+    borderColor: "#FF25A9",
+    borderWidth: 1,
+    justifyContent: "center",
+    margin:10
+  },
   buttonText: {
-    color: "white",
+    // color: "white",
     fontSize: 17,
     fontWeight: "bold",
   },
