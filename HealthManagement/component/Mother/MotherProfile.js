@@ -121,13 +121,13 @@ const MotherProfile = ({ navigation }) => {
         style={styles.buttonStyle2}
         onPress={''}
       >
-        <Text style={styles.buttonText}>QR Code</Text>
+        <Text style={styles.buttonText2}>QR Code</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.buttonStyle2}
         onPress={''}
       >
-        <Text style={styles.buttonText}>Visit Online Shop</Text>
+        <Text style={styles.buttonText2}>Visit Online Shop</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -230,7 +230,11 @@ const styles = StyleSheet.create({
     margin:10
   },
   buttonText: {
-    // color: "white",
+    color: "white",
+    fontSize: 17,
+    fontWeight: "bold",
+  },
+  buttonText2: {
     fontSize: 17,
     fontWeight: "bold",
   },
