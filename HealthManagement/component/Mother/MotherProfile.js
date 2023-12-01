@@ -53,9 +53,8 @@ const MotherProfile = ({ navigation }) => {
       <View style={styles.card}>
         <View style={styles.row}>
           <Text style={styles.headerWelcome}>{name.name}</Text>
-          <TouchableOpacity onPress={handleImagePress}>
             <Image source={Mother} style={styles.midwifeImage} />
-          </TouchableOpacity>
+          
         </View>
         <Text style={styles.headerName}>{name.email}</Text>
       </View>
