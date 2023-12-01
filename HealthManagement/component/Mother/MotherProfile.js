@@ -53,8 +53,7 @@ const MotherProfile = ({ navigation }) => {
       <View style={styles.card}>
         <View style={styles.row}>
           <Text style={styles.headerWelcome}>{name.name}</Text>
-            <Image source={Mother} style={styles.midwifeImage} />
-          
+          <Image source={Mother} style={styles.midwifeImage} />
         </View>
         <Text style={styles.headerName}>{name.email}</Text>
       </View>
@@ -110,8 +109,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: "94%",
     margin: 10,
-    borderWidth:1,
-    borderColor:'#FF25A9'
+    borderWidth: 1,
+    borderColor: "#FF25A9",
   },
   menucard: {
     backgroundColor: "white",
