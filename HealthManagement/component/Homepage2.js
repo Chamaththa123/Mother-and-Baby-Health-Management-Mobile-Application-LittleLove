@@ -3,11 +3,9 @@ import {
   Text,
   View,
   StyleSheet,
-  TextInput,
-  Button,
   TouchableOpacity,
   Image,
-  FlatList,
+  ScrollView,
 } from "react-native";
 import { firebase } from "../firebase/config";
 
@@ -78,117 +76,85 @@ const Homepage2 = ({ navigation }) => {
   };
 
   return (
-    <FlatList
-      contentContainerStyle={styles.container}
-      ListHeaderComponent={() => (
-        <View>
-          <View style={styles.card}>
-            <View style={styles.row}>
-              <Text style={styles.headerWelcome}>Welcome</Text>
-              <TouchableOpacity onPress={handleImagePress}>
-                <Image source={Midwife} style={styles.midwifeImage} />
-              </TouchableOpacity>
-            </View>
-            <Text style={styles.headerName}>{name.email}</Text>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View>
+        <View style={styles.card}>
+          <View style={styles.row}>
+            <Text style={styles.headerWelcome}>Welcome</Text>
+            <TouchableOpacity onPress={handleImagePress}>
+              <Image source={Midwife} style={styles.midwifeImage} />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.headerName}>{name.email}</Text>
+        </View>
+
+        <Text style={styles.text1}>Manage Mothers & Babies</Text>
+        <View style={styles.row2}>
+          <TouchableOpacity
+            style={styles.menucard}
+            onPress={() => navigation.navigate("Addmother")}
+          >
+            <Text style={styles.cardText}>Create Mother Profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menucard}
+            onPress={() => navigation.navigate("MotherList")}
+          >
+            <Text style={styles.cardText}>All Mothers</Text>
+          </TouchableOpacity>
+          <View style={styles.menucard}>
+            <Text style={styles.cardText}>Scan Mother QR</Text>
           </View>
         </View>
-      )}
-      ListFooterComponent={() => (
-        <>
-          <Text style={styles.text1}>Manage Mothers & Babies</Text>
-          <View style={styles.row2}>
-            <TouchableOpacity
-              style={styles.menucard}
-              onPress={() => navigation.navigate("Addmother")}
-            >
-              <Text style={styles.cardText}>Create Mother Profile</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menucard}
-              onPress={() => navigation.navigate("MotherList")}
-            >
-              <Text style={styles.cardText}>All Mothers</Text>
-            </TouchableOpacity>
-            <View style={styles.menucard}>
-              <Text style={styles.cardText}>Scan Mother QR</Text>
-            </View>
+
+        <Text style={styles.text1}>Manage Midwives & Nurses</Text>
+        <View style={styles.row2}>
+          <View style={styles.menucard}>
+            <Text style={styles.cardText}>
+              Create Midwife & Nurse Profile
+            </Text>
           </View>
-          <Text style={styles.text1}>Manage Midwives & Nurses</Text>
-          <View style={styles.row2}>
-            <View style={styles.menucard}>
-              <Text style={styles.cardText}>
-                Create Midwife & Nurse Profile
-              </Text>
-            </View>
-            <View style={styles.menucard}>
-              <Text style={styles.cardText}>All Midwives & Nurses</Text>
-            </View>
-            <View style={{ marginLeft: 100 }}>
-              <Text style={styles.cardText}></Text>
-            </View>
+          <View style={styles.menucard}>
+            <Text style={styles.cardText}>All Midwives & Nurses</Text>
           </View>
-          <Text style={styles.text1}>
-            Manage Special Medical Events & Notices
-          </Text>
-          <View style={styles.row2}>
-            <View style={styles.menucard}>
-              <Text style={styles.cardText}>
-                Add Special Medical Events & Notices
-              </Text>
-            </View>
-            <View style={styles.menucard}>
-              <Text style={styles.cardText}>
-                All Special Medical Events & Notices
-              </Text>
-            </View>
-            <View style={{ marginLeft: 100 }}>
-              <Text style={styles.cardText}></Text>
-            </View>
+          <View style={{ marginLeft: 100 }}>
+            <Text style={styles.cardText}></Text>
           </View>
-          {/* <Text style={styles.text}>All Data from Firebase</Text>
-          <Button title='Add Mother' onPress={() => navigation.navigate('AddMother')} />
-          <Button title='Mother List' onPress={() => navigation.navigate('MotherList')} /> */}
-        </>
-      )}
-    />
+        </View>
+
+        <Text style={styles.text1}>
+          Manage Special Medical Events & Notices
+        </Text>
+        <View style={styles.row2}>
+          <View style={styles.menucard}>
+            <Text style={styles.cardText}>
+              Add Special Medical Events & Notices
+            </Text>
+          </View>
+          <View style={styles.menucard}>
+            <Text style={styles.cardText}>
+              All Special Medical Events & Notices
+            </Text>
+          </View>
+          <View style={{ marginLeft: 100 }}>
+            <Text style={styles.cardText}></Text>
+          </View>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-  },
-  header: {
-    backgroundColor: "#0268C2",
-    padding: 20,
-    alignItems: "center",
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-  },
-  headerImage: {
-    marginTop: "10%",
-    width: 70,
-    height: 70,
-  },
-  midwifeImage: {
-    width: 50,
-    height: 50,
-  },
-  headerText: {
-    fontSize: 15,
-    color: "white",
-    fontWeight: "bold",
+    paddingBottom: 20,
+    flex:1
   },
   headerWelcome: {
     fontSize: 19,
     color: "white",
     fontWeight: "bold",
-  },
-  text1: {
-    fontSize: 16,
-    fontWeight: "900",
-    marginLeft: 20,
-    marginTop: 30,
   },
   headerName: {
     fontSize: 14,
@@ -203,6 +169,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: "94%",
     margin: 10,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  row2: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginLeft: 20,
+    marginRight: 20,
   },
   menucard: {
     backgroundColor: "white",
@@ -221,25 +197,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#616161",
   },
-  text: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-  },
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  row2: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  text1: {
+    fontSize: 16,
+    fontWeight: "900",
     marginLeft: 20,
-    marginRight: 20,
+    marginTop: 30,
+  },
+  midwifeImage: {
+    width: 50,
+    height: 50,
   },
 });
 
