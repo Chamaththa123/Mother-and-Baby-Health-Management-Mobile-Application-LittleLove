@@ -3,10 +3,8 @@ import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 import MyImage from "../assets/logo.png";
 
-const Start = ({ route, navigation }) => {
-  const handleLoginPress = () => {
-    navigation.navigate("Login");
-  };
+const Loading = ({ route, navigation }) => {
+  
 
   useEffect(() => {
     navigation.setOptions({
@@ -61,4 +59,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Start;
+export default Loading;
