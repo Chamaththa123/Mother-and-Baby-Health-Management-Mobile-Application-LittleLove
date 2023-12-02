@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../firebase/config";
 import MyImage from "../../assets/logo.png";
 
 const Mother = require("../../assets/mother.png");
+const Pregnancy = require("../../assets/prenatal-care.png");
 const MotherDetails = ({ route }) => {
   const navigation = useNavigation();
   const { motherId } = route.params;
@@ -13,7 +21,11 @@ const MotherDetails = ({ route }) => {
   useEffect(() => {
     const fetchMotherDetails = async () => {
       try {
-        const doc = await firebase.firestore().collection("users").doc(motherId).get();
+        const doc = await firebase
+          .firestore()
+          .collection("users")
+          .doc(motherId)
+          .get();
         if (doc.exists) {
           setMotherDetails(doc.data());
         } else {
@@ -35,7 +47,6 @@ const MotherDetails = ({ route }) => {
             .firestore()
             .collection("pregnancy")
             .where("motherId", "==", motherId)
-            .orderBy("createdAt", "asc")
             .get();
 
           const details = [];
@@ -89,36 +100,8 @@ const MotherDetails = ({ route }) => {
     navigation.navigate("AddPregnancy", { motherId });
   };
 
-  // //display pregnancy details
-  // const [pregnancyDetails, setPregnancyDetails] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchPregnancyDetails = async () => {
-  //     try {
-  //       if (motherId) {
-  //         const snapshot = await firebase
-  //           .firestore()
-  //           .collection("pregnancy")
-  //           .where("motherId", "==", motherId)
-  //           .get();
-
-  //         const details = [];
-  //         snapshot.forEach((doc) => {
-  //           details.push({ id: doc.id, ...doc.data() });
-  //         });
-  //         setPregnancyDetails(details);
-  //       }
-  //     } catch (error) {
-  //       console.log("Error fetching pregnancy details:", error);
-  //     }
-  //   };
-
-  //   fetchPregnancyDetails();
-  // }, [motherId]);
-
-
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.card}>
         <View style={styles.row}>
           <Image source={Mother} style={styles.Image} />
@@ -154,19 +137,15 @@ const MotherDetails = ({ route }) => {
           <Text style={styles.buttonText}>Add Mother Pregnancy</Text>
         </TouchableOpacity>
         {pregnancyDetails.map((detail) => (
-        <View key={detail.id} style={styles.detailContainer}>
-          <Text style={styles.detailText}>Date of last menstrual period: {detail.menstrual}</Text>
-          <Text style={styles.detailText}>Expected period of delivery: {detail.delivery}</Text>
-          {/* Display other pregnancy details similarly */}
-        </View>
-      ))}
-
+          <View key={detail.id} style={styles.card3}>
+            <View style={styles.row}>
+              <Image source={Pregnancy} style={styles.Image} />
+              <Text style={styles.detailText3}>Pregnancy {detail.time}</Text>
+            </View>
+          </View>
+        ))}
       </View>
-      <Text style={styles.detailText}>Name: {motherDetails?.name}</Text>
-      <Text style={styles.detailText}>
-        Registered No.: {motherDetails.register_No}
-      </Text>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -220,6 +199,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 30,
   },
+  detailText3: {
+    fontSize: 16,
+    marginLeft: 30,
+    marginTop: 12,
+  },
   topic: {
     fontSize: 18,
     marginBottom: 10,
@@ -259,6 +243,18 @@ const styles = StyleSheet.create({
     width: "95%",
     margin: 10,
     alignSelf: "center",
+  },
+  card3: {
+    backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#FF25A9",
+    marginTop: 0,
+    padding: 15,
+    borderRadius: 10,
+    width: "95%",
+    margin: 10,
+    alignSelf: "center",
+    justifyContent: "center",
   },
   row: {
     flexDirection: "row",
