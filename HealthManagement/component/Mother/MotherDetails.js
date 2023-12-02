@@ -9,17 +9,11 @@ const MotherDetails = ({ route }) => {
   const navigation = useNavigation();
   const { motherId } = route.params;
   const [motherDetails, setMotherDetails] = useState(null);
-
+  const [pregnancyDetails, setPregnancyDetails] = useState([]);
   useEffect(() => {
-    const { motherId } = route.params;
-
     const fetchMotherDetails = async () => {
       try {
-        const doc = await firebase
-          .firestore()
-          .collection("users")
-          .doc(motherId)
-          .get();
+        const doc = await firebase.firestore().collection("users").doc(motherId).get();
         if (doc.exists) {
           setMotherDetails(doc.data());
         } else {
@@ -31,7 +25,32 @@ const MotherDetails = ({ route }) => {
     };
 
     fetchMotherDetails();
-  }, [route.params]);
+  }, [motherId]);
+
+  useEffect(() => {
+    const fetchPregnancyDetails = async () => {
+      try {
+        if (motherId) {
+          const snapshot = await firebase
+            .firestore()
+            .collection("pregnancy")
+            .where("motherId", "==", motherId)
+            .orderBy("createdAt", "asc")
+            .get();
+
+          const details = [];
+          snapshot.forEach((doc) => {
+            details.push({ id: doc.id, ...doc.data() });
+          });
+          setPregnancyDetails(details);
+        }
+      } catch (error) {
+        console.log("Error fetching pregnancy details:", error);
+      }
+    };
+
+    fetchPregnancyDetails();
+  }, [motherId]);
 
   useEffect(() => {
     if (motherDetails) {
@@ -70,6 +89,34 @@ const MotherDetails = ({ route }) => {
     navigation.navigate("AddPregnancy", { motherId });
   };
 
+  // //display pregnancy details
+  // const [pregnancyDetails, setPregnancyDetails] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchPregnancyDetails = async () => {
+  //     try {
+  //       if (motherId) {
+  //         const snapshot = await firebase
+  //           .firestore()
+  //           .collection("pregnancy")
+  //           .where("motherId", "==", motherId)
+  //           .get();
+
+  //         const details = [];
+  //         snapshot.forEach((doc) => {
+  //           details.push({ id: doc.id, ...doc.data() });
+  //         });
+  //         setPregnancyDetails(details);
+  //       }
+  //     } catch (error) {
+  //       console.log("Error fetching pregnancy details:", error);
+  //     }
+  //   };
+
+  //   fetchPregnancyDetails();
+  // }, [motherId]);
+
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -106,6 +153,14 @@ const MotherDetails = ({ route }) => {
         >
           <Text style={styles.buttonText}>Add Mother Pregnancy</Text>
         </TouchableOpacity>
+        {pregnancyDetails.map((detail) => (
+        <View key={detail.id} style={styles.detailContainer}>
+          <Text style={styles.detailText}>Date of last menstrual period: {detail.menstrual}</Text>
+          <Text style={styles.detailText}>Expected period of delivery: {detail.delivery}</Text>
+          {/* Display other pregnancy details similarly */}
+        </View>
+      ))}
+
       </View>
       <Text style={styles.detailText}>Name: {motherDetails?.name}</Text>
       <Text style={styles.detailText}>
@@ -151,6 +206,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  detailContainer: {
+    marginBottom: 20,
   },
   detailText: {
     fontSize: 16,
