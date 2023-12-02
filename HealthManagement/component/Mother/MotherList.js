@@ -6,30 +6,37 @@ import {
   ScrollView,
   TextInput,
   StyleSheet,
+  Image,
 } from "react-native";
 import { firebase } from "../../firebase/config";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import MyImage from "../../assets/logo.png";
 
 const MotherList = () => {
   const navigation = useNavigation();
+  const [mothersList, setMothersList] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    navigation.setOptions({
-      headerTitleStyle: {
-        fontWeight: "bold",
-        color: "#57ADF8",
-        fontSize: 20,
-      },
-      headerTintColor: "#57ADF8",
-      headerShown: true,
-      title: "All Mothers List",
-      headerTitleAlign: "center",
-    });
-  }, [navigation]);
-
-  const [mothersList, setMothersList] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+    if (mothersList) {
+      navigation.setOptions({
+        headerTitleStyle: {
+          fontWeight: "bold",
+          color: "#57ADF8",
+          fontSize: 20,
+        },
+        headerTintColor: "#57ADF8",
+        headerShown: true,
+        title: "All Mother List",
+        headerTitleAlign: "center",
+      });
+    } else {
+      navigation.setOptions({
+        headerShown: false,
+      });
+    }
+  }, [mothersList, navigation]);
 
   const getMothersList = async () => {
     try {
@@ -53,6 +60,19 @@ const MotherList = () => {
   useEffect(() => {
     getMothersList();
   }, []);
+
+  if (!mothersList) {
+    return (
+      <View style={styles.Lcontainer}>
+        <Image source={MyImage} style={styles.Limage} />
+        <View style={styles.LtextContainer}>
+          <Text style={styles.LredText}>Little </Text>
+          <Text style={styles.LblueText}> Love</Text>
+        </View>
+        <Text style={styles.Ltext}>Loading</Text>
+      </View>
+    );
+  }
 
   const filterMothersByRegisterNo = () => {
     return mothersList.filter((mother) =>
@@ -111,6 +131,38 @@ const MotherList = () => {
 };
 
 const styles = StyleSheet.create({
+  Lcontainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+  Limage: {
+    width: "30%",
+    height: "16%",
+  },
+  LtextContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: "1%",
+  },
+  LredText: {
+    color: "#57ADF8",
+    fontSize: 20,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  LblueText: {
+    color: "#FF25A9",
+    fontSize: 20,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  Ltext: {
+    fontSize: 22,
+    color: "#FF25A9",
+    margin: 30,
+  },
   container: {
     flexGrow: 1,
     justifyContent: "center",
