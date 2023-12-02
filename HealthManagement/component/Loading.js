@@ -13,7 +13,7 @@ const Loading = ({ route, navigation }) => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       <Image source={MyImage} style={styles.image} />
       <View style={styles.textContainer}>
         <Text style={styles.redText}>Little </Text>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   text:{
-    fontSize:17,
+    fontSize:22,
     color:'#FF25A9',
     margin:30
   }

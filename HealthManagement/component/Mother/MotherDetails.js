@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../firebase/config";
-import Loading from "../Loading";
+import MyImage from "../../assets/logo.png";
 
 const Mother = require("../../assets/mother.png");
 const MotherDetails = ({ route }) => {
@@ -46,13 +46,22 @@ const MotherDetails = ({ route }) => {
         title: `${motherDetails?.name}'s Profile`,
         headerTitleAlign: "center",
       });
+    } else {
+      navigation.setOptions({
+        headerShown: false,
+      });
     }
   }, [motherDetails, navigation]);
 
   if (!motherDetails) {
     return (
-      <View>
-        <Loading/>
+      <View style={styles.Lcontainer}>
+        <Image source={MyImage} style={styles.Limage} />
+        <View style={styles.LtextContainer}>
+          <Text style={styles.LredText}>Little </Text>
+          <Text style={styles.LblueText}> Love</Text>
+        </View>
+        <Text style={styles.Ltext}>Loading</Text>
       </View>
     );
   }
@@ -107,6 +116,38 @@ const MotherDetails = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
+  Lcontainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+  Limage: {
+    width: "30%",
+    height: "16%",
+  },
+  LtextContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: "1%",
+  },
+  LredText: {
+    color: "#57ADF8",
+    fontSize: 20,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  LblueText: {
+    color: "#FF25A9",
+    fontSize: 20,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  Ltext: {
+    fontSize: 22,
+    color: "#FF25A9",
+    margin: 30,
+  },
   container: {
     flex: 1,
     backgroundColor: "white",
