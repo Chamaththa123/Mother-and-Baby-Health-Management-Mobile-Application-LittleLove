@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../firebase/config";
+import Loading from "../Loading";
 
 const Mother = require("../../assets/mother.png");
 const MotherDetails = ({ route }) => {
@@ -50,8 +51,8 @@ const MotherDetails = ({ route }) => {
 
   if (!motherDetails) {
     return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
+      <View>
+        <Loading/>
       </View>
     );
   }
