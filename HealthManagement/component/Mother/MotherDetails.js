@@ -111,11 +111,11 @@ const MotherDetails = ({ route }) => {
       </View>
       <View style={styles.card2}>
         <View style={styles.row}>
-          <Text style={styles.detailText}>Mother Email</Text>
+          <Text style={styles.detailText}>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
           <Text style={styles.detailText2}>{motherDetails?.email}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.detailText}>Mother Phone No</Text>
+          <Text style={styles.detailText}>Phone No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
           <Text style={styles.detailText2}>{motherDetails?.phone}</Text>
         </View>
         <View style={styles.row}>
@@ -123,7 +123,7 @@ const MotherDetails = ({ route }) => {
           <Text style={styles.detailText2}>{motherDetails?.DDHS}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.detailText}>P.H.M Area</Text>
+          <Text style={styles.detailText}>P.H.M Area&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
           <Text style={styles.detailText2}>{motherDetails?.PHM}</Text>
         </View>
       </View>
@@ -191,13 +191,15 @@ const styles = StyleSheet.create({
   },
   detailText: {
     fontSize: 16,
-    marginBottom: 10,
+    marginBottom: 20,
     fontWeight: "bold",
+    marginTop:10
   },
   detailText2: {
     fontSize: 16,
     marginBottom: 10,
     marginLeft: 30,
+    marginTop:10
   },
   detailText3: {
     fontSize: 16,
