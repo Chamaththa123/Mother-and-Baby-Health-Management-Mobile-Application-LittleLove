@@ -77,6 +77,8 @@ const AddPregnancy = ({ route }) => {
   const handleAddPregnancy = async () => {
     try {
       if (motherId) {
+        const createdAt = firebase.firestore.FieldValue.serverTimestamp(); // Capture the server timestamp
+
         await firebase.firestore().collection("pregnancy").add({
           motherId: motherId,
           menstrual: menstrual,
@@ -94,17 +96,17 @@ const AddPregnancy = ({ route }) => {
           Heart: Heart,
           Renal: Renal,
           OOthers: OOthers,
+          createdAt: createdAt, // Set the createdAt field with the captured timestamp
         });
 
-        // Show an alert after adding the baby details
         Alert.alert(
           "Success",
-          "Baby details added successfully",
+          "Pregnancy details added successfully",
           [
             {
               text: "OK",
               onPress: () => {
-                setmenstrual(""); // Clearing input fields
+                setmenstrual("");
                 setdelivery("");
                 setmovement("");
                 setweeks("");
@@ -128,7 +130,7 @@ const AddPregnancy = ({ route }) => {
         console.error("Invalid data provided");
       }
     } catch (error) {
-      console.error("Error adding baby: ", error);
+      console.error("Error adding pregnancy: ", error);
     }
   };
 
