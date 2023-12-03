@@ -114,7 +114,7 @@ const PregnancyDetails = ({ route }) => {
           <Text style={styles.detailText}>
           Previous abortions
           </Text>
-          <View style={[styles.card3, { backgroundColor: PregnancyDetails.abortions === "1" ? '#00FF00' : '#FF0000' }]}>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.abortions === "1" ? '#00FF00' : (PregnancyDetails.abortions === "0" ? '#FF0000' : '#CCCCCC') }]}>
             
           </View>
         </View>
@@ -122,7 +122,7 @@ const PregnancyDetails = ({ route }) => {
           <Text style={styles.detailText}>
           Gestational diseases
           </Text>
-          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Gestational === "1" ? '#00FF00' : '#FF0000' }]}>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Gestational === "1" ? '#00FF00' : (PregnancyDetails.Gestational === "0" ? '#FF0000' : '#CCCCCC') }]}>
           </View>
         </View>
         <Text style={styles.header2}>Presnet Pregnancy</Text>
@@ -130,21 +130,21 @@ const PregnancyDetails = ({ route }) => {
           <Text style={styles.detailText}>
           Antepartum vaginal bleeding
           </Text>
-          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Antepartum === "1" ? '#00FF00' : '#FF0000' }]}>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Antepartum === "1" ? '#00FF00' : (PregnancyDetails.Antepartum === "0" ? '#FF0000' : '#CCCCCC') }]}>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           Multiple pregnancy
           </Text>
-          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Multiple === "1" ? '#00FF00' : '#FF0000' }]}>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Multiple === "1" ? '#00FF00' : (PregnancyDetails.Multiple === "0" ? '#FF0000' : '#CCCCCC') }]}>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           Casual position
           </Text>
-          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Casual === "1" ? '#00FF00' : '#FF0000' }]}>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Casual === "1" ? '#00FF00' : (PregnancyDetails.Casual === "0" ? '#FF0000' : '#CCCCCC') }]}>
       
           </View>
         </View>
@@ -163,28 +163,28 @@ const PregnancyDetails = ({ route }) => {
           <Text style={styles.detailText}>
           Diabetes
           </Text>
-          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Diabetes === "1" ? '#00FF00' : '#FF0000' }]}>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Diabetes === "1" ? '#00FF00' : (PregnancyDetails.Diabetes === "0" ? '#FF0000' : '#CCCCCC') }]}>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           malaria
           </Text>
-          <View style={[styles.card3, { backgroundColor: PregnancyDetails.malaria === "1" ? '#00FF00' : '#FF0000' }]}>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.malaria === "1" ? '#00FF00' : (PregnancyDetails.malaria === "0" ? '#FF0000' : '#CCCCCC') }]}>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           Heart Disease
           </Text>
-          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Heart === "1" ? '#00FF00' : '#FF0000' }]}>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Heart === "1" ? '#00FF00' : (PregnancyDetails.Heart === "0" ? '#FF0000' : '#CCCCCC') }]}>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           Renal Disease
           </Text>
-          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Renal === "1" ? '#00FF00' : '#FF0000' }]}>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Renal === "1" ? '#00FF00' : (PregnancyDetails.Renal === "0" ? '#FF0000' : '#CCCCCC') }]}>
           </View>
         </View>
         <View style={styles.row}>
