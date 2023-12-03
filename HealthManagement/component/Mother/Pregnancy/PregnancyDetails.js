@@ -168,7 +168,7 @@ const PregnancyDetails = ({ route }) => {
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
-          malaria
+          Malaria
           </Text>
           <View style={[styles.card3, { backgroundColor: PregnancyDetails.malaria === "1" ? '#00FF00' : (PregnancyDetails.malaria === "0" ? '#FF0000' : '#CCCCCC') }]}>
           </View>
