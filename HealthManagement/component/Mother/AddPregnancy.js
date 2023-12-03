@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Alert,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../firebase/config";
@@ -45,7 +45,7 @@ const AddPregnancy = ({ route }) => {
         },
         headerTintColor: "#57ADF8",
         headerShown: true,
-        title: `Add ${motherDetails?.name}'s Pregnancy`,
+        title: `Add Pregnancy Details`,
         headerTitleAlign: "center",
       });
     }
@@ -193,11 +193,9 @@ const AddPregnancy = ({ route }) => {
           />
         </View>
         <Text style={styles.header}>Risk Conditions</Text>
-          <Text style={styles.header2}>Previous Pregnancies</Text>
-          <View>
-          <Text style={styles.detailText}>
-            01. Previous abortions
-          </Text>
+        <Text style={styles.header2}>Previous Pregnancies</Text>
+        <View>
+          <Text style={styles.detailText}>01. Previous abortions</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -207,9 +205,7 @@ const AddPregnancy = ({ route }) => {
           />
         </View>
         <View>
-          <Text style={styles.detailText}>
-            02. Gestational diseases
-          </Text>
+          <Text style={styles.detailText}>02. Gestational diseases</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -220,9 +216,7 @@ const AddPregnancy = ({ route }) => {
         </View>
         <Text style={styles.header2}>Presnet Pregnancy</Text>
         <View>
-          <Text style={styles.detailText}>
-            01. Antepartum vaginal bleeding
-          </Text>
+          <Text style={styles.detailText}>01. Antepartum vaginal bleeding</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -232,9 +226,7 @@ const AddPregnancy = ({ route }) => {
           />
         </View>
         <View>
-          <Text style={styles.detailText}>
-            02. Multiple pregnancy
-          </Text>
+          <Text style={styles.detailText}>02. Multiple pregnancy</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -244,9 +236,7 @@ const AddPregnancy = ({ route }) => {
           />
         </View>
         <View>
-          <Text style={styles.detailText}>
-            03. Casual position
-          </Text>
+          <Text style={styles.detailText}>03. Casual position</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -256,9 +246,7 @@ const AddPregnancy = ({ route }) => {
           />
         </View>
         <View>
-          <Text style={styles.detailText}>
-            04. Others(specify)
-          </Text>
+          <Text style={styles.detailText}>04. Others(specify)</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -269,9 +257,7 @@ const AddPregnancy = ({ route }) => {
         </View>
         <Text style={styles.header2}>Other Maternal Conditions</Text>
         <View>
-          <Text style={styles.detailText}>
-            01. Diabetes
-          </Text>
+          <Text style={styles.detailText}>01. Diabetes</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -281,9 +267,7 @@ const AddPregnancy = ({ route }) => {
           />
         </View>
         <View>
-          <Text style={styles.detailText}>
-            02. malaria
-          </Text>
+          <Text style={styles.detailText}>02. malaria</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -293,9 +277,7 @@ const AddPregnancy = ({ route }) => {
           />
         </View>
         <View>
-          <Text style={styles.detailText}>
-            03. Heart Disease
-          </Text>
+          <Text style={styles.detailText}>03. Heart Disease</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -305,9 +287,7 @@ const AddPregnancy = ({ route }) => {
           />
         </View>
         <View>
-          <Text style={styles.detailText}>
-            04. Renal Disease
-          </Text>
+          <Text style={styles.detailText}>04. Renal Disease</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -317,9 +297,7 @@ const AddPregnancy = ({ route }) => {
           />
         </View>
         <View>
-          <Text style={styles.detailText}>
-            05. Others(specify)
-          </Text>
+          <Text style={styles.detailText}>05. Others(specify)</Text>
           <TextInput
             placeholder="Enter Email"
             style={styles.textBoxes}
@@ -330,13 +308,11 @@ const AddPregnancy = ({ route }) => {
         </View>
 
         <TouchableOpacity
-        style={styles.buttonStyle}
-        onPress={handleAddPregnancy}
-      >
-        <Text style={styles.buttonText}>Add Pregnancy Details</Text>
-      </TouchableOpacity>
-
-
+          style={styles.buttonStyle}
+          onPress={handleAddPregnancy}
+        >
+          <Text style={styles.buttonText}>Add Pregnancy Details</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -354,7 +330,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   detailText: {
-    fontSize: 16,
+    fontSize: 14,
     marginBottom: 10,
   },
   detailText2: {
@@ -363,15 +339,17 @@ const styles = StyleSheet.create({
     marginLeft: 30,
   },
   header: {
-    fontSize: 22,
-    marginBottom: 20,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  header2: {
     fontSize: 18,
     marginBottom: 20,
     fontWeight: "bold",
+    textAlign: "center",
+    color: "#FF25A9",
+  },
+  header2: {
+    fontSize: 16,
+    marginBottom: 20,
+    fontWeight: "bold",
+    color: "#57ADF8",
   },
   input: {
     height: 40,
@@ -384,7 +362,7 @@ const styles = StyleSheet.create({
   textBoxes: {
     width: "100%",
     fontSize: 16,
-    padding: 12,
+    padding: 10,
     borderColor: "#FF25A9",
     borderWidth: 1,
     borderRadius: 10,
@@ -397,7 +375,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     backgroundColor: "#FF25A9",
-    padding: 13,
+    padding: 10,
     borderRadius: 10,
     width: "100%",
     height: 50,
@@ -409,7 +387,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: "bold",
   },
 });
