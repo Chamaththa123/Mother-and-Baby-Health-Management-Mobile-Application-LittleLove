@@ -304,6 +304,23 @@ const PregnancyDetails = ({ route }) => {
           onChange={setActiveSections1}
         />
       </View>
+      <TouchableOpacity style={styles.buttonStyle}>
+          <Text style={styles.buttonText}>
+            Care at Clinic
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.buttonStyle}>
+          <Text style={styles.buttonText}>
+            Additional Notes
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.buttonStyle}>
+          <Text style={styles.buttonText}>
+            Delivery Information
+          </Text>
+        </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -422,6 +439,23 @@ const styles = StyleSheet.create({
     borderColor: "#FF25A9",
     borderRadius: 10,
     padding: 2.5,
+  },
+  buttonText: {
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  buttonStyle: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    width: "95%",
+    marginTop: 20,
+    borderColor: "#FF25A9",
+    borderWidth: 1,
+    justifyContent: "center",
+    color: "white",
+    padding: 12.5,
+    margin:10,
+    alignSelf:'center'
   },
 });
 export default PregnancyDetails;
