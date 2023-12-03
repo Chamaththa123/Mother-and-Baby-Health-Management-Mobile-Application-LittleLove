@@ -6,10 +6,11 @@ import {
   StyleSheet,
   Alert,
   ScrollView,
-  TouchableOpacity,
+  TouchableOpacity,Image
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../firebase/config";
+import MyImage from "../../assets/logo.png";
 
 const AddPregnancy = ({ route }) => {
   const { motherId } = route.params || { motherId: null };
@@ -47,6 +48,10 @@ const AddPregnancy = ({ route }) => {
         headerShown: true,
         title: `Add Pregnancy Details`,
         headerTitleAlign: "center",
+      });
+    }else {
+      navigation.setOptions({
+        headerShown: false,
       });
     }
   }, [motherDetails, navigation]);
@@ -136,8 +141,13 @@ const AddPregnancy = ({ route }) => {
 
   if (!motherDetails) {
     return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
+      <View style={styles.Lcontainer}>
+        <Image source={MyImage} style={styles.Limage} />
+        <View style={styles.LtextContainer}>
+          <Text style={styles.LredText}>Little </Text>
+          <Text style={styles.LblueText}> Love</Text>
+        </View>
+        <Text style={styles.Ltext}>Loading</Text>
       </View>
     );
   }
@@ -324,6 +334,38 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     justifyContent: "center",
     padding: 15,
+  },
+  Lcontainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+  Limage: {
+    width: "30%",
+    height: "16%",
+  },
+  LtextContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: "1%",
+  },
+  LredText: {
+    color: "#57ADF8",
+    fontSize: 20,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  LblueText: {
+    color: "#FF25A9",
+    fontSize: 20,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  Ltext: {
+    fontSize: 22,
+    color: "#FF25A9",
+    margin: 30,
   },
   container: {
     flex: 1,
