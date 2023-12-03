@@ -10,11 +10,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../../firebase/config";
 import MyImage from "../../../assets/logo.png";
+import Accordion from "react-native-collapsible/Accordion";
 
 const PregnancyDetails = ({ route }) => {
   const navigation = useNavigation();
   const { pregnancyId } = route.params;
   const [PregnancyDetails, setPregnancyDetails] = useState(null);
+  const [activeSections1, setActiveSections1] = useState([]);
 
   useEffect(() => {
     const fetchPregnancyDetails = async () => {
@@ -47,7 +49,7 @@ const PregnancyDetails = ({ route }) => {
         },
         headerTintColor: "#57ADF8",
         headerShown: true,
-        title: `${PregnancyDetails?.time} - Pregnancy`,
+        title: `${PregnancyDetails?.time} - Pregnancy Record`,
         headerTitleAlign: "center",
       });
     } else {
@@ -69,40 +71,21 @@ const PregnancyDetails = ({ route }) => {
       </View>
     );
   }
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.card1}>
-        <Text style={styles.header}>Obstetric History</Text>
-        <View style={styles.row}>
-          <Text style={styles.detailText}>Date of last menstrual period</Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
-          </View>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.detailText}>Expected period of delivery</Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
-          </View>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.detailText}>
-            The date of the first felt fetal movement
-          </Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
-          </View>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.detailText}>
-            Number of gestational weeks at registration
-          </Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
-          </View>
-        </View>
-      </View>
 
+  const SECTIONS1 = [
+    {
+      title: "Mother Health Condition",
+    },
+  ];
+
+  const renderHeader1 = (section, _, isActive) => (
+    <View style={styles.header_Acc}>
+      <Text style={styles.headerText__Acc}>{section.title}</Text>
+    </View>
+  );
+
+  const renderContent1 = (section) => (
+    <View>
       <View style={[styles.card1, { marginTop: 0 }]}>
         <Text style={styles.header}>Risk Conditions</Text>
         <Text style={styles.header2}>Previous Pregnancies</Text>
@@ -264,6 +247,50 @@ const PregnancyDetails = ({ route }) => {
         </View>
         <Text style={styles.other}>{PregnancyDetails.OOthers}</Text>
       </View>
+    </View>
+  );
+  return (
+    <ScrollView style={styles.container}>
+      <View style={styles.card1}>
+        <Text style={styles.header}>Obstetric History</Text>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Date of last menstrual period</Text>
+          <View style={styles.card2}>
+            <Text style={styles.detailText}>01/01</Text>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Expected period of delivery</Text>
+          <View style={styles.card2}>
+            <Text style={styles.detailText}>01/01</Text>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>
+            The date of the first felt fetal movement
+          </Text>
+          <View style={styles.card2}>
+            <Text style={styles.detailText}>01/01</Text>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>
+            Number of gestational weeks at registration
+          </Text>
+          <View style={styles.card2}>
+            <Text style={styles.detailText}>01/01</Text>
+          </View>
+        </View>
+      </View>
+      <View style={styles.accordion}>
+        <Accordion
+          sections={SECTIONS1}
+          activeSections={activeSections1}
+          renderHeader={renderHeader1}
+          renderContent={renderContent1}
+          onChange={setActiveSections1}
+        />
+      </View>
     </ScrollView>
   );
 };
@@ -361,6 +388,27 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: "bold",
     color: "#57ADF8",
+  },
+  header_Acc: {
+    backgroundColor: "#fff",
+    padding: 10,
+  },
+  headerText__Acc: {
+    fontSize: 15,
+    fontWeight: "bold",
+    marginLeft: 3,
+  },
+  content: {
+    padding: 0,
+    backgroundColor: "#fff",
+  },
+  accordion: {
+    marginTop: 10,
+    margin: 10,
+    borderWidth: 1,
+    borderColor: "#FF25A9",
+    borderRadius: 10,
+    padding: 2.5,
   },
 });
 export default PregnancyDetails;
