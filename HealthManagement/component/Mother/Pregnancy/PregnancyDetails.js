@@ -86,6 +86,19 @@ const PregnancyDetails = ({ route }) => {
 
   const renderContent1 = (section) => (
     <View>
+      <View
+        style={[
+          styles.row,
+          { paddingRight: 10, marginTop: 15, marginBottom: 10 },
+        ]}
+      >
+        <View style={[styles.card3, { backgroundColor: "#00FF00" }]}></View>
+        <Text style={styles.detailText}>Yes</Text>
+        <View style={[styles.card3, { backgroundColor: "#FF0000" }]}></View>
+        <Text style={styles.detailText}>No</Text>
+        <View style={[styles.card3, { backgroundColor: "#CCCCCC" }]}></View>
+        <Text style={styles.detailText}>Not mentioned</Text>
+      </View>
       <View style={[styles.card1, { marginTop: 0 }]}>
         <Text style={styles.header}>Risk Conditions</Text>
         <Text style={styles.header2}>Previous Pregnancies</Text>
@@ -177,7 +190,7 @@ const PregnancyDetails = ({ route }) => {
       </View>
 
       <View style={[styles.card1, { marginTop: 0 }]}>
-        <Text style={styles.header}>Risk Conditions</Text>
+        <Text style={styles.header}>Other Maternal Conditions</Text>
         <View style={styles.row}>
           <Text style={styles.detailText}>Diabetes</Text>
           <View
