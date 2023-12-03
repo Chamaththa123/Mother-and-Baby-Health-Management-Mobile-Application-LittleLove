@@ -107,7 +107,7 @@ const PregnancyDetails = ({ route }) => {
         </View>
       </View>
 
-      <View style={[styles.card1,{marginTop:5}]}>
+      <View style={[styles.card1,{marginTop:0}]}>
         <Text style={styles.header}>Risk Conditions</Text>
         <Text style={styles.header2}>Previous Pregnancies</Text>
         <View style={styles.row}>
@@ -153,15 +153,47 @@ const PregnancyDetails = ({ route }) => {
           Others
           </Text>
           <View style={[styles.card3, { backgroundColor: PregnancyDetails.Antepartum === "1" ? '#00FF00' : '#FF0000' }]}>
-            
           </View>
         </View>
       </View>
 
-      <View style={[styles.card1,{marginTop:5}]}>
-        <Text></Text>
-        <Text style={styles.header2}>Presnet Pregnancy</Text>
-        
+      <View style={[styles.card1,{marginTop:0}]}>
+        <Text style={styles.header}>Risk Conditions</Text>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>
+          Diabetes
+          </Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Diabetes === "1" ? '#00FF00' : '#FF0000' }]}>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>
+          malaria
+          </Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.malaria === "1" ? '#00FF00' : '#FF0000' }]}>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>
+          Heart Disease
+          </Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Heart === "1" ? '#00FF00' : '#FF0000' }]}>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>
+          Renal Disease
+          </Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Renal === "1" ? '#00FF00' : '#FF0000' }]}>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>
+          Others
+          </Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Antepartum === "1" ? '#00FF00' : '#FF0000' }]}>
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
