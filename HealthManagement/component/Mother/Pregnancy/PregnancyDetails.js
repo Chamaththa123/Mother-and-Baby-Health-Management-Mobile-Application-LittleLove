@@ -107,62 +107,61 @@ const PregnancyDetails = ({ route }) => {
         </View>
       </View>
 
-      <View style={styles.card1}>
+      <View style={[styles.card1,{marginTop:5}]}>
         <Text style={styles.header}>Risk Conditions</Text>
         <Text style={styles.header2}>Previous Pregnancies</Text>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           Previous abortions
           </Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.abortions === "1" ? '#00FF00' : '#FF0000' }]}>
+            
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           Gestational diseases
           </Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Gestational === "1" ? '#00FF00' : '#FF0000' }]}>
           </View>
         </View>
-      </View>
-
-      <View style={styles.card1}>
-        <Text></Text>
         <Text style={styles.header2}>Presnet Pregnancy</Text>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           Antepartum vaginal bleeding
           </Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>{PregnancyDetails.Antepartum}</Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Antepartum === "1" ? '#00FF00' : '#FF0000' }]}>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           Multiple pregnancy
           </Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>{PregnancyDetails.Multiple}</Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Multiple === "1" ? '#00FF00' : '#FF0000' }]}>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           Casual position
           </Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Casual === "1" ? '#00FF00' : '#FF0000' }]}>
+      
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
           Others
           </Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
+          <View style={[styles.card3, { backgroundColor: PregnancyDetails.Antepartum === "1" ? '#00FF00' : '#FF0000' }]}>
+            
           </View>
         </View>
+      </View>
+
+      <View style={[styles.card1,{marginTop:5}]}>
+        <Text></Text>
+        <Text style={styles.header2}>Presnet Pregnancy</Text>
+        
       </View>
     </ScrollView>
   );
@@ -229,6 +228,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
   },
+  card3: {
+    width: 20,
+    height:10,
+    marginTop: 5.5,
+    borderRadius: 10,
+    margin: 10,
+  },
   header: {
     fontSize: 18,
     color: "#FF25A9",
@@ -238,6 +244,7 @@ const styles = StyleSheet.create({
   },
   detailText: {
     fontSize: 14,
+    marginBottom:10
   },
   row: {
     flexDirection: "row",
