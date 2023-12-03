@@ -147,20 +147,23 @@ const MotherDetails = ({ route }) => {
 
       {/* mother preganacy */}
       <View style={styles.card2}>
-        <Text style={styles.topic}>Pregnancy</Text>
-
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={handleAddPregnancy}
-        >
-          <Text style={styles.buttonText}>Add Mother Pregnancy</Text>
-        </TouchableOpacity>
+        <View style={styles.row1}>
+          <Text style={styles.topic}>Pregnancy</Text>
+          <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={handleAddPregnancy}
+          >
+            <Text style={styles.buttonText}>Add Pregnancy</Text>
+          </TouchableOpacity>
+        </View>
         {pregnancyDetails.map((detail) => (
-          <TouchableOpacity key={detail.id} 
-          style={styles.card3}
-          onPress={() => handlePregnancyClick(detail.id)}>
+          <TouchableOpacity
+            key={detail.id}
+            style={styles.card3}
+            onPress={() => handlePregnancyClick(detail.id)}
+          >
             <View style={styles.row}>
-              <Image source={Pregnancy} style={styles.Image} />
+              <Image source={Pregnancy} style={styles.Image2} />
               <Text style={styles.detailText3}>Pregnancy {detail.time}</Text>
             </View>
           </TouchableOpacity>
@@ -211,27 +214,28 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   detailText: {
-    fontSize: 16,
-    marginBottom: 20,
+    fontSize: 15,
+    marginBottom: 5,
     fontWeight: "bold",
     marginTop: 10,
   },
   detailText2: {
-    fontSize: 16,
+    fontSize: 15,
     marginBottom: 10,
     marginLeft: 30,
     marginTop: 10,
   },
   detailText3: {
-    fontSize: 16,
+    fontSize: 15,
     marginLeft: 30,
-    marginTop: 12,
+    marginTop: 6,
   },
   topic: {
     fontSize: 18,
     marginBottom: 10,
     fontWeight: "bold",
-    marginTop: 0,
+    marginTop: 20,
+    marginLeft: 10,
   },
   headerName: {
     fontSize: 20,
@@ -261,7 +265,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#FF25A9",
     marginTop: 0,
-    padding: 15,
+    padding: 10,
+    paddingTop: 0,
+    paddingBottom: 0,
     borderRadius: 10,
     width: "95%",
     margin: 10,
@@ -272,7 +278,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#FF25A9",
     marginTop: 0,
-    padding: 15,
+    padding: 10,
     borderRadius: 10,
     width: "95%",
     margin: 10,
@@ -283,15 +289,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
   },
+  row1: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   Image: {
     width: 50,
     height: 50,
   },
+  Image2: {
+    width: 35,
+    height: 35,
+  },
   buttonStyle: {
     backgroundColor: "#57ADF8",
     borderRadius: 10,
-    width: 185,
-    height: 50,
+    width: 115,
+    height: 45,
     margin: 10,
     marginLeft: 0,
     marginBottom: 20,
@@ -302,7 +316,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: "bold",
   },
 });
