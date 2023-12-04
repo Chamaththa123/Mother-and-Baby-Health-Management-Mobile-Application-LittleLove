@@ -17,7 +17,7 @@ const Clinic = () => {
       headerTitleStyle: {
         fontWeight: "bold",
         color: "#57ADF8",
-        fontSize: 20,
+        fontSize: 19,
       },
       headerTintColor: "#57ADF8",
       headerShown: true,
@@ -60,14 +60,14 @@ const Clinic = () => {
   const renderTabBar = (props) => (
     <TabBar
       {...props}
-      indicatorStyle={{ backgroundColor: "blue" }}
+      indicatorStyle={{ backgroundColor: "#FF25A9" }}
       style={{ backgroundColor: "white" }}
       renderLabel={({ route, focused, color }) => (
         <TouchableOpacity
           style={{ flex: 1, alignItems: "center" }}
           onPress={() => setIndex(route.key === "clinic" ? 0 : 1)}
         >
-          <Text style={{ color: focused ? "blue" : "black" }}>
+          <Text style={{ color: focused ? "#FF25A9" : "#57ADF8" }}>
             {route.title}
           </Text>
         </TouchableOpacity>
