@@ -12,12 +12,14 @@ import { firebase } from "../../../firebase/config";
 import MyImage from "../../../assets/logo.png";
 import Accordion from "react-native-collapsible/Accordion";
 import BabyList from "../Baby/BabyList";
+import DeliveryInformation from "./DeliveryInformation";
 
 const PregnancyDetails = ({ route }) => {
   const navigation = useNavigation();
   const { pregnancyId } = route.params;
   const [PregnancyDetails, setPregnancyDetails] = useState(null);
   const [activeSections1, setActiveSections1] = useState([]);
+  const [activeSections2, setActiveSections2] = useState([]);
 
   useEffect(() => {
     const fetchPregnancyDetails = async () => {
@@ -263,6 +265,35 @@ const PregnancyDetails = ({ route }) => {
       </View>
     </View>
   );
+
+  const navigateToDeliveryInformation = () => {
+    navigation.navigate('DeliveryInformation',{ pregnancyId: pregnancyId });
+  };
+
+  const navigateToAdditionalNote = () => {
+    navigation.navigate('AdditionalNote');
+  };
+
+  const navigateToClinic = () => {
+    navigation.navigate('Clinic');
+  };
+
+  const SECTIONS2 = [
+    {
+      title: "Delivery Information",
+    },
+  ];
+
+  const renderHeader2 = (section, _, isActive) => (
+    <View style={styles.header_Acc}>
+      <Text style={styles.headerText__Acc}>{section.title}</Text>
+    </View>
+  );
+
+  const renderContent2 = (section) => (
+    <View>
+      <DeliveryInformation pregnancyId={pregnancyId}/>
+      </View>)
   return (
     <ScrollView style={styles.container}>
       <BabyList pregnancyId={pregnancyId}/>
@@ -306,23 +337,27 @@ const PregnancyDetails = ({ route }) => {
           onChange={setActiveSections1}
         />
       </View>
-      <TouchableOpacity style={styles.buttonStyle}>
+      <TouchableOpacity style={styles.buttonStyle} onPress={navigateToClinic}>
           <Text style={styles.buttonText}>
             Care at Clinic
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonStyle}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={navigateToAdditionalNote}>
           <Text style={styles.buttonText}>
             Additional Notes
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonStyle}>
-          <Text style={styles.buttonText}>
-            Delivery Information
-          </Text>
-        </TouchableOpacity>
+        <View style={styles.accordion}>
+        <Accordion
+          sections={SECTIONS2}
+          activeSections={activeSections2}
+          renderHeader={renderHeader2}
+          renderContent={renderContent2}
+          onChange={setActiveSections2}
+        />
+      </View>
     </ScrollView>
   );
 };

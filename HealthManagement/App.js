@@ -17,6 +17,9 @@ import AddPregnancy from "./component/Mother/AddPregnancy";
 import Loading from "./component/Loading";
 import PregnancyDetails from "./component/Mother/Pregnancy/PregnancyDetails";
 import AddBaby from "./component/Mother/Baby/AddBaby";
+import DeliveryInformation from "./component/Mother/Pregnancy/DeliveryInformation";
+import AdditionalNote from "./component/Mother/Pregnancy/AdditionalNote";
+import Clinic from "./component/Mother/Pregnancy/Clinic/Clinic";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -62,6 +65,9 @@ const App = () => {
       <Stack.Screen name="AddPregnancy" component={AddPregnancy} />
       <Stack.Screen name="PregnancyDetails" component={PregnancyDetails} />
       <Stack.Screen name="AddBaby" component={AddBaby} />
+      <Stack.Screen name="DeliveryInformation" component={DeliveryInformation} />
+      <Stack.Screen name="AdditionalNote" component={AdditionalNote} />
+      <Stack.Screen name="Clinic" component={Clinic} />
 
     </Stack.Navigator>
   );
