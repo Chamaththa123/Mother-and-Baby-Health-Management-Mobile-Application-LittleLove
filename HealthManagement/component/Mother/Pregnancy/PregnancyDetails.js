@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../../firebase/config";
 import MyImage from "../../../assets/logo.png";
 import Accordion from "react-native-collapsible/Accordion";
+import BabyList from "../Baby/BabyList";
 
 const PregnancyDetails = ({ route }) => {
   const navigation = useNavigation();
@@ -264,6 +265,7 @@ const PregnancyDetails = ({ route }) => {
   );
   return (
     <ScrollView style={styles.container}>
+      <BabyList pregnancyId={pregnancyId}/>
       <View style={styles.card1}>
         <Text style={styles.header}>Obstetric History</Text>
         <View style={styles.row}>

@@ -16,6 +16,7 @@ import MotherDetails from "./component/Mother/MotherDetails";
 import AddPregnancy from "./component/Mother/AddPregnancy";
 import Loading from "./component/Loading";
 import PregnancyDetails from "./component/Mother/Pregnancy/PregnancyDetails";
+import AddBaby from "./component/Mother/Baby/AddBaby";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -60,6 +61,7 @@ const App = () => {
       <Stack.Screen name="MotherDetails" component={MotherDetails} />
       <Stack.Screen name="AddPregnancy" component={AddPregnancy} />
       <Stack.Screen name="PregnancyDetails" component={PregnancyDetails} />
+      <Stack.Screen name="AddBaby" component={AddBaby} />
 
     </Stack.Navigator>
   );
