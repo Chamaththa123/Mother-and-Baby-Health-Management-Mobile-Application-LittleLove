@@ -267,15 +267,15 @@ const PregnancyDetails = ({ route }) => {
   );
 
   const navigateToDeliveryInformation = () => {
-    navigation.navigate('DeliveryInformation',{ pregnancyId: pregnancyId });
+    navigation.navigate("DeliveryInformation", { pregnancyId: pregnancyId });
   };
 
   const navigateToAdditionalNote = () => {
-    navigation.navigate('AdditionalNote');
+    navigation.navigate("AdditionalNote");
   };
 
   const navigateToClinic = () => {
-    navigation.navigate('Clinic');
+    navigation.navigate("Clinic");
   };
 
   const SECTIONS2 = [
@@ -291,12 +291,13 @@ const PregnancyDetails = ({ route }) => {
   );
 
   const renderContent2 = (section) => (
-    <View>
-      <DeliveryInformation pregnancyId={pregnancyId}/>
-      </View>)
+    
+      <DeliveryInformation pregnancyId={pregnancyId} />
+    
+  );
   return (
     <ScrollView style={styles.container}>
-      <BabyList pregnancyId={pregnancyId}/>
+      <BabyList pregnancyId={pregnancyId} />
       <View style={styles.card1}>
         <Text style={styles.header}>Obstetric History</Text>
         <View style={styles.row}>
@@ -338,18 +339,11 @@ const PregnancyDetails = ({ route }) => {
         />
       </View>
       <TouchableOpacity style={styles.buttonStyle} onPress={navigateToClinic}>
-          <Text style={styles.buttonText}>
-            Care at Clinic
-          </Text>
-        </TouchableOpacity>
+        <Text style={styles.buttonText}>Care at Clinic</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonStyle} onPress={navigateToAdditionalNote}>
-          <Text style={styles.buttonText}>
-            Additional Notes
-          </Text>
-        </TouchableOpacity>
 
-        <View style={styles.accordion}>
+      <View style={styles.accordion}>
         <Accordion
           sections={SECTIONS2}
           activeSections={activeSections2}
@@ -491,8 +485,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     color: "white",
     padding: 12.5,
-    margin:10,
-    alignSelf:'center'
+    margin: 10,
+    alignSelf: "center",
   },
 });
 export default PregnancyDetails;
