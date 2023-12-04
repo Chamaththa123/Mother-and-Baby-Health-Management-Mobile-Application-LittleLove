@@ -48,7 +48,7 @@ const PregnancyDetails = ({ route }) => {
         headerTitleStyle: {
           fontWeight: "bold",
           color: "#57ADF8",
-          fontSize: 20,
+          fontSize: 19,
         },
         headerTintColor: "#57ADF8",
         headerShown: true,
