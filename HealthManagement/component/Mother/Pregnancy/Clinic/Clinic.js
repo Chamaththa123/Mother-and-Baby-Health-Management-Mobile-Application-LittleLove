@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import { useNavigation } from "@react-navigation/native";
+import VaccineInfo from "./VaccineInfo";
 
-const Clinic = () => {
+const Clinic = ({ route }) => {
   const navigation = useNavigation();
   const [index, setIndex] = useState(0);
+  const { pregnancyId } = route.params;
   const [routes] = useState([
     { key: "vaccine", title: "Vaccine Information" },
     { key: "clinic", title: "Clinic Information" },
@@ -30,26 +32,41 @@ const Clinic = () => {
     switch (route.key) {
       case "clinic":
         return (
-          <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-          >
-            <Text>Clinic Content</Text>
+          <View style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}>
+              {/* <VaccineInfo pregnancyId={pregnancyId} /> */}
+            </View>
+            <View style={styles.footer}>
+              <TouchableOpacity style={styles.buttonStyle}>
+                <Text style={styles.buttonText}>Add</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         );
       case "vaccine":
         return (
-          <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-          >
-            <Text>Vaccine Content</Text>
+          <View style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}>
+              <VaccineInfo pregnancyId={pregnancyId} />
+            </View>
+            <View style={styles.footer}>
+              <TouchableOpacity style={styles.buttonStyle}>
+                <Text style={styles.buttonText}>Add</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         );
       case "health":
         return (
-          <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-          >
-            <Text>health Content</Text>
+          <View style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}>
+              {/* <VaccineInfo pregnancyId={pregnancyId} /> */}
+            </View>
+            <View style={styles.footer}>
+              <TouchableOpacity style={styles.buttonStyle}>
+                <Text style={styles.buttonText}>Add</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         );
       default:
@@ -76,7 +93,7 @@ const Clinic = () => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
@@ -86,5 +103,41 @@ const Clinic = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    flex: 1,
+  },
+  footer: {
+    backgroundColor: "#fff",
+    alignItems: "center",
+    height: 10,
+  },
+  footerText: {
+    fontSize: 14,
+    color: "#333",
+  },
+  buttonStyle: {
+    backgroundColor: "#FF25A9",
+    padding: 13,
+    borderRadius: 10,
+    width: 60,
+    height: 50,
+    margin: 10,
+    marginLeft: 20,
+    marginTop: -50,
+    borderColor: "#FF25A9",
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "flex-end",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+});
 
 export default Clinic;
