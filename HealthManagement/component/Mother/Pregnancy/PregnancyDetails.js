@@ -291,9 +291,7 @@ const PregnancyDetails = ({ route }) => {
   );
 
   const renderContent2 = (section) => (
-    
-      <DeliveryInformation pregnancyId={pregnancyId} />
-    
+    <DeliveryInformation pregnancyId={pregnancyId} />
   );
   return (
     <ScrollView style={styles.container}>
@@ -302,30 +300,30 @@ const PregnancyDetails = ({ route }) => {
         <Text style={styles.header}>Obstetric History</Text>
         <View style={styles.row}>
           <Text style={styles.detailText}>Date of last menstrual period</Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
+          <View style={[styles.card2, { padding: 3 }]}>
+            <Text style={styles.detailText}>{PregnancyDetails.menstrual}</Text>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>Expected period of delivery</Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
+          <View style={[styles.card2, { padding: 3 }]}>
+            <Text style={[styles.detailText]}>{PregnancyDetails.delivery}</Text>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
             The date of the first felt fetal movement
           </Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
+          <View style={[styles.card2, { padding: 3 }]}>
+            <Text style={styles.detailText}>{PregnancyDetails.movement}</Text>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
             Number of gestational weeks at registration
           </Text>
-          <View style={styles.card2}>
-            <Text style={styles.detailText}>01/01</Text>
+          <View style={[styles.card2, { padding: 3 }]}>
+            <Text style={styles.detailText}>{PregnancyDetails.weeks}</Text>
           </View>
         </View>
       </View>
@@ -341,7 +339,6 @@ const PregnancyDetails = ({ route }) => {
       <TouchableOpacity style={styles.buttonStyle} onPress={navigateToClinic}>
         <Text style={styles.buttonText}>Care at Clinic</Text>
       </TouchableOpacity>
-
 
       <View style={styles.accordion}>
         <Accordion
@@ -438,7 +435,7 @@ const styles = StyleSheet.create({
   },
   detailText: {
     fontSize: 14,
-    marginBottom: 10,
+    marginBottom: 0,
   },
   row: {
     flexDirection: "row",
