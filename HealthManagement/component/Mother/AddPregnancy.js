@@ -620,7 +620,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     marginVertical: 5,
-    marginTop: 25,
+    marginTop: 5,
+    marginBottom: 10,
   },
   radioButton: {
     borderWidth: 1,
