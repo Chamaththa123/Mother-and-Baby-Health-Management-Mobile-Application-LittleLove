@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Alert,
   ScrollView,
-  TouchableOpacity,Image
+  TouchableOpacity,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../firebase/config";
@@ -17,24 +18,43 @@ const AddPregnancy = ({ route }) => {
   const navigation = useNavigation();
   const [motherDetails, setMotherDetails] = useState(null);
 
-  const [menstrual, setmenstrual] = useState("");
-  const [delivery, setdelivery] = useState("");
-  const [movement, setmovement] = useState("");
-  const [weeks, setweeks] = useState("");
+  // const [menstrual, setmenstrual] = useState("");
+  // const [delivery, setdelivery] = useState("");
+  // const [movement, setmovement] = useState("");
+  // const [weeks, setweeks] = useState("");
 
-  const [abortions, setabortions] = useState("");
-  const [Gestational, setGestational] = useState("");
+  // const [abortions, setabortions] = useState("");
+  // const [Gestational, setGestational] = useState("");
 
-  const [Antepartum, setAntepartum] = useState("");
-  const [Multiple, setMultiple] = useState("");
-  const [Casual, setCasual] = useState("");
-  const [POthers, setPOthers] = useState("");
+  // const [Antepartum, setAntepartum] = useState("");
+  // const [Multiple, setMultiple] = useState("");
+  // const [Casual, setCasual] = useState("");
+  // const [POthers, setPOthers] = useState("");
 
-  const [Diabetes, setDiabetes] = useState("");
-  const [malaria, setmalaria] = useState("");
-  const [Heart, setHeart] = useState("");
-  const [Renal, setRenal] = useState("");
-  const [OOthers, setOOthers] = useState("");
+  // const [Diabetes, setDiabetes] = useState("");
+  // const [malaria, setmalaria] = useState("");
+  // const [Heart, setHeart] = useState("");
+  // const [Renal, setRenal] = useState("");
+  // const [OOthers, setOOthers] = useState("");
+
+  const [Details, setDetails] = useState({
+    menstrual: "",
+    delivery: "",
+    movement: "",
+    weeks: "",
+    abortions: "",
+    Gestational: "",
+    Antepartum: "",
+    Multiple: "",
+    Casual: "",
+    POthers: "",
+    Diabetes: "",
+    malaria: "",
+    Heart: "",
+    Renal: "",
+    OOthers: "",
+  });
+  const [addedDetails, setAddedDetails] = useState(null);
 
   useEffect(() => {
     if (motherDetails) {
@@ -49,12 +69,64 @@ const AddPregnancy = ({ route }) => {
         title: `Add Pregnancy Details`,
         headerTitleAlign: "center",
       });
-    }else {
+    } else {
       navigation.setOptions({
         headerShown: false,
       });
     }
   }, [motherDetails, navigation]);
+
+  const handleSaveDetails = () => {
+    if (!addedDetails) {
+      firebase
+        .firestore()
+        .collection("pregnancy")
+        .add({
+          motherId: motherId,
+          menstrual: Details.menstrual,
+          delivery: Details.delivery,
+          movement: Details.movement,
+          weeks: Details.weeks,
+          abortions: Details.abortions,
+          Gestational: Details.Gestational,
+          Antepartum: Details.Antepartum,
+          Multiple: Details.Multiple,
+          Casual: Details.Casual,
+          POthers: Details.POthers,
+          Diabetes: Details.Diabetes,
+          malaria: Details.malaria,
+          Heart: Details.Heart,
+          Renal: Details.Renal,
+          OOthers: Details.OOthers,
+        })
+        .then(() => {
+          Alert.alert("Information Added Successfully!");
+          setAddedDetails({
+            motherId,
+            menstrual: Details.menstrual,
+            delivery: Details.delivery,
+            movement: Details.movement,
+            weeks: Details.weeks,
+            abortions: Details.abortions,
+            Gestational: Details.Gestational,
+            Antepartum: Details.Antepartum,
+            Multiple: Details.Multiple,
+            Casual: Details.Casual,
+            POthers: Details.POthers,
+            Diabetes: Details.Diabetes,
+            malaria: Details.malaria,
+            Heart: Details.Heart,
+            Renal: Details.Renal,
+            OOthers: Details.OOthers,
+          });
+        })
+        .catch((error) => {
+          console.error("Error adding details: ", error);
+        });
+    } else {
+      Alert.alert(" details already added");
+    }
+  };
 
   useEffect(() => {
     const fetchMotherDetails = async () => {
@@ -79,65 +151,65 @@ const AddPregnancy = ({ route }) => {
     fetchMotherDetails();
   }, [motherId]);
 
-  const handleAddPregnancy = async () => {
-    try {
-      if (motherId) {
-        const createdAt = firebase.firestore.FieldValue.serverTimestamp(); // Capture the server timestamp
+  // const handleAddPregnancy = async () => {
+  //   try {
+  //     if (motherId) {
+  //       const createdAt = firebase.firestore.FieldValue.serverTimestamp(); // Capture the server timestamp
 
-        await firebase.firestore().collection("pregnancy").add({
-          motherId: motherId,
-          menstrual: menstrual,
-          delivery: delivery,
-          movement: movement,
-          weeks: weeks,
-          abortions: abortions,
-          Gestational: Gestational,
-          Antepartum: Antepartum,
-          Multiple: Multiple,
-          Casual: Casual,
-          POthers: POthers,
-          Diabetes: Diabetes,
-          malaria: malaria,
-          Heart: Heart,
-          Renal: Renal,
-          OOthers: OOthers,
-          createdAt: createdAt, // Set the createdAt field with the captured timestamp
-        });
+  //       await firebase.firestore().collection("pregnancy").add({
+  //         motherId: motherId,
+  //         menstrual: menstrual,
+  //         delivery: delivery,
+  //         movement: movement,
+  //         weeks: weeks,
+  //         abortions: abortions,
+  //         Gestational: Gestational,
+  //         Antepartum: Antepartum,
+  //         Multiple: Multiple,
+  //         Casual: Casual,
+  //         POthers: POthers,
+  //         Diabetes: Diabetes,
+  //         malaria: malaria,
+  //         Heart: Heart,
+  //         Renal: Renal,
+  //         OOthers: OOthers,
+  //         createdAt: createdAt, // Set the createdAt field with the captured timestamp
+  //       });
 
-        Alert.alert(
-          "Success",
-          "Pregnancy details added successfully",
-          [
-            {
-              text: "OK",
-              onPress: () => {
-                setmenstrual("");
-                setdelivery("");
-                setmovement("");
-                setweeks("");
-                setabortions("");
-                setGestational("");
-                setAntepartum("");
-                setMultiple("");
-                setCasual("");
-                setPOthers("");
-                setDiabetes("");
-                setmalaria("");
-                setHeart("");
-                setRenal("");
-                setOOthers("");
-              },
-            },
-          ],
-          { cancelable: false }
-        );
-      } else {
-        console.error("Invalid data provided");
-      }
-    } catch (error) {
-      console.error("Error adding pregnancy: ", error);
-    }
-  };
+  //       Alert.alert(
+  //         "Success",
+  //         "Pregnancy details added successfully",
+  //         [
+  //           {
+  //             text: "OK",
+  //             onPress: () => {
+  //               setmenstrual("");
+  //               setdelivery("");
+  //               setmovement("");
+  //               setweeks("");
+  //               setabortions("");
+  //               setGestational("");
+  //               setAntepartum("");
+  //               setMultiple("");
+  //               setCasual("");
+  //               setPOthers("");
+  //               setDiabetes("");
+  //               setmalaria("");
+  //               setHeart("");
+  //               setRenal("");
+  //               setOOthers("");
+  //             },
+  //           },
+  //         ],
+  //         { cancelable: false }
+  //       );
+  //     } else {
+  //       console.error("Invalid data provided");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error adding pregnancy: ", error);
+  //   }
+  // };
 
   if (!motherDetails) {
     return (
@@ -161,21 +233,19 @@ const AddPregnancy = ({ route }) => {
             01. Date of last menstrual period
           </Text>
           <TextInput
-            placeholder="Enter Email"
+            placeholder="DD-MM-YYYY"
             style={styles.textBoxes}
-            onChangeText={(menstrual) => setmenstrual(menstrual)}
-            autoCapitalize="none"
-            autoCorrect={false}
+            value={Details.menstrual}
+            onChangeText={(text) => setDetails({ ...Details, menstrual: text })}
           />
         </View>
         <View>
           <Text style={styles.detailText}>02. Expected period of delivery</Text>
           <TextInput
-            placeholder="Enter Email"
+            placeholder="DD-MM-YYYY"
             style={styles.textBoxes}
-            onChangeText={(delivery) => setdelivery(delivery)}
-            autoCapitalize="none"
-            autoCorrect={false}
+            value={Details.delivery}
+            onChangeText={(text) => setDetails({ ...Details, delivery: text })}
           />
         </View>
         <View>
@@ -183,11 +253,10 @@ const AddPregnancy = ({ route }) => {
             03. The date of the first felt fetal movement
           </Text>
           <TextInput
-            placeholder="Enter Email"
+            placeholder="DD-MM-YYYY"
             style={styles.textBoxes}
-            onChangeText={(movement) => setmovement(movement)}
-            autoCapitalize="none"
-            autoCorrect={false}
+            value={Details.movement}
+            onChangeText={(text) => setDetails({ ...Details, movement: text })}
           />
         </View>
         <View>
@@ -195,131 +264,245 @@ const AddPregnancy = ({ route }) => {
             04. Number of gestational weeks at registration
           </Text>
           <TextInput
-            placeholder="Enter Email"
+            placeholder="DD-MM-YYYY"
             style={styles.textBoxes}
-            onChangeText={(weeks) => setweeks(weeks)}
-            autoCapitalize="none"
-            autoCorrect={false}
+            value={Details.weeks}
+            onChangeText={(text) => setDetails({ ...Details, weeks: text })}
           />
         </View>
         <Text style={styles.header}>Risk Conditions</Text>
         <Text style={styles.header2}>Previous Pregnancies</Text>
         <View>
           <Text style={styles.detailText}>01. Previous abortions</Text>
-          <TextInput
-            placeholder="Enter Email"
-            style={styles.textBoxes}
-            onChangeText={(abortions) => setabortions(abortions)}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
+          <View style={styles.radioButtons}>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.abortions === "1" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, abortions: "1" })}
+            >
+              <Text style={{ textAlign: "center" }}>Yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.abortions === "0" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, abortions: "0" })}
+            >
+              <Text style={{ textAlign: "center" }}>No</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View>
           <Text style={styles.detailText}>02. Gestational diseases</Text>
-          <TextInput
-            placeholder="Enter Email"
-            style={styles.textBoxes}
-            onChangeText={(Gestational) => setGestational(Gestational)}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
+          <View style={styles.radioButtons}>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Gestational === "1" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Gestational: "1" })}
+            >
+              <Text style={{ textAlign: "center" }}>Yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Gestational === "0" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Gestational: "0" })}
+            >
+              <Text style={{ textAlign: "center" }}>No</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <Text style={styles.header2}>Presnet Pregnancy</Text>
         <View>
           <Text style={styles.detailText}>01. Antepartum vaginal bleeding</Text>
-          <TextInput
-            placeholder="Enter Email"
-            style={styles.textBoxes}
-            onChangeText={(Antepartum) => setAntepartum(Antepartum)}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
+          <View style={styles.radioButtons}>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Antepartum === "1" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Antepartum: "1" })}
+            >
+              <Text style={{ textAlign: "center" }}>Yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Antepartum === "0" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Antepartum: "0" })}
+            >
+              <Text style={{ textAlign: "center" }}>No</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View>
           <Text style={styles.detailText}>02. Multiple pregnancy</Text>
-          <TextInput
-            placeholder="Enter Email"
-            style={styles.textBoxes}
-            onChangeText={(Multiple) => setMultiple(Multiple)}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
+          <View style={styles.radioButtons}>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Multiple === "1" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Multiple: "1" })}
+            >
+              <Text style={{ textAlign: "center" }}>Yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Multiple === "0" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Multiple: "0" })}
+            >
+              <Text style={{ textAlign: "center" }}>No</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View>
           <Text style={styles.detailText}>03. Casual position</Text>
-          <TextInput
-            placeholder="Enter Email"
-            style={styles.textBoxes}
-            onChangeText={(Casual) => setCasual(Casual)}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
+          <View style={styles.radioButtons}>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Casual === "1" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Casual: "1" })}
+            >
+              <Text style={{ textAlign: "center" }}>Yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Casual === "0" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Casual: "0" })}
+            >
+              <Text style={{ textAlign: "center" }}>No</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View>
           <Text style={styles.detailText}>04. Others(specify)</Text>
           <TextInput
-            placeholder="Enter Email"
+            placeholder="DD-MM-YYYY"
             style={styles.textBoxes}
-            onChangeText={(POthers) => setPOthers(POthers)}
-            autoCapitalize="none"
-            autoCorrect={false}
+            value={Details.POthers}
+            onChangeText={(text) => setDetails({ ...Details, POthers: text })}
           />
         </View>
         <Text style={styles.header2}>Other Maternal Conditions</Text>
         <View>
           <Text style={styles.detailText}>01. Diabetes</Text>
-          <TextInput
-            placeholder="Enter Email"
-            style={styles.textBoxes}
-            onChangeText={(Diabetes) => setDiabetes(Diabetes)}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
+          <View style={styles.radioButtons}>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Diabetes === "1" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Diabetes: "1" })}
+            >
+              <Text style={{ textAlign: "center" }}>Yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Diabetes === "0" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Diabetes: "0" })}
+            >
+              <Text style={{ textAlign: "center" }}>No</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View>
           <Text style={styles.detailText}>02. malaria</Text>
-          <TextInput
-            placeholder="Enter Email"
-            style={styles.textBoxes}
-            onChangeText={(malaria) => setmalaria(malaria)}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
+          <View style={styles.radioButtons}>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.malaria === "1" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, malaria: "1" })}
+            >
+              <Text style={{ textAlign: "center" }}>Yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.malaria === "0" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, malaria: "0" })}
+            >
+              <Text style={{ textAlign: "center" }}>No</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View>
           <Text style={styles.detailText}>03. Heart Disease</Text>
-          <TextInput
-            placeholder="Enter Email"
-            style={styles.textBoxes}
-            onChangeText={(Heart) => setHeart(Heart)}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
+          <View style={styles.radioButtons}>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Heart === "1" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Heart: "1" })}
+            >
+              <Text style={{ textAlign: "center" }}>Yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Heart === "0" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Heart: "0" })}
+            >
+              <Text style={{ textAlign: "center" }}>No</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View>
           <Text style={styles.detailText}>04. Renal Disease</Text>
-          <TextInput
-            placeholder="Enter Email"
-            style={styles.textBoxes}
-            onChangeText={(Renal) => setRenal(Renal)}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
+          <View style={styles.radioButtons}>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Renal === "1" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Renal: "1" })}
+            >
+              <Text style={{ textAlign: "center" }}>Yes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.radioButton,
+                Details.Renal === "0" && styles.selectedRadioButton,
+              ]}
+              onPress={() => setDetails({ ...Details, Renal: "0" })}
+            >
+              <Text style={{ textAlign: "center" }}>No</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View>
           <Text style={styles.detailText}>05. Others(specify)</Text>
           <TextInput
-            placeholder="Enter Email"
+            placeholder="DD-MM-YYYY"
             style={styles.textBoxes}
-            onChangeText={(OOthers) => setOOthers(OOthers)}
-            autoCapitalize="none"
-            autoCorrect={false}
+            value={Details.OOthers}
+            onChangeText={(text) => setDetails({ ...Details, OOthers: text })}
           />
         </View>
 
         <TouchableOpacity
           style={styles.buttonStyle}
-          onPress={handleAddPregnancy}
+          onPress={handleSaveDetails}
         >
           <Text style={styles.buttonText}>Add Pregnancy Details</Text>
         </TouchableOpacity>
@@ -431,6 +614,24 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 15,
     fontWeight: "bold",
+  },
+  radioButtons: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    marginVertical: 5,
+    marginTop: 25,
+  },
+  radioButton: {
+    borderWidth: 1,
+    borderColor: "#FF25A9",
+    borderRadius: 5,
+    padding: 10,
+    width: 100,
+  },
+  selectedRadioButton: {
+    backgroundColor: "#00FF00",
+    borderColor: "#00FF00",
   },
 });
 
