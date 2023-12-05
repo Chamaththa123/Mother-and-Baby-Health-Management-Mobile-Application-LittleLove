@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  Keyboard,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { firebase } from "../../firebase/config";
@@ -20,6 +21,7 @@ const AddPregnancy = ({ route }) => {
 
   const [Details, setDetails] = useState({
     menstrual: "",
+    time: "",
     delivery: "",
     movement: "",
     weeks: "",
@@ -43,7 +45,7 @@ const AddPregnancy = ({ route }) => {
         headerTitleStyle: {
           fontWeight: "bold",
           color: "#57ADF8",
-          fontSize: 20,
+          fontSize: 18,
         },
         headerTintColor: "#57ADF8",
         headerShown: true,
@@ -57,6 +59,69 @@ const AddPregnancy = ({ route }) => {
     }
   }, [motherDetails, navigation]);
 
+  const handleMenstrual = (text) => {
+    const formattedText = text.replace(/\D/g, "");
+
+    if (formattedText.length <= 2) {
+      setDetails({ ...Details, menstrual: formattedText });
+    } else if (formattedText.length <= 4) {
+      setDetails({
+        ...Details,
+        menstrual: `${formattedText.slice(0, 2)}-${formattedText.slice(2)}`,
+      });
+    } else {
+      setDetails({
+        ...Details,
+        menstrual: `${formattedText.slice(0, 2)}-${formattedText.slice(
+          2,
+          4
+        )}-${formattedText.slice(4, 8)}`,
+      });
+    }
+  };
+
+  const handleDelivery = (text) => {
+    const formattedText = text.replace(/\D/g, "");
+
+    if (formattedText.length <= 2) {
+      setDetails({ ...Details, delivery: formattedText });
+    } else if (formattedText.length <= 4) {
+      setDetails({
+        ...Details,
+        delivery: `${formattedText.slice(0, 2)}-${formattedText.slice(2)}`,
+      });
+    } else {
+      setDetails({
+        ...Details,
+        delivery: `${formattedText.slice(0, 2)}-${formattedText.slice(
+          2,
+          4
+        )}-${formattedText.slice(4, 8)}`,
+      });
+    }
+  };
+
+  const handleMovement = (text) => {
+    const formattedText = text.replace(/\D/g, "");
+
+    if (formattedText.length <= 2) {
+      setDetails({ ...Details, movement: formattedText });
+    } else if (formattedText.length <= 4) {
+      setDetails({
+        ...Details,
+        movement: `${formattedText.slice(0, 2)}-${formattedText.slice(2)}`,
+      });
+    } else {
+      setDetails({
+        ...Details,
+        movement: `${formattedText.slice(0, 2)}-${formattedText.slice(
+          2,
+          4
+        )}-${formattedText.slice(4, 8)}`,
+      });
+    }
+  };
+
   const handleSaveDetails = () => {
     if (!addedDetails) {
       firebase
@@ -65,6 +130,7 @@ const AddPregnancy = ({ route }) => {
         .add({
           motherId: motherId,
           menstrual: Details.menstrual,
+          time: Details.time,
           delivery: Details.delivery,
           movement: Details.movement,
           weeks: Details.weeks,
@@ -84,6 +150,7 @@ const AddPregnancy = ({ route }) => {
           Alert.alert("Information Added Successfully!");
           setAddedDetails({
             motherId,
+            time: Details.time,
             menstrual: Details.menstrual,
             delivery: Details.delivery,
             movement: Details.movement,
@@ -149,45 +216,66 @@ const AddPregnancy = ({ route }) => {
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <Text style={styles.header}>Obstetric History</Text>
-        <View>
+        <Text></Text>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>01. Pregnancy</Text>
+          <TextInput
+            placeholder=""
+            style={[styles.textBoxes, { marginTop: -15, width: "29%" }]}
+            value={Details.time}
+            keyboardType="numeric"
+            onChangeText={(text) => setDetails({ ...Details, time: text })}
+          />
+        </View>
+        <View style={styles.row}>
           <Text style={styles.detailText}>
-            01. Date of last menstrual period
+            02. Date of last menstrual period
           </Text>
           <TextInput
             placeholder="DD-MM-YYYY"
-            style={styles.textBoxes}
+            style={[styles.textBoxes, { marginTop: -15, width: "29%" }]}
             value={Details.menstrual}
-            onChangeText={(text) => setDetails({ ...Details, menstrual: text })}
+            onChangeText={handleMenstrual}
+            keyboardType="numeric"
+            maxLength={10}
+            onBlur={() => Keyboard.dismiss()}
           />
         </View>
-        <View>
-          <Text style={styles.detailText}>02. Expected period of delivery</Text>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>03. Expected period of delivery</Text>
           <TextInput
             placeholder="DD-MM-YYYY"
-            style={styles.textBoxes}
+            style={[styles.textBoxes, { marginTop: -15, width: "29%" }]}
             value={Details.delivery}
-            onChangeText={(text) => setDetails({ ...Details, delivery: text })}
+            onChangeText={handleDelivery}
+            keyboardType="numeric"
+            maxLength={10}
+            onBlur={() => Keyboard.dismiss()}
           />
         </View>
-        <View>
+        <View style={styles.row}>
           <Text style={styles.detailText}>
-            03. The date of the first felt fetal movement
+            04. The date of the first felt fetal movement
           </Text>
           <TextInput
             placeholder="DD-MM-YYYY"
-            style={styles.textBoxes}
+            style={[styles.textBoxes, { marginTop: -15, width: "29%" }]}
             value={Details.movement}
-            onChangeText={(text) => setDetails({ ...Details, movement: text })}
+            onChangeText={handleMovement}
+            keyboardType="numeric"
+            maxLength={10}
+            onBlur={() => Keyboard.dismiss()}
           />
         </View>
-        <View>
+        <View style={styles.row}>
           <Text style={styles.detailText}>
-            04. Number of gestational weeks at registration
+            05. No of gestational weeks at registration
           </Text>
           <TextInput
-            placeholder="DD-MM-YYYY"
-            style={styles.textBoxes}
+            placeholder=""
+            style={[styles.textBoxes, { marginTop: -15, width: "29%" }]}
             value={Details.weeks}
+            keyboardType="numeric"
             onChangeText={(text) => setDetails({ ...Details, weeks: text })}
           />
         </View>
@@ -312,7 +400,7 @@ const AddPregnancy = ({ route }) => {
         <View>
           <Text style={styles.detailText}>04. Others(specify)</Text>
           <TextInput
-            placeholder="DD-MM-YYYY"
+            placeholder=""
             style={styles.textBoxes}
             value={Details.POthers}
             onChangeText={(text) => setDetails({ ...Details, POthers: text })}
@@ -414,7 +502,7 @@ const AddPregnancy = ({ route }) => {
         <View>
           <Text style={styles.detailText}>05. Others(specify)</Text>
           <TextInput
-            placeholder="DD-MM-YYYY"
+            placeholder=""
             style={styles.textBoxes}
             value={Details.OOthers}
             onChangeText={(text) => setDetails({ ...Details, OOthers: text })}
@@ -517,7 +605,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
   },
   buttonStyle: {
     backgroundColor: "#FF25A9",
