@@ -18,25 +18,6 @@ const AddPregnancy = ({ route }) => {
   const navigation = useNavigation();
   const [motherDetails, setMotherDetails] = useState(null);
 
-  // const [menstrual, setmenstrual] = useState("");
-  // const [delivery, setdelivery] = useState("");
-  // const [movement, setmovement] = useState("");
-  // const [weeks, setweeks] = useState("");
-
-  // const [abortions, setabortions] = useState("");
-  // const [Gestational, setGestational] = useState("");
-
-  // const [Antepartum, setAntepartum] = useState("");
-  // const [Multiple, setMultiple] = useState("");
-  // const [Casual, setCasual] = useState("");
-  // const [POthers, setPOthers] = useState("");
-
-  // const [Diabetes, setDiabetes] = useState("");
-  // const [malaria, setmalaria] = useState("");
-  // const [Heart, setHeart] = useState("");
-  // const [Renal, setRenal] = useState("");
-  // const [OOthers, setOOthers] = useState("");
-
   const [Details, setDetails] = useState({
     menstrual: "",
     delivery: "",
@@ -150,66 +131,6 @@ const AddPregnancy = ({ route }) => {
 
     fetchMotherDetails();
   }, [motherId]);
-
-  // const handleAddPregnancy = async () => {
-  //   try {
-  //     if (motherId) {
-  //       const createdAt = firebase.firestore.FieldValue.serverTimestamp(); // Capture the server timestamp
-
-  //       await firebase.firestore().collection("pregnancy").add({
-  //         motherId: motherId,
-  //         menstrual: menstrual,
-  //         delivery: delivery,
-  //         movement: movement,
-  //         weeks: weeks,
-  //         abortions: abortions,
-  //         Gestational: Gestational,
-  //         Antepartum: Antepartum,
-  //         Multiple: Multiple,
-  //         Casual: Casual,
-  //         POthers: POthers,
-  //         Diabetes: Diabetes,
-  //         malaria: malaria,
-  //         Heart: Heart,
-  //         Renal: Renal,
-  //         OOthers: OOthers,
-  //         createdAt: createdAt, // Set the createdAt field with the captured timestamp
-  //       });
-
-  //       Alert.alert(
-  //         "Success",
-  //         "Pregnancy details added successfully",
-  //         [
-  //           {
-  //             text: "OK",
-  //             onPress: () => {
-  //               setmenstrual("");
-  //               setdelivery("");
-  //               setmovement("");
-  //               setweeks("");
-  //               setabortions("");
-  //               setGestational("");
-  //               setAntepartum("");
-  //               setMultiple("");
-  //               setCasual("");
-  //               setPOthers("");
-  //               setDiabetes("");
-  //               setmalaria("");
-  //               setHeart("");
-  //               setRenal("");
-  //               setOOthers("");
-  //             },
-  //           },
-  //         ],
-  //         { cancelable: false }
-  //       );
-  //     } else {
-  //       console.error("Invalid data provided");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error adding pregnancy: ", error);
-  //   }
-  // };
 
   if (!motherDetails) {
     return (
