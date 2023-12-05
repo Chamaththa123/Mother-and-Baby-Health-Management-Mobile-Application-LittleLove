@@ -28,6 +28,10 @@ const Clinic = ({ route }) => {
     });
   }, [navigation]);
 
+  const AddVaccine = () => {
+    navigation.navigate('AddVaccine', { pregnancyId: pregnancyId });
+  };
+
   const renderScene = ({ route }) => {
     switch (route.key) {
       case "clinic":
@@ -50,7 +54,7 @@ const Clinic = ({ route }) => {
               <VaccineInfo pregnancyId={pregnancyId} />
             </View>
             <View style={styles.footer}>
-              <TouchableOpacity style={styles.buttonStyle}>
+              <TouchableOpacity style={styles.buttonStyle} onPress={AddVaccine}>
                 <Text style={styles.buttonText}>Add</Text>
               </TouchableOpacity>
             </View>

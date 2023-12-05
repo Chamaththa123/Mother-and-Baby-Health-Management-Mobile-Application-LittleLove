@@ -20,6 +20,7 @@ import AddBaby from "./component/Mother/Baby/AddBaby";
 import DeliveryInformation from "./component/Mother/Pregnancy/DeliveryInformation";
 import AdditionalNote from "./component/Mother/Pregnancy/AdditionalNote";
 import Clinic from "./component/Mother/Pregnancy/Clinic/Clinic";
+import AddVaccine from "./component/Mother/Pregnancy/Clinic/AddVaccine";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -68,6 +69,7 @@ const App = () => {
       <Stack.Screen name="DeliveryInformation" component={DeliveryInformation} />
       <Stack.Screen name="AdditionalNote" component={AdditionalNote} />
       <Stack.Screen name="Clinic" component={Clinic} />
+      <Stack.Screen name="AddVaccine" component={AddVaccine} />
 
     </Stack.Navigator>
   );

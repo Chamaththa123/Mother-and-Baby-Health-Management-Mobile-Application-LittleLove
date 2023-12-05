@@ -5,11 +5,51 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { firebase } from "../../../../firebase/config";
 const VaccineInfo = ({ pregnancyId }) => {
-  const a = 12;
+  const [vaccineDetails, setVaccineDetails] = useState([]);
+  const [vaccineCount, setVaccineCount] = useState(0);
 
+  useEffect(() => {
+    const fetchVaccineDetails = async () => {
+      try {
+        const vaccineRef = firebase.firestore().collection("vaccine");
+        const snapshot = await vaccineRef
+          .where("pregnancyId", "==", pregnancyId)
+          .get();
+
+        const details = [];
+        snapshot.forEach((doc) => {
+          details.push({ id: doc.id, ...doc.data() });
+        });
+        setVaccineDetails(details);
+        setVaccineCount(details.length);
+      } catch (error) {
+        console.error("Error fetching vaccine details: ", error);
+      }
+    };
+
+    fetchVaccineDetails();
+  }, [pregnancyId]);
+
+  const renderVaccineDetails = () => {
+    return vaccineDetails.map((vaccine, index) => (
+      <View key={index} style={styles.card1}>
+        <View style={styles.row1}>
+          <Text style={styles.type}>{vaccine.type}</Text>
+          <Text>{vaccine.date}</Text>
+        </View>
+        <View style={styles.row1}>
+          <Text>Batch No: {vaccine.batch}</Text>
+          <Text>Gestational Weeks: {vaccine.week}</Text>
+        </View>
+      </View>
+    ));
+  };
+
+  const a = (vaccineCount / 6) * 20;
+  const b = (a / 20) * 100;
   const renderTextWithColor = (index) => {
     if (index < a) {
       return <View style={styles.card2}></View>;
@@ -28,8 +68,14 @@ const VaccineInfo = ({ pregnancyId }) => {
               {renderTextWithColor(index)}
             </React.Fragment>
           ))}
-          <Text style={styles.progress}>12%</Text>
+          <Text style={styles.precentage}>{b.toFixed(0)}%</Text>
         </View>
+        <Text style={styles.header2}>Vaccine Information</Text>
+        {vaccineDetails.length > 0 ? (
+          renderVaccineDetails()
+        ) : (
+          <Text>No vaccine information available</Text>
+        )}
       </View>
     </ScrollView>
   );
@@ -47,6 +93,28 @@ const styles = StyleSheet.create({
   progress: {
     fontSize: 16,
     marginBottom: "-3%",
+  },
+  header2: {
+    fontSize: 16,
+  },
+  precentage: {
+    fontSize: 16,
+  },
+  type: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#57ADF8",
+  },
+  card1: {
+    backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#FF25A9",
+    marginTop: 20,
+    padding: 10,
+    borderRadius: 10,
+    width: "100%",
+    margin: 10,
+    alignSelf: "center",
   },
   card2: {
     backgroundColor: "#00FF00",
@@ -92,6 +160,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     margin: "10%",
+  },
+  row1: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   coloredText: {
     marginRight: 10,
