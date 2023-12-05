@@ -266,16 +266,8 @@ const PregnancyDetails = ({ route }) => {
     </View>
   );
 
-  const navigateToDeliveryInformation = () => {
-    navigation.navigate("DeliveryInformation", { pregnancyId: pregnancyId });
-  };
-
-  const navigateToAdditionalNote = () => {
-    navigation.navigate("AdditionalNote");
-  };
-
   const navigateToClinic = () => {
-    navigation.navigate("Clinic");
+    navigation.navigate("Clinic", { pregnancyId: pregnancyId });
   };
 
   const SECTIONS2 = [
