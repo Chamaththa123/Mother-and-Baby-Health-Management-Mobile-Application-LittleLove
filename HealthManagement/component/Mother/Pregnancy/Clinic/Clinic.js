@@ -4,6 +4,8 @@ import { TabView, TabBar } from "react-native-tab-view";
 import { useNavigation } from "@react-navigation/native";
 import VaccineInfo from "./VaccineInfo";
 import ClinicInfo from "./ClinicInfo";
+import Graphs from "../../../HealthGraphs/Graphs";
+
 
 const Clinic = ({ route }) => {
   const navigation = useNavigation();
@@ -70,7 +72,7 @@ const Clinic = ({ route }) => {
         return (
           <View style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
-              {/* <VaccineInfo pregnancyId={pregnancyId} /> */}
+              <Graphs pregnancyId={pregnancyId} />
             </View>
             <View style={styles.footer}>
               <TouchableOpacity style={styles.buttonStyle}>
