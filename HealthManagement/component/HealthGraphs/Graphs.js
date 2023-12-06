@@ -1,11 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import MaternalWeight from './MaternalWeight'
+import MWeight from './MWeight'
+
 
 const Graphs = ({pregnancyId}) => {
   return (
     <View>
-      <MaternalWeight  pregnancyId={pregnancyId}/>
+      <MWeight  pregnancyId={pregnancyId}/>
     </View>
   )
 }

@@ -14,7 +14,7 @@ const ClinicInfo = ({ pregnancyId }) => {
   useEffect(() => {
     const fetchClinicDetails = async () => {
       try {
-        const clinicRef = firebase.firestore().collection("clinic");
+        const clinicRef = firebase.firestore().collection("clinicdetails");
         const snapshot = await clinicRef
           .where("pregnancyId", "==", pregnancyId)
           .get();

@@ -82,7 +82,7 @@ const AddClinic = ({ route }) => {
     if (!addedDetails) {
       firebase
         .firestore()
-        .collection("clinic")
+        .collection("clinicdetails")
         .add({
           pregnancyId: pregnancyId,
           date: Details.date,
