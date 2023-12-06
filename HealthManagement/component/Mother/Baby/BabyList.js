@@ -5,20 +5,13 @@ import { useNavigation } from "@react-navigation/native";
 const BabyList = ({ pregnancyId }) => {
     const navigation = useNavigation();
 
-    const navigateToAddBaby = () => {
-        navigation.navigate('AddBaby', { pregnancyId: pregnancyId });
-      };
 
   return (
     <View style={styles.container}>
         <View style={styles.card}>
-            <View style={styles.row}>
-            <Text style={styles.header}>Child</Text>
-            <TouchableOpacity style={styles.buttonStyle} onPress={navigateToAddBaby}>
-          <Text style={styles.buttonText}>
-            Add Child
-          </Text>
-        </TouchableOpacity>
+            <View>
+            <Text style={styles.header}>Baby</Text>
+            <Text  style={styles.info}>(Use add button to add baby details)</Text>
             </View>
         
         </View>
@@ -30,14 +23,13 @@ const BabyList = ({ pregnancyId }) => {
 const styles = StyleSheet.create({
   container: {
    flex:1,
-   margin:10
   },
   card: {
     backgroundColor: "#fff",
     borderWidth: 1,
     borderColor: "#FF25A9",
     marginTop: 20,
-    padding: 0,
+    padding: 10,
     paddingTop: 0,
     paddingBottom: 0,
     borderRadius: 10,
@@ -69,6 +61,12 @@ const styles = StyleSheet.create({
     color: "white",
     padding: 12.5,
     alignSelf:'center'
+  },
+  info:{
+    margin:0,
+    marginBottom:20,
+    marginLeft:0,
+    fontSize:13
   },
 });
 export default BabyList;

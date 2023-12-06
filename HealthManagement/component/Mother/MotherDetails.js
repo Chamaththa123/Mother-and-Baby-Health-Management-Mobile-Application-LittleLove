@@ -108,7 +108,8 @@ const MotherDetails = ({ route }) => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollContainer}>
       <View style={styles.card}>
         <View style={styles.row}>
           <Image source={Mother} style={styles.Image} />
@@ -116,7 +117,7 @@ const MotherDetails = ({ route }) => {
         </View>
         <Text style={styles.headerRNo}>{motherDetails.register_No}</Text>
       </View>
-      <View style={styles.card2}>
+      <View style={{marginTop:20}}>
         <View style={styles.row}>
           <Text style={styles.detailText}>
             Email
@@ -146,16 +147,11 @@ const MotherDetails = ({ route }) => {
       </View>
 
       {/* mother preganacy */}
-      <View style={styles.card2}>
+      <View>
         <View style={styles.row1}>
-          <Text style={styles.topic}>Pregnancy</Text>
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={handleAddPregnancy}
-          >
-            <Text style={styles.buttonText}>Add Pregnancy</Text>
-          </TouchableOpacity>
+          <Text style={styles.topic}>Pregnancy Period</Text>
         </View>
+        <Text  style={styles.info}>(Use add button to add pregnancy details)</Text>
         {pregnancyDetails.map((detail) => (
           <TouchableOpacity
             key={detail.id}
@@ -170,6 +166,15 @@ const MotherDetails = ({ route }) => {
         ))}
       </View>
     </ScrollView>
+    <View style={styles.footer}>
+    <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={handleAddPregnancy}
+          >
+            <Text style={styles.buttonText}>Add</Text>
+          </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
@@ -209,6 +214,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+    padding:10
+  },
+  scrollContainer: {
+    flex: 1,
   },
   detailContainer: {
     marginBottom: 20,
@@ -235,7 +244,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: "bold",
     marginTop: 20,
-    marginLeft: 10,
   },
   headerName: {
     fontSize: 20,
@@ -253,24 +261,22 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: "#FF25A9",
-    marginTop: 10,
+    marginTop: 0,
     padding: 15,
     borderRadius: 10,
-    width: "95%",
-    margin: 10,
+    width: "100%",
     alignSelf: "center",
   },
   card2: {
     backgroundColor: "#fff",
     borderWidth: 1,
     borderColor: "#FF25A9",
-    marginTop: 0,
+    marginTop: 10,
     padding: 10,
     paddingTop: 0,
     paddingBottom: 0,
     borderRadius: 10,
-    width: "95%",
-    margin: 10,
+    width: "100%",
     alignSelf: "center",
   },
   card3: {
@@ -280,10 +286,24 @@ const styles = StyleSheet.create({
     marginTop: 0,
     padding: 10,
     borderRadius: 10,
-    width: "95%",
+    width: "100%",
     margin: 10,
     alignSelf: "center",
     justifyContent: "center",
+  },
+  footer: {
+    backgroundColor: "#fff",
+    padding: 1,
+  },
+  footerText: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  info:{
+    margin:0,
+    marginBottom:20,
+    marginLeft:0,
+    fontSize:13
   },
   row: {
     flexDirection: "row",
@@ -304,15 +324,15 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: "#57ADF8",
     borderRadius: 10,
-    width: 115,
-    height: 45,
-    margin: 10,
+    width: 60,
+    height: 50,
     marginLeft: 0,
-    marginBottom: 20,
+    marginBottom: 5,
     borderColor: "#57ADF8",
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
+    alignSelf:'flex-end'
   },
   buttonText: {
     color: "white",
