@@ -30,11 +30,11 @@ const Clinic = ({ route }) => {
   }, [navigation]);
 
   const AddVaccine = () => {
-    navigation.navigate('AddVaccine', { pregnancyId: pregnancyId });
+    navigation.navigate("AddVaccine", { pregnancyId: pregnancyId });
   };
 
   const AddClinic = () => {
-    navigation.navigate('AddClinic', { pregnancyId: pregnancyId });
+    navigation.navigate("AddClinic", { pregnancyId: pregnancyId });
   };
 
   const renderScene = ({ route }) => {
@@ -44,7 +44,7 @@ const Clinic = ({ route }) => {
           <View style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
               {/* <VaccineInfo pregnancyId={pregnancyId} /> */}
-              <ClinicInfo pregnancyId={pregnancyId}/>
+              <ClinicInfo pregnancyId={pregnancyId} />
             </View>
             <View style={styles.footer}>
               <TouchableOpacity style={styles.buttonStyle} onPress={AddClinic}>
