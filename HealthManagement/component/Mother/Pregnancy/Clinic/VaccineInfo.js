@@ -34,7 +34,11 @@ const VaccineInfo = ({ pregnancyId }) => {
   }, [pregnancyId]);
 
   const renderVaccineDetails = () => {
-    return vaccineDetails.map((vaccine, index) => (
+    const sortedVaccineDetails = vaccineDetails.slice().sort((a, b) => {
+      return parseInt(b.week) - parseInt(a.week);
+    });
+
+    return sortedVaccineDetails.map((vaccine, index) => (
       <View key={index} style={styles.card1}>
         <View style={styles.row1}>
           <Text style={styles.type}>{vaccine.type}</Text>
@@ -61,7 +65,7 @@ const VaccineInfo = ({ pregnancyId }) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
       <View style={styles.container}>
-        <Text style={styles.progress}>Current Vaccine Progress</Text>
+        <Text style={styles.header2}>Current Vaccine Progress</Text>
         <View style={styles.row}>
           {[...Array(20).keys()].map((index) => (
             <React.Fragment key={index}>
@@ -95,13 +99,14 @@ const styles = StyleSheet.create({
     marginBottom: "-3%",
   },
   header2: {
-    fontSize: 16,
+    fontSize: 17,
+    fontWeight: "bold",
   },
   precentage: {
     fontSize: 16,
   },
   type: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
     color: "#57ADF8",
   },

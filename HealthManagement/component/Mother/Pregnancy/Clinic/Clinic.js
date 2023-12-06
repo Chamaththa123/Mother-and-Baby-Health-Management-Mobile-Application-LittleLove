@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import { useNavigation } from "@react-navigation/native";
 import VaccineInfo from "./VaccineInfo";
+import ClinicInfo from "./ClinicInfo";
 
 const Clinic = ({ route }) => {
   const navigation = useNavigation();
@@ -32,6 +33,10 @@ const Clinic = ({ route }) => {
     navigation.navigate('AddVaccine', { pregnancyId: pregnancyId });
   };
 
+  const AddClinic = () => {
+    navigation.navigate('AddClinic', { pregnancyId: pregnancyId });
+  };
+
   const renderScene = ({ route }) => {
     switch (route.key) {
       case "clinic":
@@ -39,9 +44,10 @@ const Clinic = ({ route }) => {
           <View style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
               {/* <VaccineInfo pregnancyId={pregnancyId} /> */}
+              <ClinicInfo pregnancyId={pregnancyId}/>
             </View>
             <View style={styles.footer}>
-              <TouchableOpacity style={styles.buttonStyle}>
+              <TouchableOpacity style={styles.buttonStyle} onPress={AddClinic}>
                 <Text style={styles.buttonText}>Add</Text>
               </TouchableOpacity>
             </View>
