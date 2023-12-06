@@ -288,46 +288,217 @@ const PregnancyDetails = ({ route }) => {
   return (
     <ScrollView style={styles.container}>
       <BabyList pregnancyId={pregnancyId} />
-      <View style={styles.card1}>
+      <View>
         <Text style={styles.header}>Obstetric History</Text>
         <View style={styles.row}>
-          <Text style={styles.detailText}>Date of last menstrual period</Text>
-          <View style={[styles.card2, { padding: 3 }]}>
+          <Text style={styles.detailText}>01. Date of last menstrual period</Text>
+          <View >
             <Text style={styles.detailText}>{PregnancyDetails.menstrual}</Text>
           </View>
         </View>
         <View style={styles.row}>
-          <Text style={styles.detailText}>Expected period of delivery</Text>
-          <View style={[styles.card2, { padding: 3 }]}>
+          <Text style={styles.detailText}>02. Expected period of delivery</Text>
+          <View >
             <Text style={[styles.detailText]}>{PregnancyDetails.delivery}</Text>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
-            The date of the first felt fetal movement
+            03. The date of the first felt fetal movement
           </Text>
-          <View style={[styles.card2, { padding: 3 }]}>
+          <View >
             <Text style={styles.detailText}>{PregnancyDetails.movement}</Text>
           </View>
         </View>
         <View style={styles.row}>
           <Text style={styles.detailText}>
-            Number of gestational weeks at registration
+            04. No of gestational weeks at registration
           </Text>
-          <View style={[styles.card2, { padding: 3 }]}>
+          <View >
             <Text style={styles.detailText}>{PregnancyDetails.weeks}</Text>
           </View>
         </View>
       </View>
-      <View style={styles.accordion}>
-        <Accordion
-          sections={SECTIONS1}
-          activeSections={activeSections1}
-          renderHeader={renderHeader1}
-          renderContent={renderContent1}
-          onChange={setActiveSections1}
-        />
+      
+      <View>
+      <View style={[styles.card1, { marginTop: 10 }]}>
+      <View
+        style={[
+          styles.row,
+          { paddingRight: 10, marginTop: 15, marginBottom: 10 },
+        ]}
+      >
+        <View style={[styles.card3, { backgroundColor: "#00FF00" }]}></View>
+        <Text style={styles.detailText}>Yes</Text>
+        <View style={[styles.card3, { backgroundColor: "#FF0000" }]}></View>
+        <Text style={styles.detailText}>No</Text>
+        <View style={[styles.card3, { backgroundColor: "#CCCCCC" }]}></View>
+        <Text style={styles.detailText}>Not mentioned</Text>
       </View>
+      </View>
+      <View>
+        <Text style={styles.header}>Risk Conditions</Text>
+        <Text style={styles.header2}>Previous Pregnancies</Text>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Previous abortions</Text>
+          <View
+            style={[
+              styles.card3,
+              {
+                backgroundColor:
+                  PregnancyDetails.abortions === "1"
+                    ? "#00FF00"
+                    : PregnancyDetails.abortions === "0"
+                    ? "#FF0000"
+                    : "#CCCCCC",
+              },
+            ]}
+          ></View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Gestational diseases</Text>
+          <View
+            style={[
+              styles.card3,
+              {
+                backgroundColor:
+                  PregnancyDetails.Gestational === "1"
+                    ? "#00FF00"
+                    : PregnancyDetails.Gestational === "0"
+                    ? "#FF0000"
+                    : "#CCCCCC",
+              },
+            ]}
+          ></View>
+        </View>
+        <Text style={styles.header2}>Presnet Pregnancy</Text>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Antepartum vaginal bleeding</Text>
+          <View
+            style={[
+              styles.card3,
+              {
+                backgroundColor:
+                  PregnancyDetails.Antepartum === "1"
+                    ? "#00FF00"
+                    : PregnancyDetails.Antepartum === "0"
+                    ? "#FF0000"
+                    : "#CCCCCC",
+              },
+            ]}
+          ></View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Multiple pregnancy</Text>
+          <View
+            style={[
+              styles.card3,
+              {
+                backgroundColor:
+                  PregnancyDetails.Multiple === "1"
+                    ? "#00FF00"
+                    : PregnancyDetails.Multiple === "0"
+                    ? "#FF0000"
+                    : "#CCCCCC",
+              },
+            ]}
+          ></View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Casual position</Text>
+          <View
+            style={[
+              styles.card3,
+              {
+                backgroundColor:
+                  PregnancyDetails.Casual === "1"
+                    ? "#00FF00"
+                    : PregnancyDetails.Casual === "0"
+                    ? "#FF0000"
+                    : "#CCCCCC",
+              },
+            ]}
+          ></View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Others</Text>
+        </View>
+        <Text style={styles.other}>{PregnancyDetails.POthers}</Text>
+      </View>
+
+      <View >
+        <Text style={styles.header}>Other Maternal Conditions</Text>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Diabetes</Text>
+          <View
+            style={[
+              styles.card3,
+              {
+                backgroundColor:
+                  PregnancyDetails.Diabetes === "1"
+                    ? "#00FF00"
+                    : PregnancyDetails.Diabetes === "0"
+                    ? "#FF0000"
+                    : "#CCCCCC",
+              },
+            ]}
+          ></View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Malaria</Text>
+          <View
+            style={[
+              styles.card3,
+              {
+                backgroundColor:
+                  PregnancyDetails.malaria === "1"
+                    ? "#00FF00"
+                    : PregnancyDetails.malaria === "0"
+                    ? "#FF0000"
+                    : "#CCCCCC",
+              },
+            ]}
+          ></View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Heart Disease</Text>
+          <View
+            style={[
+              styles.card3,
+              {
+                backgroundColor:
+                  PregnancyDetails.Heart === "1"
+                    ? "#00FF00"
+                    : PregnancyDetails.Heart === "0"
+                    ? "#FF0000"
+                    : "#CCCCCC",
+              },
+            ]}
+          ></View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Renal Disease</Text>
+          <View
+            style={[
+              styles.card3,
+              {
+                backgroundColor:
+                  PregnancyDetails.Renal === "1"
+                    ? "#00FF00"
+                    : PregnancyDetails.Renal === "0"
+                    ? "#FF0000"
+                    : "#CCCCCC",
+              },
+            ]}
+          ></View>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.detailText}>Others</Text>
+        </View>
+        <Text style={styles.other}>{PregnancyDetails.OOthers}</Text>
+      </View>
+    </View>
+    
       <TouchableOpacity style={styles.buttonStyle} onPress={navigateToClinic}>
         <Text style={styles.buttonText}>Care at Clinic</Text>
       </TouchableOpacity>
@@ -381,6 +552,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+    padding:10
   },
   card1: {
     backgroundColor: "#fff",
@@ -391,7 +563,7 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     paddingBottom: 0,
     borderRadius: 10,
-    width: "95%",
+    width: "100%",
     margin: 10,
     alignSelf: "center",
   },
@@ -426,12 +598,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   detailText: {
-    fontSize: 14,
+    fontSize: 15,
     marginBottom: 0,
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginBottom:10
   },
   header2: {
     fontSize: 16,
@@ -454,7 +627,6 @@ const styles = StyleSheet.create({
   },
   accordion: {
     marginTop: 10,
-    margin: 10,
     borderWidth: 1,
     borderColor: "#FF25A9",
     borderRadius: 10,
@@ -467,7 +639,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: "white",
     borderRadius: 10,
-    width: "95%",
+    width: "100%",
     marginTop: 20,
     borderColor: "#FF25A9",
     borderWidth: 1,
