@@ -110,7 +110,7 @@ const ClinicInfo = ({ pregnancyId }) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
       <View style={styles.container}>
-        <Text style={styles.header2}>Vaccine Information</Text>
+        <Text style={styles.header2}>Clinic Information</Text>
         {clinicDetails.length > 0 ? (
           renderClinicDetails()
         ) : (

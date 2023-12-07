@@ -2,6 +2,7 @@ import React from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
 import MWeight from "./MWeight";
 import FHeight from "./FHeight";
+import BP from "./BP";
 
 const Graphs = ({ pregnancyId }) => {
   return (
@@ -9,6 +10,7 @@ const Graphs = ({ pregnancyId }) => {
       <View style={styles.container}>
         <MWeight pregnancyId={pregnancyId} />
         <FHeight pregnancyId={pregnancyId} />
+        <BP pregnancyId={pregnancyId} />
       </View>
     </ScrollView>
   );

@@ -20,9 +20,9 @@ const Clinic = ({ route }) => {
   useEffect(() => {
     navigation.setOptions({
       headerTitleStyle: {
-        fontWeight: "bold",
+        fontWeight: "600",
         color: "#57ADF8",
-        fontSize: 19,
+        fontSize: 18,
       },
       headerTintColor: "#57ADF8",
       headerShown: true,
