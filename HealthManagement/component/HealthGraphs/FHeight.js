@@ -7,16 +7,16 @@ const chartConfig = {
   backgroundGradientFrom: "#fff",
   backgroundGradientTo: "#fff",
   decimalPlaces: 2,
-  color: (opacity = 1) => `rgba(4, 0, 252, ${opacity})`,
+  color: (opacity = 1) => `rgba(255, 0, 0,  ${opacity})`,
   labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
   propsForDots: {
     r: "5",
     strokeWidth: "2",
-    stroke: "#0400FC",
+    stroke: "#FF0000",
   },
 };
 
-const MWeight = ({ pregnancyId }) => {
+const FHeight = ({ pregnancyId }) => {
   const [clinicDetails, setClinicDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const windowWidth = Dimensions.get("window").width - 15;
@@ -60,10 +60,10 @@ const MWeight = ({ pregnancyId }) => {
     datasets: [
       {
         data: clinicDetails.map((detail) => {
-          const bpValue = parseFloat(detail.weight); // Convert to float
+          const bpValue = parseFloat(detail.f_weight); // Convert to float
           return isNaN(bpValue) ? 0 : bpValue; // Check for NaN and handle it
         }),
-        color: (opacity = 1) => `rgba(4, 0, 252, ${opacity})`,
+        color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
         strokeWidth: 2,
       },
     ],
@@ -71,7 +71,7 @@ const MWeight = ({ pregnancyId }) => {
 
   return (
     <View>
-      <Text style={styles.header}>Maternal Weight</Text>
+      <Text style={styles.header}>Fundal Height</Text>
       <View style={{ marginTop: 10, marginLeft: -10 }}>
         <LineChart
           data={chartData}
@@ -80,7 +80,7 @@ const MWeight = ({ pregnancyId }) => {
           chartConfig={chartConfig}
         />
       </View>
-      <Text style={styles.rotatedText}>Maternal Weight (Kg)</Text>
+      <Text style={styles.rotatedText}>Fundal Height (cm)</Text>
       <Text style={styles.xaxios}>Gestational Duration in Weeks</Text>
     </View>
   );
@@ -107,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MWeight;
+export default FHeight;

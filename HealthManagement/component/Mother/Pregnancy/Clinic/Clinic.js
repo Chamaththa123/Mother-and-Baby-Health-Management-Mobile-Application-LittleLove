@@ -74,11 +74,6 @@ const Clinic = ({ route }) => {
             <View style={{ flex: 1 }}>
               <Graphs pregnancyId={pregnancyId} />
             </View>
-            <View style={styles.footer}>
-              <TouchableOpacity style={styles.buttonStyle}>
-                <Text style={styles.buttonText}>Add</Text>
-              </TouchableOpacity>
-            </View>
           </View>
         );
       default:

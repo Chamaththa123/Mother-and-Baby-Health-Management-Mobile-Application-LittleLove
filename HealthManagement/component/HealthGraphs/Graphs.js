@@ -1,14 +1,26 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import MWeight from './MWeight'
+import React from "react";
+import { View, ScrollView, StyleSheet } from "react-native";
+import MWeight from "./MWeight";
+import FHeight from "./FHeight";
 
-
-const Graphs = ({pregnancyId}) => {
+const Graphs = ({ pregnancyId }) => {
   return (
-    <View>
-      <MWeight  pregnancyId={pregnancyId}/>
-    </View>
-  )
-}
+    <ScrollView contentContainerStyle={styles.scrollView}>
+      <View style={styles.container}>
+        <MWeight pregnancyId={pregnancyId} />
+        <FHeight pregnancyId={pregnancyId} />
+      </View>
+    </ScrollView>
+  );
+};
 
-export default Graphs
+const styles = StyleSheet.create({
+  scrollView: {
+    flexGrow: 1,
+  },
+  container: {
+    padding: 10,
+  },
+});
+
+export default Graphs;
