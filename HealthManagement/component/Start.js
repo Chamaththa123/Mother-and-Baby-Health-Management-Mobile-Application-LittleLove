@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+} from "react-native";
 
 import MyImage from "../assets/logo.png";
 
@@ -15,22 +22,27 @@ const Start = ({ route, navigation }) => {
   }, []);
 
   return (
-    <TouchableOpacity style={styles.container} onPress={handleLoginPress}>
-      <Image source={MyImage} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.redText}>Little </Text>
-        <Text style={styles.blueText}> Love</Text>
-      </View>
-    </TouchableOpacity>
+    <SafeAreaView style={styles.safeArea}>
+      <TouchableOpacity style={styles.container} onPress={handleLoginPress}>
+        <Image source={MyImage} style={styles.image} />
+        <View style={styles.textContainer}>
+          <Text style={styles.redText}>Little </Text>
+          <Text style={styles.blueText}> Love</Text>
+        </View>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "white",
+  },
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
   },
   image: {
     width: "30%",
@@ -44,29 +56,14 @@ const styles = StyleSheet.create({
   redText: {
     color: "#57ADF8",
     fontSize: 20,
-    fontWeight: "600",
+    fontWeight: "400",
     textAlign: "center",
   },
   blueText: {
     color: "#FF25A9",
     fontSize: 20,
-    fontWeight: "600",
+    fontWeight: "400",
     textAlign: "center",
-  },
-  buttonStyle: {
-    backgroundColor: "white",
-    padding: 13,
-    borderRadius: 10,
-    width: "90%",
-    height: 60,
-    margin: 10,
-    marginLeft: 20,
-    marginBottom: 30,
-    borderColor: "#FF1515",
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    color: "white",
   },
 });
 
