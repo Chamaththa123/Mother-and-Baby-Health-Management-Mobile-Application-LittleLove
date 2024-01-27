@@ -156,12 +156,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   headerText_acc: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
   },
   midwifeImage: {
-    width: 70,
-    height:70,
+    width: 90,
+    height:90,
   },
   headerText: {
     fontSize: 15,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   headerWelcome: {
-    fontSize: 19,
+    fontSize: 22,
     color: "#403A3A",
     fontWeight: "bold",
   },
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   buttonText2: {
-    fontSize: 17,
+    fontSize: 18,
     fontWeight: "bold",
   },
 });

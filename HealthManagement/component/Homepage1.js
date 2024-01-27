@@ -105,12 +105,12 @@ const styles = StyleSheet.create({
   },
   headerImage: {
     marginTop: "10%",
-    width: 70,
+    width: 100,
     height: 70,
   },
   midwifeImage: {
-    width: 50,
-    height: 50,
+    width: 90,
+    height: 90,
   },
   headerText: {
     fontSize: 15,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   headerWelcome: {
-    fontSize: 19,
+    fontSize: 25,
     color: "white",
     fontWeight: "bold",
   },
@@ -129,10 +129,11 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   headerName: {
-    fontSize: 14,
+    fontSize: 17,
     fontWeight: "bold",
     color: "white",
-    marginTop: "-4.9%",
+    marginTop: "-10.9%",
+    marginBottom:15
   },
   card: {
     backgroundColor: "#FF25A9",
